@@ -118,11 +118,13 @@ namespace abx {
 		Must be initialized at some point, preferably inside application's constructor.
 	*/
 	struct SharedData {
-		class Window* m_window = nullptr;			 //Pointer to abx::Window object. Foward declaration.
-		class StateManager* m_stateMgr = nullptr;	 //Pointer to abx::StateManager object. Foward declaration.
-		bool m_debug = false;						 //Application's visual debug
-		bool m_log = true;							 //Application's logging debug
+		class Window*			m_window     =  nullptr;	 //Pointer to abx::Window object. Foward declaration.
+		class StateManager*		m_stateMgr   =  nullptr;	 //Pointer to abx::StateManager object. Foward declaration.
+		class EntityManager*    m_entityMgr  =  nullptr;	 //Pointer to abx::EntityManager object. Foward declaration.	
+		bool					m_debug      =  false;		 //Application's visual debug
+		bool					m_log        =  true;		 //Application's logging debug
 	};
+
 
 
 
@@ -137,6 +139,7 @@ namespace abx {
 
 
 
+
 	/*
 		@brief Wrapper function to spdlog::warn. However, it checks if log boolean is true to display message.
 	*/
@@ -144,6 +147,17 @@ namespace abx {
 	inline void LogWarn(SharedData* l_sharedData, const T& l_msg) {
 		if (l_sharedData->m_log)
 			spdlog::warn(l_msg);
+	}
+
+
+
+	/*
+		@brief Wrapper function to spdlog::warn. However, it checks if log boolean is true to display message.
+	*/
+	template <typename T>
+	inline void LogError(SharedData* l_sharedData, const T& l_msg) {
+		if (l_sharedData->m_log)
+			spdlog::error(l_msg);
 	}
 
 

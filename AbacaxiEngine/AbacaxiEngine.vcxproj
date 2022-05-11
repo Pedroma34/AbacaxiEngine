@@ -94,6 +94,8 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="Application.cpp" />
+    <ClCompile Include="EntityManager.cpp" />
+    <ClCompile Include="EntitySquare.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="pch.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Create</PrecompiledHeader>
@@ -104,6 +106,7 @@
     <ClCompile Include="StateGame.cpp" />
     <ClCompile Include="StateManager.cpp" />
     <ClCompile Include="StateMenu.cpp" />
+    <ClCompile Include="SystemRectangleShape.cpp" />
     <ClCompile Include="Window.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -111,12 +114,19 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Application.h" />
+    <ClInclude Include="Entities.h" />
+    <ClInclude Include="Entity.h" />
+    <ClInclude Include="EntityManager.h" />
+    <ClInclude Include="EntitySquare.h" />
     <ClInclude Include="MachineStates.h" />
     <ClInclude Include="pch.h" />
     <ClInclude Include="State.h" />
     <ClInclude Include="StateGame.h" />
     <ClInclude Include="StateManager.h" />
     <ClInclude Include="StateMenu.h" />
+    <ClInclude Include="System.h" />
+    <ClInclude Include="SystemRectangleShape.h" />
+    <ClInclude Include="Systems.h" />
     <ClInclude Include="Window.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

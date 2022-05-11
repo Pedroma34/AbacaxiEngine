@@ -10,6 +10,7 @@
 #include "pch.h"
 #include "Window.h"
 #include "StateManager.h"
+#include "EntityManager.h"
 
 namespace abx {
 
@@ -19,12 +20,13 @@ namespace abx {
 	class Application {
 
 
-		SharedData m_sharedData;
-		Window m_window;			//Window wrapper class of this application 
-		StateManager m_stateMgr;	//A manager that controls all machine states
-		sf::Time m_time;		    //Time 
-		sf::Clock m_clock;	        //system clock
-		bool m_debug;		        //is debug mode on?
+		SharedData	  m_sharedData;
+		Window		  m_window;		  //Window wrapper class of this application 
+		StateManager  m_stateMgr;	  //A manager that controls all machine states
+		EntityManager m_entityMgr;	  //Manager that controls all entities and its components. Update and render functions are called inside machine states.
+		sf::Time	  m_time;		  //Time 
+		sf::Clock	  m_clock;	      //system clock
+		bool		  m_debug;	      //is debug mode on?
 
 
 	public:

@@ -19,13 +19,15 @@ namespace abx {
 		m_sharedData(),
 		m_window("Abacaxi", sf::Vector2u(1280,720), &m_sharedData),
 		m_stateMgr(&m_sharedData),
+		m_entityMgr(&m_sharedData),
 		m_time(),
 		m_clock(),
 		m_debug(false)
 	{
 		//Initializing share data
-		m_sharedData.m_window	=	&m_window;
-		m_sharedData.m_stateMgr =	&m_stateMgr;
+		m_sharedData.m_window	  =	 &m_window;
+		m_sharedData.m_stateMgr   =	 &m_stateMgr;
+		m_sharedData.m_entityMgr  =  &m_entityMgr;
 		/////////////////////////////////
 
 		//Intializing machine state
@@ -64,6 +66,7 @@ namespace abx {
 	void Application::LateUpdate(){
 		m_time = m_clock.restart();
 		m_stateMgr.LateUpdate();
+		m_entityMgr.LateUpdate();
 	}
 	/*_________________________________________________________________________*/
 

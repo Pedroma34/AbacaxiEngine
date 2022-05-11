@@ -24,9 +24,9 @@ namespace abx {
 	class StateManager {
 
 
-		SharedData* m_sharedData;					//Pointer to application's shared datas
-		std::vector<Ref<State>> m_states;			//Container that holds all states. Ref should be passed only with weak_ptr
-		std::vector<WeakRef<State>> m_toRemove;		//Container hold pointers to states that will soon be deleted from memory
+		SharedData*					m_sharedData;	  //Pointer to application's shared datas
+		std::vector<Ref<State>>		m_states;		  //Container that holds all states. Ref should be passed only with weak_ptr
+		std::vector<WeakRef<State>> m_toRemove;		  //Container hold pointers to states that will soon be deleted from memory
 
 
 	public:

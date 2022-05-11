@@ -22,6 +22,15 @@
     <ClCompile Include="StateMenu.cpp">
       <Filter>Machine State</Filter>
     </ClCompile>
+    <ClCompile Include="SystemRectangleShape.cpp">
+      <Filter>Systems</Filter>
+    </ClCompile>
+    <ClCompile Include="EntityManager.cpp">
+      <Filter>Entity</Filter>
+    </ClCompile>
+    <ClCompile Include="EntitySquare.cpp">
+      <Filter>Entity</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Application.h">
@@ -48,6 +57,27 @@
     <ClInclude Include="StateMenu.h">
       <Filter>Machine State</Filter>
     </ClInclude>
+    <ClInclude Include="Entity.h">
+      <Filter>Entity</Filter>
+    </ClInclude>
+    <ClInclude Include="System.h">
+      <Filter>Systems</Filter>
+    </ClInclude>
+    <ClInclude Include="SystemRectangleShape.h">
+      <Filter>Systems</Filter>
+    </ClInclude>
+    <ClInclude Include="Systems.h">
+      <Filter>GlobalIncludes</Filter>
+    </ClInclude>
+    <ClInclude Include="EntityManager.h">
+      <Filter>Entity</Filter>
+    </ClInclude>
+    <ClInclude Include="EntitySquare.h">
+      <Filter>Entity</Filter>
+    </ClInclude>
+    <ClInclude Include="Entities.h">
+      <Filter>GlobalIncludes</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Application">
@@ -58,6 +88,12 @@
     </Filter>
     <Filter Include="GlobalIncludes">
       <UniqueIdentifier>{dd69a218-9765-44e5-9788-0dc12f8c5d86}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Entity">
+      <UniqueIdentifier>{837ef394-6a79-4a05-a4f2-307a0813fb61}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Systems">
+      <UniqueIdentifier>{6ac23c61-2989-4fba-b363-9b00e1b02f80}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
