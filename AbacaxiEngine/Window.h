@@ -18,13 +18,13 @@ namespace abx {
 	class Window {
 
 
-		sf::RenderWindow m_window;   //SFML window
-		std::string m_title;		 //Title of the window
-		sf::Vector2u m_size;		 //Size of the window
-		bool m_vSync;				 //Vertical sync
-		bool m_fullScreen;			 //Is the application fullscreen?
-		bool m_isDone;				 //Is the application done?
-		SharedData* m_sharedData;	 //Pointer to application's shared data
+		sf::RenderWindow m_window;		  //SFML window
+		std::string		 m_title;		  //Title of the window
+		sf::Vector2u	 m_size;		  //Size of the window
+		bool			 m_vSync;		  //Vertical sync
+		bool			 m_fullScreen;	  //Is the application fullscreen?
+		bool			 m_isDone;		  //Is the application done?
+		SharedData*		 m_sharedData;	  //Pointer to application's shared data
 
 	public:
 

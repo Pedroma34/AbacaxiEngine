@@ -10,6 +10,10 @@
 
 #include "pch.h"
 #include "StateGame.h"
+#include "Entity.h"
+#include "EntityManager.h"
+
+
 
 namespace abx {
 
@@ -38,6 +42,10 @@ namespace abx {
 
 	/*_________________________________________________________________________*/
 	void StateGame::OnCreate(){
+
+		auto entity = m_sharedData->m_entityMgr->Add<EntitySquare>().lock();
+
+		m_sharedData->m_entityMgr->Remove(entity->GetId());
 
 	}
 	/*_________________________________________________________________________*/
@@ -74,7 +82,7 @@ namespace abx {
 
 	/*_________________________________________________________________________*/
 	void StateGame::Update(const float& l_time){
-
+		m_sharedData->m_entityMgr->Update(l_time);
 	}
 	/*_________________________________________________________________________*/
 
@@ -83,7 +91,7 @@ namespace abx {
 
 	/*_________________________________________________________________________*/
 	void StateGame::Render(){
-
+		m_sharedData->m_entityMgr->Render();
 	}
 	/*_________________________________________________________________________*/
 }
