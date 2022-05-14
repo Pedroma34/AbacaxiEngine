@@ -115,7 +115,7 @@ namespace abx {
 		WeakRef<T> AddSystem();
 
 
-
+	
 		/*
 			@brief Pushes a pointer of a system to be removed in late update.
 			@see m_toRemove
@@ -154,6 +154,15 @@ namespace abx {
 
 		}
 
+
+
+		/*
+		@brief Binds a pointer to app's shared data into this entity. Should be bound everytime
+		an entity is created.
+		*/
+		void BindSharedData(SharedData* l_sharedData) {
+			m_sharedData = l_sharedData;
+		}
 
 
 

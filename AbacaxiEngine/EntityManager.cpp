@@ -42,8 +42,8 @@ namespace abx {
 
 	/*______________________________________________________*/
 	void EntityManager::Update(const float& l_time){
-		CollisionCheck(l_time);
-		m_collisionQueue.clear();
+		CollisionCheck(l_time);														
+		m_collisionQueue.clear();					//Since we add to the queue every tick, we need to free memory
 
 		for (auto& itr : m_entities) {
 			itr.second->Update(l_time);
@@ -67,6 +67,30 @@ namespace abx {
 		for (auto& itr : m_entities)
 			itr.second->Render();
 	}
+
+
+
+
+	/*______________________________________________________*/
+	WeakRef<Entity> EntityManager::Add(Ref<Entity>& l_entity){
+		l_entity->m_sharedData = m_sharedData;					//binding shared data
+		l_entity->m_id = m_id;
+		m_entities.emplace_back(m_id, std::move(l_entity));		//moving ownership to container. So "l_entity" will be empty
+		m_id++;
+		return m_entities.back().second;
+	}
+
+
+
+
+	/*______________________________________________________*/
+	WeakRef<Entity> EntityManager::AddLate(Ref<Entity>& l_entity){
+		l_entity->m_sharedData = m_sharedData;					//binding shared data
+		l_entity->m_id = m_id;
+		m_toAdd.emplace_back(m_id, std::move(l_entity));		//transfering ownership to container. So "l_entity" will be empty
+		m_id++;
+		return m_toAdd.back().second;
+	}
 	/*______________________________________________________*/
 
 
@@ -82,6 +106,17 @@ namespace abx {
 
 
 	/*______________________________________________________*/
+	void EntityManager::RemoveAll(){
+		m_entities			.clear();
+		m_toAdd				.clear();
+		m_collisionQueue	.clear();
+		m_toRemove			.clear();
+	}
+
+
+
+
+	/*______________________________________________________*/
 	void EntityManager::LateUpdate(){
 
 		for (auto& itr : m_entities)						//Entities late update, mainly erasing systems
@@ -89,7 +124,7 @@ namespace abx {
 
 		
 		while (m_toAdd.begin() != m_toAdd.end()) {			//Adding entities in add queue
-			CopyEntity(m_toAdd.begin()->second);
+			CopyEntity(m_toAdd.begin()->second);			//Transfering ownership to container.
 			m_toAdd.erase(m_toAdd.begin());
 		}
 
@@ -109,6 +144,26 @@ namespace abx {
 		m_toAdd.clear();
 		m_collisionQueue.clear();
 		m_toRemove.clear();
+	}
+
+
+
+
+	/*______________________________________________________*/
+	WeakRef<Entity> EntityManager::Get(const unsigned int& l_id){
+		for (auto& itr : m_entities)
+			if (itr.second->m_id == l_id)
+				return itr.second;
+
+		return WeakRef<Entity>();
+	}
+
+
+
+
+	/*______________________________________________________*/
+	unsigned int EntityManager::GetSize(){
+		return m_entities.size();
 	}
 	/*______________________________________________________*/
 
@@ -158,22 +213,26 @@ namespace abx {
 
 	/*______________________________________________________*/
 	void EntityManager::CollisionCheck(const float& l_time){
-		for (auto entities = m_entities.begin(); entities != m_entities.end(); entities++)
-			for (auto& itrCollision : m_collisionQueue) {
+		for (auto caller = m_entities.begin();											//Our "callers" entity
+			caller != m_entities.end();
+			caller++)
 
-				if (entities->second.get() == itrCollision.first) {						//if this entity has a call in the queue...
+			for (auto& itrCollision : m_collisionQueue) {								//For each caller, we loop through collision queue
 
-					for (auto entities2 = m_entities.begin(); 
-						entities2 != m_entities.end(); 
-						entities2++) {
+				if (!itrCollision.first.expired() && 
+					caller->second.get() == itrCollision.first.lock().get()) 			//if this caller has a call in the queue...
 
-						if (entities->second->GetId() == entities2->second->GetId())	//if it's the same entity, skip it
-							continue;
+					for (auto receiver = m_entities.begin();							//Our "receivers"
+						receiver != m_entities.end();
+						receiver++) {
 
-						itrCollision.second(entities2->second.get());					//calling the function and passing the next entity as an argument
+					if (caller->second->GetId() == receiver->second->GetId())			//Making sure our caller doesn't perform logic with itself
+						continue;
 
-					}
+					itrCollision.second(receiver->second);								//calling the function and passing the next entity as a param
+
 				}
+				
 			}
 	}
 	/*______________________________________________________*/
