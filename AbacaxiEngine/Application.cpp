@@ -26,6 +26,7 @@ namespace abx {
 	{
 		//Initializing share data
 		m_sharedData.m_window	  =	 &m_window;
+		m_sharedData.m_resources  =	 &m_resources;
 		m_sharedData.m_stateMgr   =	 &m_stateMgr;
 		m_sharedData.m_entityMgr  =  &m_entityMgr;
 		/////////////////////////////////

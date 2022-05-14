@@ -78,6 +78,9 @@
     <ClInclude Include="Entities.h">
       <Filter>GlobalIncludes</Filter>
     </ClInclude>
+    <ClInclude Include="Resources.h">
+      <Filter>Application</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Application">

@@ -120,6 +120,7 @@
     <ClInclude Include="EntitySquare.h" />
     <ClInclude Include="MachineStates.h" />
     <ClInclude Include="pch.h" />
+    <ClInclude Include="Resources.h" />
     <ClInclude Include="State.h" />
     <ClInclude Include="StateGame.h" />
     <ClInclude Include="StateManager.h" />

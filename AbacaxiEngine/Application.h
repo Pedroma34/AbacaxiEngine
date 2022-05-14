@@ -7,10 +7,13 @@
 	10/May/2022
 */
 
+
 #include "pch.h"
 #include "Window.h"
 #include "StateManager.h"
 #include "EntityManager.h"
+#include "Resources.h"
+
 
 namespace abx {
 
@@ -22,6 +25,7 @@ namespace abx {
 
 		SharedData	  m_sharedData;
 		Window		  m_window;		  //Window wrapper class of this application 
+		Resources	  m_resources;	  //Resource manager using thor
 		StateManager  m_stateMgr;	  //A manager that controls all machine states
 		EntityManager m_entityMgr;	  //Manager that controls all entities and its components. Update and render functions are called inside machine states.
 		sf::Time	  m_time;		  //Time 

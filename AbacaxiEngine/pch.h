@@ -119,6 +119,7 @@ namespace abx {
 	*/
 	struct SharedData {
 		class Window*			m_window     =  nullptr;	 //Pointer to abx::Window object. Foward declaration.
+		class Resources*		m_resources  =  nullptr;	 //Pointer to abx::Resources object. Foward declaration.
 		class StateManager*		m_stateMgr   =  nullptr;	 //Pointer to abx::StateManager object. Foward declaration.
 		class EntityManager*    m_entityMgr  =  nullptr;	 //Pointer to abx::EntityManager object. Foward declaration.	
 		bool					m_debug      =  false;		 //Application's visual debug
