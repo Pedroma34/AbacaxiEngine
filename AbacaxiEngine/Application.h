@@ -30,7 +30,6 @@ namespace abx {
 		EntityManager m_entityMgr;	  //Manager that controls all entities and its components. Update and render functions are called inside machine states.
 		sf::Time	  m_time;		  //Time 
 		sf::Clock	  m_clock;	      //system clock
-		bool		  m_debug;	      //is debug mode on?
 
 
 	public:

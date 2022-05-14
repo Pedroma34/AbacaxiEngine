@@ -16,15 +16,17 @@ namespace abx {
 
 	/*_________________________________________________________________________*/
 	Application::Application() :
+
 		m_sharedData(),
-		m_window("Abacaxi", sf::Vector2u(1280,720), &m_sharedData),
-		m_stateMgr(&m_sharedData),
-		m_entityMgr(&m_sharedData),
-		m_time(),
-		m_clock(),
-		m_debug(false)
+		m_window("Abacaxi", sf::Vector2u(1280,720), &m_sharedData)  ,
+		m_resources()												,
+		m_stateMgr									(&m_sharedData)	,
+		m_entityMgr									(&m_sharedData) ,
+		m_time										()				,
+		m_clock										()
+
 	{
-		//Initializing share data
+		//Initializing share data//
 		m_sharedData.m_window	  =	 &m_window;
 		m_sharedData.m_resources  =	 &m_resources;
 		m_sharedData.m_stateMgr   =	 &m_stateMgr;
@@ -32,7 +34,7 @@ namespace abx {
 		/////////////////////////////////
 
 		//Intializing machine state
-		m_stateMgr.SwitchTo<StateMenu>();	//Starting domino effect
+		m_stateMgr.SwitchTo<StateMenu>();			//Starting domino effect
 		/////////////////////////////////
 	}
 

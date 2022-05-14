@@ -44,14 +44,7 @@ namespace abx {
 	void StateGame::OnCreate(){
 
 		//Testing entities//
-		auto entity = m_sharedData->m_entityMgr->Add<EntitySquare>().lock();
-		m_sharedData->m_entityMgr->Remove(entity->GetId());
-
-		Ref<Entity> newEntity = MakeRef<Entity>();
-		newEntity->BindSharedData(m_sharedData);
-		auto recSystem = newEntity->AddSystem<SystemRectangleShape>().lock();
-		recSystem->GetShape()->setFillColor(sf::Color::Blue);
-		m_sharedData->m_entityMgr->Add(newEntity).lock()->GetId();
+		auto entity = m_sharedData->m_entityMgr->Add<EntityMinotaur>().lock();
 		//////////////////////////////////////////////////////////////////////
 
 	}

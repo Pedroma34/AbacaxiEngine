@@ -7,16 +7,19 @@
 */
 
 
+
 #include "pch.h"
 #include "Application.h"
+
+
 
 int main() {
 
 
-	abx::Scope<abx::Application> app = abx::MakeScope<abx::Application>();   //Creating application
+	abx::Scope<abx::Application> app = abx::MakeScope<abx::Application>();		//Creating application
 
 
-	while (!app->GetWindow()->GetDone()) {   //Main loop
+	while (!app->GetWindow()->GetDone()) {										//Main loop
 
 		app->Update();
 		app->Render();
