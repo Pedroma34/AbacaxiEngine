@@ -3,7 +3,7 @@
 
 /*
 	Entity.h
-	Purpose: Base class for all states. Entity is based on a component system called "Systems".
+	Purpose: Base class for all entities. Entity is based on a component system called "Systems".
 	@author Pedro Sergio de Castro Sarmento Filho
 	11/May/2022
 */
