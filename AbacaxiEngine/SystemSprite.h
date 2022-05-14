@@ -36,21 +36,6 @@ namespace abx {
 
 
 		/*
-			@brief Constructor. Initialize members.
-		*/
-		SystemSprite();
-
-
-
-		/*
-			@brief Destructor.
-		*/
-		~SystemSprite();
-
-
-
-
-		/*
 			@brief Renders sprite.
 		*/
 		void Render() override;

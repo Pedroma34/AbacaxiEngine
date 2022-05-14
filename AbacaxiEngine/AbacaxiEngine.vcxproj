@@ -103,11 +103,13 @@
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Create</PrecompiledHeader>
       <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='Release|x64'">pch.h</PrecompiledHeaderFile>
     </ClCompile>
+    <ClCompile Include="StateEntityIdle.cpp" />
+    <ClCompile Include="StateEntityRun.cpp" />
     <ClCompile Include="StateGame.cpp" />
     <ClCompile Include="StateManager.cpp" />
     <ClCompile Include="StateMenu.cpp" />
+    <ClCompile Include="SystemAnimation.cpp" />
     <ClCompile Include="SystemHealth.cpp" />
-    <ClCompile Include="SystemRectangleShape.cpp" />
     <ClCompile Include="SystemSprite.cpp" />
     <ClCompile Include="SystemTexture.cpp" />
     <ClCompile Include="Window.cpp" />
@@ -121,16 +123,20 @@
     <ClInclude Include="Entity.h" />
     <ClInclude Include="EntityManager.h" />
     <ClInclude Include="EntityMinotaur.h" />
+    <ClInclude Include="EntityStates.h" />
     <ClInclude Include="MachineStates.h" />
     <ClInclude Include="pch.h" />
     <ClInclude Include="Resources.h" />
     <ClInclude Include="State.h" />
+    <ClInclude Include="StateEntity.h" />
+    <ClInclude Include="StateEntityIdle.h" />
+    <ClInclude Include="StateEntityRun.h" />
     <ClInclude Include="StateGame.h" />
     <ClInclude Include="StateManager.h" />
     <ClInclude Include="StateMenu.h" />
     <ClInclude Include="System.h" />
+    <ClInclude Include="SystemAnimation.h" />
     <ClInclude Include="SystemHealth.h" />
-    <ClInclude Include="SystemRectangleShape.h" />
     <ClInclude Include="Systems.h" />
     <ClInclude Include="SystemSprite.h" />
     <ClInclude Include="SystemTexture.h" />

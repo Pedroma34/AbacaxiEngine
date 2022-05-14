@@ -1,6 +1,7 @@
 #pragma once
 
 
+
 /*
 	Entity.h
 	Purpose: Base class for all entities. Entity is based on a component system called "Systems".
@@ -9,8 +10,12 @@
 */
 
 
+
 #include "pch.h"
 #include "Systems.h"
+#include "EntityStates.h"
+
+
 
 namespace abx {
 
@@ -30,7 +35,7 @@ namespace abx {
 		SharedData*						m_sharedData;	//Pointer to all shared data. Must be bound when state is created.
 		std::vector<Ref<System>>		m_systems;		//Container that holds all entity's systems (components)
 		std::vector<WeakRef<System>>	m_toRemove;		//Container hold pointers to systems that will soon be deleted from memory
-		Ref<class EntityState>			m_state;		//Contains current entity state. Only one state per time.
+		Ref<StateEntity>				m_state;		//Contains current entity state. Only one state per time.
 		bool							m_stateLock;	//Locks in a specific state. Ideal when you don't want entity to switch state. e.g Dying state
 		unsigned int					m_id;			//Unique identifier. It's set inside entity manager.
 
@@ -57,7 +62,9 @@ namespace abx {
 		/*
 			@brief Virtual destructor.
 		*/
-		virtual ~Entity() {}
+		virtual ~Entity() {
+			LogWarn(m_sharedData, "Entity has been destroyed");
+		}
 
 
 
@@ -88,8 +95,8 @@ namespace abx {
 				itr->Update(l_time);
 			
 			
-			//if (m_state)						//Updating current state
-			//	m_state->Update(l_time);	
+			if (m_state)					//Updating current state
+				m_state->Update(l_time);	
 			
 		}
 
@@ -122,6 +129,31 @@ namespace abx {
 		*/
 		template<class T>
 		void RemoveSystem();
+
+
+
+		/*
+			@brief Sets this entity's state. It creates an arbitrary entity state. Entity can only update one state.
+			For example, the previous state will be deleted if this function is called with a different state as an parameter.
+			If state is already in memory, it returns a weak pointer to that state.
+			If isLocked boolean is true, switching state is impossible after this one.
+			"Locked" is useful when entity only have to be in one state. 
+			For example, if entity is dying, switch to a locked dying state so other states won't be pushed to entity.
+			@param  const bool& isLocked (opitional)
+			@return std::weak_ptr<T> to the newly created state
+		*/
+		template <class T>
+		WeakRef<T> SetState(const bool &l_isLocked = false);
+
+
+
+		/*
+			@brief Checks if entity is in templated state. If it is, it returns a valid weak pointer.
+			If not, it returns an expired weak pointer.
+			@return std::weak_ptr<T> state
+		*/
+		template<class T>
+		std::weak_ptr<T> IsInState();
 
 
 
@@ -236,6 +268,45 @@ namespace abx {
 
 		LogError(m_sharedData, "[ENTITY] System could not be removed. Not found: [" +
 			std::string(typeid(T).name()) + "]");
+	}
+
+
+
+	/*
+		@brief Definition. Sets this entity's state. It creates an arbitrary entity state. Entity can only update one state.
+		For example, the previous state will be deleted if this function is called with a different state as an parameter.
+		If state is already in memory, it returns a weak pointer to that state.
+		If isLocked boolean is true, switching state is impossible after this one.
+		@param const bool& isLocked (optional)
+		@return std::weak_ptr<T> to the newly created state
+	*/
+	template<class T>
+	inline WeakRef<T> Entity::SetState(const bool &l_isLocked){
+		m_stateLock = l_isLocked;
+		if (m_stateLock)									   //Not possible to switch states until it's false
+			return WeakRef<T>();
+		if (m_state)
+			if (typeid(*m_state) == typeid(T))				   //If state is already being played
+				return std::static_pointer_cast<T>(m_state);
+
+		m_state = MakeRef<T>();
+		m_state->BindEntity(this);							   //Binding state's owner
+		return std::static_pointer_cast<T>(m_state);
+	}
+
+
+
+
+	/*
+		@brief Definition. Checks if entity is in templated state. If it is, it returns a valid weak pointer.
+		If not, it returns an expired weak pointer.
+		@return std::weak_ptr<T> state
+	*/
+	template<class T>
+	inline std::weak_ptr<T> Entity::IsInState(){
+		if (typeid(*m_state) == typeid(T))
+			return std::static_pointer_cast<T>(m_state);
+		return std::weak_ptr<T>();
 	}
 
 

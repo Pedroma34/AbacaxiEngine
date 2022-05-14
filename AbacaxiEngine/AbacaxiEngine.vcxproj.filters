@@ -22,9 +22,6 @@
     <ClCompile Include="StateMenu.cpp">
       <Filter>Machine State</Filter>
     </ClCompile>
-    <ClCompile Include="SystemRectangleShape.cpp">
-      <Filter>Systems</Filter>
-    </ClCompile>
     <ClCompile Include="EntityManager.cpp">
       <Filter>Entity</Filter>
     </ClCompile>
@@ -39,6 +36,15 @@
     </ClCompile>
     <ClCompile Include="EntityMinotaur.cpp">
       <Filter>Entity</Filter>
+    </ClCompile>
+    <ClCompile Include="StateEntityRun.cpp">
+      <Filter>Entity State</Filter>
+    </ClCompile>
+    <ClCompile Include="StateEntityIdle.cpp">
+      <Filter>Entity State</Filter>
+    </ClCompile>
+    <ClCompile Include="SystemAnimation.cpp">
+      <Filter>Systems</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -72,9 +78,6 @@
     <ClInclude Include="System.h">
       <Filter>Systems</Filter>
     </ClInclude>
-    <ClInclude Include="SystemRectangleShape.h">
-      <Filter>Systems</Filter>
-    </ClInclude>
     <ClInclude Include="Systems.h">
       <Filter>GlobalIncludes</Filter>
     </ClInclude>
@@ -99,6 +102,21 @@
     <ClInclude Include="EntityMinotaur.h">
       <Filter>Entity</Filter>
     </ClInclude>
+    <ClInclude Include="StateEntity.h">
+      <Filter>Entity State</Filter>
+    </ClInclude>
+    <ClInclude Include="StateEntityRun.h">
+      <Filter>Entity State</Filter>
+    </ClInclude>
+    <ClInclude Include="EntityStates.h">
+      <Filter>GlobalIncludes</Filter>
+    </ClInclude>
+    <ClInclude Include="StateEntityIdle.h">
+      <Filter>Entity State</Filter>
+    </ClInclude>
+    <ClInclude Include="SystemAnimation.h">
+      <Filter>Systems</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Application">
@@ -115,6 +133,9 @@
     </Filter>
     <Filter Include="Systems">
       <UniqueIdentifier>{6ac23c61-2989-4fba-b363-9b00e1b02f80}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Entity State">
+      <UniqueIdentifier>{31017bb1-773b-4eb9-8c22-807ae4913d26}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>

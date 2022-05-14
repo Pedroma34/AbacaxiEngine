@@ -36,20 +36,6 @@ namespace abx {
 
 
 		/*
-			@brief Constructor. Initialize members.
-		*/
-		SystemTexture();
-
-
-
-		/*
-			@brief Destructor.
-		*/
-		~SystemTexture();
-
-
-
-		/*
 			@brief Set chunck size. It's the chunck of the texture used for sprite sheets.
 			@param const sf::Vector2f& size
 		*/

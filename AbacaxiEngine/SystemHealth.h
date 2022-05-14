@@ -38,13 +38,6 @@ namespace abx {
 
 
 		/*
-			@brief Destructor.
-		*/
-		~SystemHealth();
-
-
-
-		/*
 			@brief Changes entity's current health.
 			@param const float& health
 		*/

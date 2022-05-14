@@ -12,6 +12,7 @@
 #include "StateGame.h"
 #include "Entity.h"
 #include "EntityManager.h"
+#include "Window.h"
 
 
 
@@ -42,10 +43,15 @@ namespace abx {
 
 	/*_________________________________________________________________________*/
 	void StateGame::OnCreate(){
-
-		//Testing entities//
-		auto entity = m_sharedData->m_entityMgr->Add<EntityMinotaur>().lock();
-		//////////////////////////////////////////////////////////////////////
+		/*Variables*/
+		const auto& winSize   =  m_sharedData->m_window->GetSize();
+		/*Entities*/
+		auto player			  =  m_sharedData->m_entityMgr->Add<EntityMinotaur>().lock();
+		auto playerSpriteSys  =  player->GetSystem<SystemSprite>().lock();
+		playerSpriteSys->SetPosition(
+			winSize.x / 2,
+			winSize.y / 2
+		);
 
 	}
 	/*_________________________________________________________________________*/

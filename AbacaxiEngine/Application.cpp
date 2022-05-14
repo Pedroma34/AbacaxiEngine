@@ -31,6 +31,7 @@ namespace abx {
 		m_sharedData.m_resources  =	 &m_resources;
 		m_sharedData.m_stateMgr   =	 &m_stateMgr;
 		m_sharedData.m_entityMgr  =  &m_entityMgr;
+		m_sharedData.m_time       =  &m_time;
 		/////////////////////////////////
 
 		//Intializing machine state

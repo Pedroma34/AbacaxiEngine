@@ -30,24 +30,12 @@ namespace abx {
 
 
 		/*
-			@brief Constructor.
-		*/
-		EntityMinotaur();
-
-
-
-		/*
-			@brief Destructor.
-		*/
-		~EntityMinotaur();
-
-
-
-		/*
 			@brief Create function will be called when entity is created.
 		*/
 		void OnCreate() override;
 
+
+		
 	};
 
 
