@@ -138,7 +138,7 @@ namespace abx {
 
 	/*_________________________________________________________________________*/
 	void Window::Create(){
-		auto style = m_fullScreen ? sf::Style::Fullscreen : sf::Style::Default;
+		auto style = m_fullScreen ? sf::Style::Fullscreen : sf::Style::Close;
 
 		m_window.create(sf::VideoMode(m_size.x, m_size.y, 32), m_title, style);
 
