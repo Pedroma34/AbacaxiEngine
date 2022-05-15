@@ -29,9 +29,10 @@ namespace abx {
 
 	/*___________________________________________________________________*/
 	EventManager::EventManager(SharedData* l_sharedData)  :
-	m_keys(),
-	m_sharedData(l_sharedData)
-	{}
+	m_keys()
+	{
+		Utils::SharedData::SetEventMgr(this);
+	}
 	/*___________________________________________________________________*/
 
 

@@ -34,6 +34,7 @@ namespace abx {
 		m_sharedData.m_entityMgr  =  &m_entityMgr;
 		m_sharedData.m_eventMgr   =  &m_eventMgr;
 		m_sharedData.m_time       =  &m_time;
+		Utils::SharedData::SetTime(&m_time);
 		/////////////////////////////////
 
 		//Intializing machine state

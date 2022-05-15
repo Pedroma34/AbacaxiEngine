@@ -38,6 +38,8 @@ namespace abx {
 		*/
 		Resources() {
 
+			Utils::SharedData::SetResource(this);
+
 			//Textures//
 			m_textureKey [ "Minotaur" ]  =  GetDirectory() + "Data/Textures/minotaur.png";
 			m_textureKey [ "Bandit"   ]  =  GetDirectory() + "Data/Textures/bandit.png";

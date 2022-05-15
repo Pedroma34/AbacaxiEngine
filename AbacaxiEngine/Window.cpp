@@ -26,6 +26,7 @@ namespace abx {
 		m_isDone(false),
 		m_sharedData(l_sharedData)
 	{
+		Utils::SharedData::SetWindow(this);
 		Create();
 	}
 	/*_________________________________________________________________________*/

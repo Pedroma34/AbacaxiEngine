@@ -129,6 +129,54 @@ namespace abx {
 	};
 
 
+	namespace Utils {
+
+		/*
+			@brief Singleton shared data holds various pointers to application's members.
+			Furthermore, it holds some booleans for general purpose. Useful for communication between classes.
+		*/
+		class SharedData {
+			SharedData() {}
+			class Window*		  m_window    = nullptr;
+			class Resources*      m_resources = nullptr;
+			class StateManager*   m_stateMgr  = nullptr;
+			class EntityManager*  m_entityMgr = nullptr;
+			class EventManager*   m_eventMgr  = nullptr;
+			sf::Time*			  m_time      = nullptr;
+			bool				  m_debug     = false;
+			bool				  m_log       = true;
+
+		public:
+			SharedData(const SharedData&) = delete;
+
+			static SharedData& Get() {
+				static SharedData instance;
+				return instance;
+			}
+
+			//Setters
+			static void SetWindow    (Window* l_window)           { Get().m_window     =  l_window;    }
+			static void SetResource  (Resources* l_resource)      { Get().m_resources  =  l_resource;  }
+			static void SetStateMgr  (StateManager* l_stateMgr)   { Get().m_stateMgr   =  l_stateMgr;  }
+			static void SetEntityMgr (EntityManager* l_entityMgr) { Get().m_entityMgr  =  l_entityMgr; }
+			static void SetEventMgr  (EventManager* l_eventMgr)   { Get().m_eventMgr   =  l_eventMgr;  }
+			static void SetTime	     (sf::Time* l_time)           { Get().m_time       =  l_time;      }
+			static void SetDebug	 (bool l_debug)				  { Get().m_debug      =  l_debug;     }
+			static void SetLog       (bool l_log)				  { Get().m_log        =  l_log;       }
+
+			//Getters
+			static Window* Window()			   { return Get().m_window;     }
+			static Resources* Resource()	   { return Get().m_resources;  }
+			static StateManager* StateMgr()	   { return Get().m_stateMgr;   }
+			static EntityManager* EntityMgr()  { return Get().m_entityMgr;  }
+			static EventManager* EventMgr()    { return Get().m_eventMgr;   }
+			static sf::Time* Time()            { return Get().m_time;       }
+			static const bool& Debug()		   { return Get().m_debug;      }
+			static const bool& Log()		   { return Get().m_log;        }
+		};
+
+	}
+
 
 
 	/*

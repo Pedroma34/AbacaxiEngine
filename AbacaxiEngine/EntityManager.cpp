@@ -27,7 +27,9 @@ namespace abx {
 		m_toRemove(),
 		m_id(0),
 		m_sharedData(l_sharedData)
-	{}
+	{
+		Utils::SharedData::SetEntityMgr(this);
+	}
 	/*______________________________________________________*/
 
 

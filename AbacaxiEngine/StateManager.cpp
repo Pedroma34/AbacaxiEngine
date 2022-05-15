@@ -19,7 +19,9 @@ namespace abx {
 		m_sharedData(l_sharedData),
 		m_states(),
 		m_toRemove()
-	{}
+	{
+		Utils::SharedData::SetStateMgr(this);
+	}
 	/*_____________________________________________________*/
 
 

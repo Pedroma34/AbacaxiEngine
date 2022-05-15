@@ -29,7 +29,6 @@ namespace abx {
 
 
 		std::vector<Ref<CommandKey>> m_keys;		//Container of commands. CommandKey holds a command input object
-		SharedData*					 m_sharedData;  //Pointer to app's shared data. In this class, it's only used for debug purposes.
 
 
 	public:
@@ -143,7 +142,6 @@ namespace abx {
 			if (itr->GetKeyCode() == l_keyCode &&							//Checking if command is already in memory
 				typeid(C) == typeid(*itr->GetCommand().lock()) &&
 				itr->isHold() == l_isHold) {
-				LogWarn(m_sharedData, "[EVENT_MANAGER] Command already in memory");
 				return itr->GetCommand();
 			}
 
@@ -173,7 +171,6 @@ namespace abx {
 			if (itr->GetMouseCode() == l_mouseButton &&							//Checking if command is already in memory
 				typeid(C) == typeid(*itr->GetCommand().lock()) &&
 				itr->isHold() == l_isHold) {
-				LogWarn(m_sharedData, "[EVENT_MANAGER] Command already in memory");
 				return itr->GetCommand();
 			}
 
@@ -204,7 +201,6 @@ namespace abx {
 			if (itr->GetKeyCode() == l_keyCode &&							//Checking if command is already in memory
 				typeid(C) == typeid(*itr->GetCommand().lock()) &&
 				itr->isHold() == l_isHold) {
-				LogWarn(m_sharedData, "[EVENT_MANAGER] Command already in memory");
 				return itr->GetCommand();
 			}
 
@@ -235,7 +231,6 @@ namespace abx {
 			if (itr->GetMouseCode() == l_mouseButton &&							//Checking if command is already in memory
 				typeid(C) == typeid(*itr->GetCommand().lock()) &&
 				itr->isHold() == l_isHold) {
-				LogWarn(m_sharedData, "[EVENT_MANAGER] Command already in memory");
 				return itr->GetCommand();
 			}
 
