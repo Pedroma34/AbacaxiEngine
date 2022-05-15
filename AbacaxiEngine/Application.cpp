@@ -16,25 +16,17 @@ namespace abx {
 
 	/*_________________________________________________________________________*/
 	Application::Application() :
-
-		m_sharedData(),
-		m_window("Abacaxi", sf::Vector2u(1280,720), &m_sharedData)  ,
-		m_resources()												,
-		m_stateMgr									(&m_sharedData)	,
-		m_entityMgr									(&m_sharedData) ,
-		m_eventMgr									(&m_sharedData) ,
-		m_time										()				,
+		m_window("Abacaxi", sf::Vector2u(1280,720))   ,
+		m_resources()								  ,
+		m_stateMgr									(),
+		m_entityMgr									(),
+		m_eventMgr									(),
+		m_time										(),
 		m_clock										()
 
 	{
 		//Initializing share data//
-		m_sharedData.m_window	  =	 &m_window;
-		m_sharedData.m_resources  =	 &m_resources;
-		m_sharedData.m_stateMgr   =	 &m_stateMgr;
-		m_sharedData.m_entityMgr  =  &m_entityMgr;
-		m_sharedData.m_eventMgr   =  &m_eventMgr;
-		m_sharedData.m_time       =  &m_time;
-		Utils::SharedData::SetTime(&m_time);
+		SharedData::SetTime(&m_time);
 		/////////////////////////////////
 
 		//Intializing machine state

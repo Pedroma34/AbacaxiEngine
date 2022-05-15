@@ -97,6 +97,7 @@
   <ItemGroup>
     <ClCompile Include="Application.cpp" />
     <ClCompile Include="CommandAttack.cpp" />
+    <ClCompile Include="CommandDestroyApplication.cpp" />
     <ClCompile Include="CommandMoveDown.cpp" />
     <ClCompile Include="CommandMoveLeft.cpp" />
     <ClCompile Include="CommandMoveRight.cpp" />
@@ -132,6 +133,7 @@
     <ClInclude Include="Application.h" />
     <ClInclude Include="Command.h" />
     <ClInclude Include="CommandAttack.h" />
+    <ClInclude Include="CommandDestroyApplication.h" />
     <ClInclude Include="CommandInput.h" />
     <ClInclude Include="CommandInputs.h" />
     <ClInclude Include="CommandKey.h" />

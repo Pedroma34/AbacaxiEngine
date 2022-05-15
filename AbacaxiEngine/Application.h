@@ -24,7 +24,6 @@ namespace abx {
 	class Application {
 
 
-		SharedData	  m_sharedData;
 		Window		  m_window;		  //Window wrapper class of this application 
 		Resources	  m_resources;	  //Resource manager using thor
 		StateManager  m_stateMgr;	  //A manager that controls all machine states

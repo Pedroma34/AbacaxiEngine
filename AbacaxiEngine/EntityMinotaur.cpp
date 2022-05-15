@@ -29,7 +29,7 @@ namespace abx {
 		/*Texture*/
 		auto textureSys = AddSystem<SystemTexture>().lock();
 		textureSys->SetTexture(
-			m_sharedData->m_resources->AcquireTexture("Minotaur")
+			SharedData::Resource()->AcquireTexture("Minotaur")
 		);
 		textureSys->SetChunckSize({ 96,96 });
 

@@ -38,7 +38,7 @@ namespace abx {
 		/*
 			@brief Constructor
 		*/
-		EventManager(SharedData* l_sharedData);
+		EventManager();
 
 
 
@@ -107,7 +107,7 @@ namespace abx {
 			const bool& isHold
 		*/
 		template <class C>
-		WeakRef<CommandInput> Bind(SharedData* l_sharedData, sf::Keyboard::Key l_keyCode, const bool& l_isHold);
+		WeakRef<CommandInput> Bind(sf::Keyboard::Key l_keyCode, const bool& l_isHold);
 
 
 
@@ -121,7 +121,7 @@ namespace abx {
 			const bool& isHold
 		*/
 		template <class C>
-		WeakRef<CommandInput> Bind(SharedData* l_sharedData, sf::Mouse::Button l_mouseButton , const bool& l_isHold);
+		WeakRef<CommandInput> Bind(sf::Mouse::Button l_mouseButton , const bool& l_isHold);
 	};
 
 
@@ -196,7 +196,7 @@ namespace abx {
 		const bool& isHold
 	*/
 	template<class C>
-	inline WeakRef<CommandInput> EventManager::Bind(SharedData* l_sharedData, sf::Keyboard::Key l_keyCode, const bool& l_isHold){
+	inline WeakRef<CommandInput> EventManager::Bind(sf::Keyboard::Key l_keyCode, const bool& l_isHold){
 		for (auto& itr : m_keys)
 			if (itr->GetKeyCode() == l_keyCode &&							//Checking if command is already in memory
 				typeid(C) == typeid(*itr->GetCommand().lock()) &&
@@ -206,7 +206,7 @@ namespace abx {
 
 		auto newKey = MakeRef<CommandKey>();								//If not in memory, create one
 		newKey->BindCommand<C>();											//Binding and creating command input
-		newKey->GetCommand().lock()->BindSharedData(l_sharedData);			//Binding entity
+		newKey->GetCommand().lock()->SetSharedData(true);					//Setting shared data to true
 		newKey->SetKeyCode(l_keyCode);										//Binding key code to command input
 		newKey->SetHold(l_isHold);
 		m_keys.push_back(std::move(newKey));								//Transfering ownership to container
@@ -226,7 +226,7 @@ namespace abx {
 		const bool& isHold
 	*/
 	template<class C>
-	inline WeakRef<CommandInput> EventManager::Bind(SharedData* l_sharedData, sf::Mouse::Button l_mouseButton, const bool& l_isHold){
+	inline WeakRef<CommandInput> EventManager::Bind(sf::Mouse::Button l_mouseButton, const bool& l_isHold){
 		for (auto& itr : m_keys)
 			if (itr->GetMouseCode() == l_mouseButton &&							//Checking if command is already in memory
 				typeid(C) == typeid(*itr->GetCommand().lock()) &&
@@ -236,7 +236,7 @@ namespace abx {
 
 		auto newKey = MakeRef<CommandKey>();								//If not in memory, create one
 		newKey->BindCommand<C>();											//Binding and creating command input
-		newKey->GetCommand().lock()->BindSharedData(l_sharedData);			//Binding entity
+		newKey->GetCommand().lock()->SetSharedData(true);			//Setting shared data to true
 		newKey->SetMouseCode(l_mouseButton);								//Binding key code to command input
 		newKey->SetHold(l_isHold);
 		m_keys.push_back(std::move(newKey));								//Transfering ownership to container

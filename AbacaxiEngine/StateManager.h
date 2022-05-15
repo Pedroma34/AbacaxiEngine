@@ -24,7 +24,6 @@ namespace abx {
 	class StateManager {
 
 
-		SharedData*					m_sharedData;	  //Pointer to application's shared datas
 		std::vector<Ref<State>>		m_states;		  //Container that holds all states. Ref should be passed only with weak_ptr
 		std::vector<WeakRef<State>> m_toRemove;		  //Container hold pointers to states that will soon be deleted from memory
 
@@ -37,7 +36,7 @@ namespace abx {
 			@brief Constructor
 			@param SharedData* Pointer to application's shared data
 		*/
-		StateManager(SharedData* l_sharedData);
+		StateManager();
 
 
 
@@ -123,7 +122,7 @@ namespace abx {
 				tmpState->Activate();
 				m_states.push_back(std::move(tmpState));   //Pushing and passing ownership to the container.
 				//Debug
-				LogInfo(m_sharedData, "[STATE] State in memory, switching to: [" + std::string(typeid(T).name()) + "]");
+				LogInfo( "[STATE] State in memory, switching to: [" + std::string(typeid(T).name()) + "]");
 
 				return;
 			}
@@ -178,13 +177,12 @@ namespace abx {
 	template<class T>
 	inline WeakRef<T> StateManager::Create(){
 		Ref<State> newState = MakeRef<T>();
-		newState->m_sharedData = m_sharedData;					//Binding shared data
 		newState->OnCreate();
 		m_states.push_back(std::move(newState));				//Moving state and ownership to the container
 
 		//Debug
-		abx::LogInfo(m_sharedData, "[STATE] State created and pushed to container: [" + std::string(typeid(*m_states.back()).name()) + "]");
-		abx::LogInfo(m_sharedData, "[STATE] State container size: [" + std::string(std::to_string(m_states.size())) + "]");
+		abx::LogInfo( "[STATE] State created and pushed to container: [" + std::string(typeid(*m_states.back()).name()) + "]");
+		abx::LogInfo( "[STATE] State container size: [" + std::string(std::to_string(m_states.size())) + "]");
 
 		return std::static_pointer_cast<T>(m_states.back());
 	}

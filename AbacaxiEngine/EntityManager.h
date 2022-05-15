@@ -31,7 +31,6 @@ namespace abx {
 		std::map<WeakRef<Entity>, std::function<void(WeakRef<Entity>)>>		m_collisionQueue;	//Collision queue.
 		std::vector<unsigned int>											m_toRemove;			//Removal queue
 		unsigned int														m_id;				//Unique id that will be passed onto entities on creation
-		SharedData*															m_sharedData;		//Pointer to application's shared data
 	
 
 	public:
@@ -42,7 +41,7 @@ namespace abx {
 			@brief Constructor
 			@param SharedData* Pointer to application's shared data
 		*/
-		EntityManager(SharedData* l_sharedData);
+		EntityManager();
 
 
 
@@ -221,14 +220,13 @@ namespace abx {
 	template<class T>
 	inline WeakRef<T> EntityManager::Add(){
 		Ref<T> newEntity = MakeRef<T>();
-		newEntity->m_sharedData = m_sharedData;					//Binding shared data
 		newEntity->m_id = m_id;									//Binding ID
 		newEntity->OnCreate();
 		m_entities.emplace_back(m_id, std::move(newEntity));	//Moving entity to container
 		m_id++;													//Increasing id count so next entity will have unique id
 
 		//Debug
-		LogInfo(m_sharedData, "[ENTITY] New entity added: " + std::string(typeid(T).name()));
+		LogInfo( "[ENTITY] New entity added: " + std::string(typeid(T).name()));
 
 		return std::static_pointer_cast<T>(m_entities.back().second);
 	}
@@ -242,14 +240,13 @@ namespace abx {
 	template<class T>
 	inline std::weak_ptr<T> EntityManager::AddLate(){
 		Ref<T> newEntity		 = MakeRef<T>();
-		newEntity->m_sharedData  = m_sharedData;				//Binding shared data
 		newEntity->m_id			 = m_id;						//Binding ID
 		newEntity->OnCreate();
 		m_toAdd.emplace_back(m_id, std::move(newEntity));		//Moving entity add queue
 		m_id++;
 
 		//Debug
-		LogInfo(m_sharedData, "[ENTITY] New entity into add queue: " + std::string(typeid(T).name()));
+		LogInfo( "[ENTITY] New entity into add queue: " + std::string(typeid(T).name()));
 
 
 		return std::static_pointer_cast<T>(m_toAdd.back().second);

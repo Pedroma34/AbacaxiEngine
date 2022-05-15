@@ -32,7 +32,6 @@ namespace abx {
 	protected:
 
 
-		SharedData*						m_sharedData;	//Pointer to all shared data. Must be bound when state is created.
 		std::vector<Ref<System>>		m_systems;		//Container that holds all entity's systems (components)
 		std::vector<WeakRef<System>>	m_toRemove;		//Container hold pointers to systems that will soon be deleted from memory
 		Ref<StateEntity>				m_state;		//Contains current entity state. Only one state per time.
@@ -48,7 +47,6 @@ namespace abx {
 			@brief Base Constructor
 		*/
 		Entity() :
-			m_sharedData(nullptr),
 			m_systems	(),
 			m_toRemove	(),
 			m_state		(nullptr),
@@ -63,7 +61,7 @@ namespace abx {
 			@brief Virtual destructor.
 		*/
 		virtual ~Entity() {
-			LogWarn(m_sharedData, "Entity has been destroyed");
+			LogWarn( "Entity has been destroyed");
 		}
 
 
@@ -171,7 +169,7 @@ namespace abx {
 
 						/////////////////////////////////////////////////////////////////////
 						//Debug
-						abx::LogWarn(m_sharedData, "[ENTITY] System removed from container: ["
+						abx::LogWarn( "[ENTITY] System removed from container: ["
 							+ std::string(typeid(**itr).name()) + "]");
 						/////////////////////////////////////////////////////////////////////
 
@@ -186,15 +184,6 @@ namespace abx {
 
 		}
 
-
-
-		/*
-		@brief Binds a pointer to app's shared data into this entity. Should be bound everytime
-		an entity is created.
-		*/
-		void BindSharedData(SharedData* l_sharedData) {
-			m_sharedData = l_sharedData;
-		}
 
 
 
@@ -219,13 +208,6 @@ namespace abx {
 
 
 
-		/*
-		@brief Gets a pointer to application's shared data.
-		@returns SharedData* SharedData.
-		*/
-		SharedData* GetSharedData() { 
-			return m_sharedData; 
-		}
 	};
 
 
@@ -266,7 +248,7 @@ namespace abx {
 			}
 		
 
-		LogError(m_sharedData, "[ENTITY] System could not be removed. Not found: [" +
+		LogError("[ENTITY] System could not be removed. Not found: [" +
 			std::string(typeid(T).name()) + "]");
 	}
 

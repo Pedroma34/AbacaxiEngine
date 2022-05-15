@@ -25,7 +25,7 @@ namespace abx {
 
 	/*_______________________________________________________*/
 	void SystemSprite::Render() {
-		m_entity->GetSharedData()->m_window->Draw(&m_sprite);
+		SharedData::Window()->Draw(&m_sprite);
 	}
 	/*_______________________________________________________*/
 
@@ -64,7 +64,7 @@ namespace abx {
 
 		//Variables//
 
-		const auto& winSize = m_entity->GetSharedData()->m_window->GetSize();
+		const auto& winSize = SharedData::Window()->GetSize();
 
 		sf::Vector2f spriteSize(
 			m_sprite.getGlobalBounds().width,

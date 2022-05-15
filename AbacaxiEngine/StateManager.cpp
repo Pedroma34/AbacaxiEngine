@@ -15,12 +15,11 @@ namespace abx {
 
 
 	/*_____________________________________________________*/
-	StateManager::StateManager(SharedData* l_sharedData) :
-		m_sharedData(l_sharedData),
+	StateManager::StateManager() :
 		m_states(),
 		m_toRemove()
 	{
-		Utils::SharedData::SetStateMgr(this);
+		SharedData::SetStateMgr(this);
 	}
 	/*_____________________________________________________*/
 
@@ -104,7 +103,7 @@ namespace abx {
 
 					/////////////////////////////////////////////////////////////////////
 					//Debug
-					abx::LogWarn(m_sharedData, "[STATE] State removed from container: [" 
+					abx::LogWarn( "[STATE] State removed from container: [" 
 						+ std::string(typeid(**itr).name()) + "]");
 					/////////////////////////////////////////////////////////////////////
 
@@ -114,7 +113,7 @@ namespace abx {
 
 					/////////////////////////////////////////////////////////////////////
 					//Debug
-					abx::LogInfo(m_sharedData, "[STATE] State container size: [" + 
+					abx::LogInfo( "[STATE] State container size: [" + 
 						std::string(std::to_string(m_states.size())) + "]");
 					/////////////////////////////////////////////////////////////////////
 
