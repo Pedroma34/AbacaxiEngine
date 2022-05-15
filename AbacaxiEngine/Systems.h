@@ -13,3 +13,5 @@
 #include "SystemSprite.h"
 #include "SystemTexture.h"
 #include "SystemAnimation.h"
+#include "SystemSpeed.h"
+#include "SystemDirection.h"

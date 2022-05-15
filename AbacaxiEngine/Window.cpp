@@ -11,6 +11,7 @@
 
 #include "pch.h"
 #include "Window.h"
+#include "EventManager.h"
 
 namespace abx {
 
@@ -41,12 +42,15 @@ namespace abx {
 
 	/*_________________________________________________________________________*/
 	void Window::Update(const sf::Time& l_time)	{
-		m_size = m_window.getSize();   //Copying window size into a member
+		m_size = m_window.getSize();						//Copying window size into a member
 		sf::Event evnt;
 		while (m_window.pollEvent(evnt)) {
 			if (evnt.type == sf::Event::Closed)
-				m_isDone = true;   //Terminate application
+				m_isDone = true;							//Terminate application
+
+			m_sharedData->m_eventMgr->HandleEvent(&evnt);	//Update command callbacks
 		}
+		m_sharedData->m_eventMgr->HandleInput();			//Update real time user input
 	}
 	/*_________________________________________________________________________*/
 

@@ -65,6 +65,7 @@
       <RuntimeLibrary>MultiThreadedDebug</RuntimeLibrary>
       <PrecompiledHeader>Use</PrecompiledHeader>
       <PrecompiledHeaderFile>pch.h</PrecompiledHeaderFile>
+      <LanguageStandard>stdcpp20</LanguageStandard>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -83,6 +84,7 @@
       <RuntimeLibrary>MultiThreaded</RuntimeLibrary>
       <PrecompiledHeader>Use</PrecompiledHeader>
       <PrecompiledHeaderFile>pch.h</PrecompiledHeaderFile>
+      <LanguageStandard>stdcpp20</LanguageStandard>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -94,8 +96,14 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="Application.cpp" />
+    <ClCompile Include="CommandAttack.cpp" />
+    <ClCompile Include="CommandMoveDown.cpp" />
+    <ClCompile Include="CommandMoveLeft.cpp" />
+    <ClCompile Include="CommandMoveRight.cpp" />
+    <ClCompile Include="CommandMoveUp.cpp" />
     <ClCompile Include="EntityManager.cpp" />
     <ClCompile Include="EntityMinotaur.cpp" />
+    <ClCompile Include="EventManager.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="pch.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Create</PrecompiledHeader>
@@ -103,13 +111,16 @@
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Create</PrecompiledHeader>
       <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='Release|x64'">pch.h</PrecompiledHeaderFile>
     </ClCompile>
+    <ClCompile Include="StateEntityAttack.cpp" />
     <ClCompile Include="StateEntityIdle.cpp" />
     <ClCompile Include="StateEntityRun.cpp" />
     <ClCompile Include="StateGame.cpp" />
     <ClCompile Include="StateManager.cpp" />
     <ClCompile Include="StateMenu.cpp" />
     <ClCompile Include="SystemAnimation.cpp" />
+    <ClCompile Include="SystemDirection.cpp" />
     <ClCompile Include="SystemHealth.cpp" />
+    <ClCompile Include="SystemSpeed.cpp" />
     <ClCompile Include="SystemSprite.cpp" />
     <ClCompile Include="SystemTexture.cpp" />
     <ClCompile Include="Window.cpp" />
@@ -119,16 +130,27 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Application.h" />
+    <ClInclude Include="Command.h" />
+    <ClInclude Include="CommandAttack.h" />
+    <ClInclude Include="CommandInput.h" />
+    <ClInclude Include="CommandInputs.h" />
+    <ClInclude Include="CommandKey.h" />
+    <ClInclude Include="CommandMoveDown.h" />
+    <ClInclude Include="CommandMoveLeft.h" />
+    <ClInclude Include="CommandMoveRight.h" />
+    <ClInclude Include="CommandMoveUp.h" />
     <ClInclude Include="Entities.h" />
     <ClInclude Include="Entity.h" />
     <ClInclude Include="EntityManager.h" />
     <ClInclude Include="EntityMinotaur.h" />
     <ClInclude Include="EntityStates.h" />
+    <ClInclude Include="EventManager.h" />
     <ClInclude Include="MachineStates.h" />
     <ClInclude Include="pch.h" />
     <ClInclude Include="Resources.h" />
     <ClInclude Include="State.h" />
     <ClInclude Include="StateEntity.h" />
+    <ClInclude Include="StateEntityAttack.h" />
     <ClInclude Include="StateEntityIdle.h" />
     <ClInclude Include="StateEntityRun.h" />
     <ClInclude Include="StateGame.h" />
@@ -136,8 +158,10 @@
     <ClInclude Include="StateMenu.h" />
     <ClInclude Include="System.h" />
     <ClInclude Include="SystemAnimation.h" />
+    <ClInclude Include="SystemDirection.h" />
     <ClInclude Include="SystemHealth.h" />
     <ClInclude Include="Systems.h" />
+    <ClInclude Include="SystemSpeed.h" />
     <ClInclude Include="SystemSprite.h" />
     <ClInclude Include="SystemTexture.h" />
     <ClInclude Include="Window.h" />

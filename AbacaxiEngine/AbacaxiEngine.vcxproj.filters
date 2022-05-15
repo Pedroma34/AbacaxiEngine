@@ -46,6 +46,33 @@
     <ClCompile Include="SystemAnimation.cpp">
       <Filter>Systems</Filter>
     </ClCompile>
+    <ClCompile Include="SystemSpeed.cpp">
+      <Filter>Systems</Filter>
+    </ClCompile>
+    <ClCompile Include="SystemDirection.cpp">
+      <Filter>Systems</Filter>
+    </ClCompile>
+    <ClCompile Include="CommandMoveRight.cpp">
+      <Filter>Command\CommandInputs</Filter>
+    </ClCompile>
+    <ClCompile Include="EventManager.cpp">
+      <Filter>Application</Filter>
+    </ClCompile>
+    <ClCompile Include="CommandMoveLeft.cpp">
+      <Filter>Command\CommandInputs</Filter>
+    </ClCompile>
+    <ClCompile Include="CommandMoveUp.cpp">
+      <Filter>Command\CommandInputs</Filter>
+    </ClCompile>
+    <ClCompile Include="CommandMoveDown.cpp">
+      <Filter>Command\CommandInputs</Filter>
+    </ClCompile>
+    <ClCompile Include="CommandAttack.cpp">
+      <Filter>Command\CommandInputs</Filter>
+    </ClCompile>
+    <ClCompile Include="StateEntityAttack.cpp">
+      <Filter>Entity State</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Application.h">
@@ -117,6 +144,45 @@
     <ClInclude Include="SystemAnimation.h">
       <Filter>Systems</Filter>
     </ClInclude>
+    <ClInclude Include="Command.h">
+      <Filter>Command</Filter>
+    </ClInclude>
+    <ClInclude Include="CommandKey.h">
+      <Filter>Command</Filter>
+    </ClInclude>
+    <ClInclude Include="CommandInput.h">
+      <Filter>Command</Filter>
+    </ClInclude>
+    <ClInclude Include="SystemSpeed.h">
+      <Filter>Systems</Filter>
+    </ClInclude>
+    <ClInclude Include="SystemDirection.h">
+      <Filter>Systems</Filter>
+    </ClInclude>
+    <ClInclude Include="CommandMoveRight.h">
+      <Filter>Command\CommandInputs</Filter>
+    </ClInclude>
+    <ClInclude Include="EventManager.h">
+      <Filter>Application</Filter>
+    </ClInclude>
+    <ClInclude Include="CommandInputs.h">
+      <Filter>GlobalIncludes</Filter>
+    </ClInclude>
+    <ClInclude Include="CommandMoveLeft.h">
+      <Filter>Command\CommandInputs</Filter>
+    </ClInclude>
+    <ClInclude Include="CommandMoveUp.h">
+      <Filter>Command\CommandInputs</Filter>
+    </ClInclude>
+    <ClInclude Include="CommandMoveDown.h">
+      <Filter>Command\CommandInputs</Filter>
+    </ClInclude>
+    <ClInclude Include="CommandAttack.h">
+      <Filter>Command\CommandInputs</Filter>
+    </ClInclude>
+    <ClInclude Include="StateEntityAttack.h">
+      <Filter>Entity State</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Application">
@@ -136,6 +202,12 @@
     </Filter>
     <Filter Include="Entity State">
       <UniqueIdentifier>{31017bb1-773b-4eb9-8c22-807ae4913d26}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Command">
+      <UniqueIdentifier>{ee81e656-560a-496b-8d07-3f186df11a6f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Command\CommandInputs">
+      <UniqueIdentifier>{52727737-e1d8-4181-8dc3-a1986ebbad78}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>

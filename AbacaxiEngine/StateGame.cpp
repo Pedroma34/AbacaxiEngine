@@ -13,7 +13,8 @@
 #include "Entity.h"
 #include "EntityManager.h"
 #include "Window.h"
-
+#include "EventManager.h"
+#include "CommandInputs.h"
 
 
 namespace abx {
@@ -43,8 +44,10 @@ namespace abx {
 
 	/*_________________________________________________________________________*/
 	void StateGame::OnCreate(){
+
 		/*Variables*/
 		const auto& winSize   =  m_sharedData->m_window->GetSize();
+
 		/*Entities*/
 		auto player			  =  m_sharedData->m_entityMgr->Add<EntityMinotaur>().lock();
 		auto playerSpriteSys  =  player->GetSystem<SystemSprite>().lock();
@@ -53,6 +56,13 @@ namespace abx {
 			winSize.y / 2
 		);
 
+		/*Events*/
+		auto evntMgr		   =  m_sharedData->m_eventMgr;
+		evntMgr->Bind<CommandMoveRight> (player, sf::Keyboard::D,     true);
+		evntMgr->Bind<CommandMoveLeft>  (player, sf::Keyboard::A,     true);
+		evntMgr->Bind<CommandMoveUp>    (player, sf::Keyboard::W,     true);
+		evntMgr->Bind<CommandMoveDown>	(player, sf::Keyboard::S,     true);
+		evntMgr->Bind<CommandAttack>    (player, sf::Keyboard::Space, false);
 	}
 	/*_________________________________________________________________________*/
 

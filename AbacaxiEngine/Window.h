@@ -1,5 +1,7 @@
 #pragma once
 
+
+
 /*
 	Window.h
 	Purpose: Create a SFML window and handle its events.
@@ -8,9 +10,14 @@
 */
 
 
+
 #include "pch.h"
 
+
+
 namespace abx {
+
+
 
 	/*
 		Wrapper class for an SFML window
@@ -38,10 +45,12 @@ namespace abx {
 		Window(const std::string& l_title, const sf::Vector2u& l_size, SharedData* l_sharedData);
 
 
+
 		/*
 			@brief Destructor
 		*/
 		~Window();
+
 
 
 		/*
@@ -51,10 +60,12 @@ namespace abx {
 		void Update(const sf::Time& l_time);
 
 
+
 		/*
 			@brief Clears SFML window.
 		*/
 		void Clear();
+
 
 
 		/*
@@ -64,10 +75,12 @@ namespace abx {
 		void Draw(const sf::Drawable* l_drawable);
 
 
+
 		/*
 			@brief Display changes made to the window.
 		*/
 		void Display();
+
 
 
 		/*
@@ -77,17 +90,20 @@ namespace abx {
 		void SetFullScreen(const bool& l_fullScreen);
 
 
+
 		/*
 			@brief Switch isDone boolean and consequently destroys application.
 		*/
 		void DestroyApplication();
 
 		
+
 		/*
 			@brief Get the size of the window
 			@return sf::Vector2u& Size of the window
 		*/
 		const sf::Vector2u& GetSize() const;
+
 
 
 		/*
@@ -97,11 +113,13 @@ namespace abx {
 		const bool& GetvSync() const;
 
 
+
 		/*
 			@brief Get full screen boolean
 			@return const bool& vSync
 		*/
 		const bool& GetFullScreen() const;
+
 
 
 		/*
@@ -111,6 +129,7 @@ namespace abx {
 		const bool& GetDone() const;
 
 
+
 		/*
 			@brief Get a pointer the window
 			@return sf::Window* window
@@ -118,11 +137,18 @@ namespace abx {
 		sf::Window* GetWindow();
 
 
+
 	private:
+
+
+
 		/*
 			@brief Creates an SFML window.
 		*/
 		void Create();
+
+
+
 	};
 
 }

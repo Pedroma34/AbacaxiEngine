@@ -53,20 +53,30 @@ namespace abx {
 		spriteSys->SetScale({ 16,20 });									//16% of the screen win the X axis and 20% of the screen in the Y axis
 
 		/*Animation*/
-		auto animationSystem = AddSystem<SystemAnimation>().lock();
-		animationSystem->AddAnimation( "idle",	     1, 1, 5, 0.7f);
-		animationSystem->AddAnimation( "running",    1, 2, 8, 0.7f);
-		animationSystem->AddAnimation( "charging",   1, 3, 5, 0.7f);
-		animationSystem->AddAnimation( "attacking",  1, 4, 9, 0.5f);
-		animationSystem->AddAnimation( "attacking2", 1, 5, 5, 0.5f);
-		animationSystem->AddAnimation("stomp",       1, 6, 6, 0.7f);
-		animationSystem->AddAnimation("attacking3",  1, 7, 9, 0.7f);
-		animationSystem->AddAnimation("hit",         1, 8, 3, 0.4f);
-		animationSystem->AddAnimation("hit2",        1, 9, 3, 0.2f);
-		animationSystem->AddAnimation("dying",       1, 10, 6, 0.7f);
+		auto animationSys = AddSystem<SystemAnimation>().lock();
+		animationSys->AddAnimation( "idle",	     1, 1, 5, 0.7f);
+		animationSys->AddAnimation( "running",    1, 2, 8, 0.7f);
+		animationSys->AddAnimation( "charging",   1, 3, 5, 0.7f);
+		animationSys->AddAnimation( "attacking",  1, 4, 9, 0.5f);
+		animationSys->AddAnimation( "attacking2", 1, 5, 5, 0.5f);
+		animationSys->AddAnimation("stomp",       1, 6, 6, 0.7f);
+		animationSys->AddAnimation("attacking3",  1, 7, 9, 0.7f);
+		animationSys->AddAnimation("hit",         1, 8, 3, 0.4f);
+		animationSys->AddAnimation("hit2",        1, 9, 3, 0.2f);
+		animationSys->AddAnimation("dying",       1, 10, 6, 0.7f);
 
 		/*State*/
 		SetState<StateEntityIdle>();
+
+		/*Speed*/
+		auto speedSys = AddSystem<SystemSpeed>().lock();
+		speedSys->SetSpeed(200.f);
+		speedSys->SetMaxSpeed(speedSys->GetSpeed());
+
+		/*Direction*/
+		auto directionSys = AddSystem<SystemDirection>().lock();
+		directionSys->SetDirection(Direction::Right);
+		directionSys->SetInverted(false);							    //facing left
 
 	}
 	/*__________________________________________*/

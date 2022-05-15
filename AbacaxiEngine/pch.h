@@ -121,7 +121,8 @@ namespace abx {
 		class Window*			m_window     =  nullptr;	 //Pointer to abx::Window object. Foward declaration.
 		class Resources*		m_resources  =  nullptr;	 //Pointer to abx::Resources object. Foward declaration.
 		class StateManager*		m_stateMgr   =  nullptr;	 //Pointer to abx::StateManager object. Foward declaration.
-		class EntityManager*    m_entityMgr  =  nullptr;	 //Pointer to abx::EntityManager object. Foward declaration.	
+		class EntityManager*    m_entityMgr  =  nullptr;	 //Pointer to abx::EntityManager object. Foward declaration.
+		class EventManager*		m_eventMgr   =  nullptr;	 //Pointer to abx::EventManager object. Foward declaration.
 		sf::Time*				m_time       =  nullptr;	 //Pointer to application's time.
 		bool					m_debug      =  false;		 //Application's visual debug
 		bool					m_log        =  true;		 //Application's logging debug

@@ -120,7 +120,7 @@ namespace abx {
 		auto backupItr = m_animationBackup.find(l_name);		//Checking if animation is in backup.
 		if (backupItr == m_animationBackup.end())
 			return;
-		if (!m_animator.unique())							    //Safety check. It should be unique since we're only passing weak pointers elsewhere
+		if (!m_animator.use_count() == 1)						//Safety check. It should be unique since we're only passing weak pointers elsewhere
 			return;
 
 		m_animator.reset();										//Deleting animator;
@@ -138,7 +138,7 @@ namespace abx {
 
 	/*___________________________________________________________________________________________________________________________________*/
 	void SystemAnimation::ModifyDuration(const std::string& l_animation, const float& l_duration){
-		if (!m_animator.unique())								//Safety check. It should be unique since we're only passing weak pointers elsewhere
+		if (!m_animator.use_count() == 1)								//Safety check. It should be unique since we're only passing weak pointers elsewhere
 			return;
 		auto stringItr = m_animations.find(l_animation);		//Checking if animation is in list and backup memory.
 		if (stringItr == m_animations.end())

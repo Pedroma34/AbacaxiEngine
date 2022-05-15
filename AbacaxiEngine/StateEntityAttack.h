@@ -2,10 +2,10 @@
 
 
 /*
-	StateEntityIdle.h
-	Purpose: Modifies entity when in idle state.
+	StateEntityAttack.h
+	Purpose: Modifies entity when in attack state.
 	@author Pedro Sergio de Castro Sarmento Filho
-	14/May/2022
+	15/May/2022
 */
 
 
@@ -17,9 +17,9 @@ namespace abx {
 
 
 	/*
-		@brief Modifies entity when in idle state
+		@brief Modifies entity when in attack state.
 	*/
-	class StateEntityIdle : public StateEntity {
+	class StateEntityAttack : public StateEntity {
 	public:
 
 

@@ -13,3 +13,4 @@
 
 #include "StateEntityIdle.h"
 #include "StateEntityRun.h"
+#include "StateEntityAttack.h"

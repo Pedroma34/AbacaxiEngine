@@ -13,6 +13,7 @@
 #include "StateManager.h"
 #include "EntityManager.h"
 #include "Resources.h"
+#include "EventManager.h"
 
 
 namespace abx {
@@ -28,6 +29,7 @@ namespace abx {
 		Resources	  m_resources;	  //Resource manager using thor
 		StateManager  m_stateMgr;	  //A manager that controls all machine states
 		EntityManager m_entityMgr;	  //Manager that controls all entities and its components. Update and render functions are called inside machine states.
+		EventManager  m_eventMgr;	  //Manager command callbacks along with sfml events
 		sf::Time	  m_time;		  //Time 
 		sf::Clock	  m_clock;	      //system clock
 
