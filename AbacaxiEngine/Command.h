@@ -50,13 +50,6 @@ namespace abx {
 
 
 		/*
-			@brief Executes a command with a pointer to the application's shared data
-		*/
-		virtual void Execute(SharedData* l_sharedData) {}
-
-
-
-		/*
 			@brief Undoes a command
 		*/
 		virtual void Undo() {}
@@ -70,10 +63,6 @@ namespace abx {
 
 
 
-		/*
-			@brief Undoes a command with a pointer to the application's shared data
-		*/
-		virtual void Undo(SharedData* l_sharedData) {}
 	};
 
 }

@@ -26,7 +26,6 @@ namespace abx {
 
 		bool m_transparent;			 //Defines if state will be updated along with other states.
 		bool m_transcendent;		 //Defines if state will be drawn along with other states.
-		SharedData* m_sharedData;	 //Pointer to all shared data. Must be bound when state is created.
 
 
 
@@ -39,8 +38,7 @@ namespace abx {
 		*/
 		State() : 
 			m_transcendent(false),
-			m_transparent(false), 
-			m_sharedData(nullptr) 
+			m_transparent(false)
 		{}
 
 

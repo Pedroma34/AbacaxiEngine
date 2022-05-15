@@ -30,8 +30,7 @@ namespace abx {
 
 
 		WeakRef<class Entity>		m_entity;		//weak pointer to an entity that might or might not be used in command
-		SharedData*					m_sharedData;	//weak pointer to app's shared data that might or might not be used in command
-
+		bool						m_sharedData;	//Dictates if command is using shared data rather than an entity
 
 
 	public:
@@ -43,7 +42,7 @@ namespace abx {
 		*/
 		CommandInput() : 
 			m_entity(WeakRef<Entity>()),
-			m_sharedData(nullptr)
+			m_sharedData(false)
 		{}
 
 
@@ -59,11 +58,10 @@ namespace abx {
 
 
 		/*
-			@brief Binds shared data to command
-			@param SharedData* sharedData
+			@brief Sets shared data boolean. If true, command will execute using shared data instead of entity.
 		*/
-		void BindSharedData(SharedData* l_sharedData) { 
-			m_sharedData = l_sharedData; 
+		void SetSharedData(const bool& l_sharedData) {
+			m_sharedData = l_sharedData;
 		}
 
 
@@ -79,10 +77,10 @@ namespace abx {
 
 
 		/*
-			@brief Gets shared data bound to command
-			@returns SharedData* sharedData
+			@brief Gets shared data boolean
+			@returns const bool& sharedData
 		*/
-		SharedData* GetSharedData() {
+		const bool& GetSharedData() {
 			return m_sharedData; 
 		}
 

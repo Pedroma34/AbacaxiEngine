@@ -42,7 +42,7 @@ namespace abx {
 		auto state = entity->SetState<StateEntityRun>().lock();			//Changing state
 
 		const auto& speed = speedSys->GetSpeed();
-		const auto& time = *entity->GetSharedData()->m_time;
+		const auto& time = *SharedData::Time();
 
 		spriteSys->SetPosition(											//Moving entity
 			spriteSys->GetPosition().x - speed * time.asSeconds(),

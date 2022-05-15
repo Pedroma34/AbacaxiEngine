@@ -28,7 +28,7 @@ namespace abx {
 	/*_________________________________________________________________________*/
 	StateMenu::~StateMenu() {
 		//Debugging
-		LogWarn(m_sharedData,
+		LogWarn(
 			"[STATE] Machine state destroyed: [" +
 			std::string(typeid(*this).name()) + "]"
 		);
@@ -77,8 +77,8 @@ namespace abx {
 	/*_________________________________________________________________________*/
 	void StateMenu::Update(const float& l_time) {
 
-		m_sharedData->m_stateMgr->Remove<StateMenu>();
-		m_sharedData->m_stateMgr->SwitchTo<StateGame>();
+		SharedData::StateMgr()->Remove<StateMenu>();
+		SharedData::StateMgr()->SwitchTo<StateGame>();
 
 	}
 	/*_________________________________________________________________________*/

@@ -73,6 +73,9 @@
     <ClCompile Include="StateEntityAttack.cpp">
       <Filter>Entity State</Filter>
     </ClCompile>
+    <ClCompile Include="CommandDestroyApplication.cpp">
+      <Filter>Command\CommandInputs</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Application.h">
@@ -182,6 +185,9 @@
     </ClInclude>
     <ClInclude Include="StateEntityAttack.h">
       <Filter>Entity State</Filter>
+    </ClInclude>
+    <ClInclude Include="CommandDestroyApplication.h">
+      <Filter>Command\CommandInputs</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

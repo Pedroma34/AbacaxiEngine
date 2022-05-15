@@ -17,15 +17,15 @@ namespace abx {
 
 
 	/*_________________________________________________________________________*/
-	Window::Window(const std::string& l_title, const sf::Vector2u& l_size, SharedData* l_sharedData)	:
+	Window::Window(const std::string& l_title, const sf::Vector2u& l_size)	:
 		m_window (),
 		m_title(l_title),
 		m_size(l_size),
 		m_vSync(false),
 		m_fullScreen(false),
-		m_isDone(false),
-		m_sharedData(l_sharedData)
+		m_isDone(false)
 	{
+		SharedData::SetWindow(this);
 		Create();
 	}
 	/*_________________________________________________________________________*/
@@ -42,15 +42,15 @@ namespace abx {
 
 	/*_________________________________________________________________________*/
 	void Window::Update(const sf::Time& l_time)	{
-		m_size = m_window.getSize();						//Copying window size into a member
+		m_size = m_window.getSize();							//Copying window size into a member
 		sf::Event evnt;
 		while (m_window.pollEvent(evnt)) {
 			if (evnt.type == sf::Event::Closed)
-				m_isDone = true;							//Terminate application
+				m_isDone = true;								//Terminate application
 
-			m_sharedData->m_eventMgr->HandleEvent(&evnt);	//Update command callbacks
+			SharedData::EventMgr()->HandleEvent(&evnt);	//Update command callbacks
 		}
-		m_sharedData->m_eventMgr->HandleInput();			//Update real time user input
+		SharedData::EventMgr()->HandleInput();			//Update real time user input
 	}
 	/*_________________________________________________________________________*/
 
@@ -152,7 +152,7 @@ namespace abx {
 			m_window.setVerticalSyncEnabled(false);
 
 		//Degubbing
-		LogInfo(m_sharedData, 
+		LogInfo( 
 			"[WINDOW] SFML window created : {" + 
 			std::string(std::to_string(m_size.x) + "} {" +
 			std::to_string(m_size.y) + "} vSync{" +

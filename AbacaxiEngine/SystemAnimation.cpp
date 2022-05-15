@@ -44,7 +44,7 @@ namespace abx {
 			return;
 
 		/*Updating animations*/
-		m_animator->update(*m_entity->GetSharedData()->m_time);
+		m_animator->update(*SharedData::Time());
 		m_animator->animate(*spriteSys->GetSprite());
 	}
 	/*___________________________________________________________________________________________________________________________________*/

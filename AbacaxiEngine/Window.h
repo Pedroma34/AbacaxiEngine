@@ -31,7 +31,6 @@ namespace abx {
 		bool			 m_vSync;		  //Vertical sync
 		bool			 m_fullScreen;	  //Is the application fullscreen?
 		bool			 m_isDone;		  //Is the application done?
-		SharedData*		 m_sharedData;	  //Pointer to application's shared data
 
 	public:
 
@@ -42,7 +41,7 @@ namespace abx {
 			@param &sf::Vector2u Size of the window
 			@param SharedData* Pointer to application's shared data
 		*/
-		Window(const std::string& l_title, const sf::Vector2u& l_size, SharedData* l_sharedData);
+		Window(const std::string& l_title, const sf::Vector2u& l_size);
 
 
 

@@ -20,14 +20,15 @@ namespace abx {
 
 
 	/*______________________________________________________*/
-	EntityManager::EntityManager(SharedData* l_sharedData) :
+	EntityManager::EntityManager() :
 		m_entities(),
 		m_toAdd(),
 		m_collisionQueue(),
 		m_toRemove(),
-		m_id(0),
-		m_sharedData(l_sharedData)
-	{}
+		m_id(0)
+	{
+		SharedData::SetEntityMgr(this);
+	}
 	/*______________________________________________________*/
 
 
@@ -73,7 +74,6 @@ namespace abx {
 
 	/*______________________________________________________*/
 	WeakRef<Entity> EntityManager::Add(Ref<Entity>& l_entity){
-		l_entity->m_sharedData = m_sharedData;					//binding shared data
 		l_entity->m_id = m_id;
 		m_entities.emplace_back(m_id, std::move(l_entity));		//moving ownership to container. So "l_entity" will be empty
 		m_id++;
@@ -85,7 +85,6 @@ namespace abx {
 
 	/*______________________________________________________*/
 	WeakRef<Entity> EntityManager::AddLate(Ref<Entity>& l_entity){
-		l_entity->m_sharedData = m_sharedData;					//binding shared data
 		l_entity->m_id = m_id;
 		m_toAdd.emplace_back(m_id, std::move(l_entity));		//transfering ownership to container. So "l_entity" will be empty
 		m_id++;
@@ -174,7 +173,7 @@ namespace abx {
 	void EntityManager::CopyEntity(Ref<Entity>& l_entity){
 
 		//Debug
-		LogInfo(m_sharedData, "[ENTITY] New entity added from add queue: " + std::string(typeid(*l_entity).name()));
+		LogInfo( "[ENTITY] New entity added from add queue: " + std::string(typeid(*l_entity).name()));
 
 		m_entities.emplace_back(l_entity->GetId(), std::move(l_entity));
 	}
@@ -190,7 +189,7 @@ namespace abx {
 
 				/////////////////////////////////////////////////////////////////////
 					//Debug
-				abx::LogWarn(m_sharedData, "[ENTITY] Entity removed from container: ["
+				abx::LogWarn( "[ENTITY] Entity removed from container: ["
 					+ std::string(typeid(*itr->second).name()) + "]");
 				/////////////////////////////////////////////////////////////////////
 
@@ -198,7 +197,7 @@ namespace abx {
 
 				/////////////////////////////////////////////////////////////////////
 					//Debug
-				abx::LogInfo(m_sharedData, "[ENTITY] Entity container size: [" +
+				abx::LogInfo( "[ENTITY] Entity container size: [" +
 					std::string(std::to_string(m_entities.size())) + "]");
 				/////////////////////////////////////////////////////////////////////
 

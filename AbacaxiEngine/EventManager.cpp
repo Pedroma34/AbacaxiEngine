@@ -28,10 +28,11 @@ namespace abx {
 
 
 	/*___________________________________________________________________*/
-	EventManager::EventManager(SharedData* l_sharedData)  :
-	m_keys(),
-	m_sharedData(l_sharedData)
-	{}
+	EventManager::EventManager()  :
+	m_keys()
+	{
+		SharedData::SetEventMgr(this);
+	}
 	/*___________________________________________________________________*/
 
 

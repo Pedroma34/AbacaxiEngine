@@ -54,13 +54,13 @@ namespace abx {
 
 		/*
 			@brief Executes command input. If entity is not nullptr, it executes command with an entity,
-			if shared data is not nullptr, it executes command with a shared data pointer.
+			if shared data is true, it executes command using shared data.
 		*/
 		void Execute() override {
 			if (!m_command->GetEntity().expired())
 				m_command->Execute(m_command->GetEntity());
 			else if (m_command->GetSharedData())
-				m_command->Execute(m_command->GetSharedData());
+				m_command->Execute();
 		}
 
 
@@ -74,7 +74,7 @@ namespace abx {
 			if (!m_command->GetEntity().expired())
 				m_command->Undo(m_command->GetEntity());
 			else if (m_command->GetSharedData())
-				m_command->Undo(m_command->GetSharedData());
+				m_command->Undo();
 		}
 
 

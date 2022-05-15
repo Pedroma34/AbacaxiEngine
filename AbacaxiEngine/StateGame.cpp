@@ -32,7 +32,7 @@ namespace abx {
 	/*_________________________________________________________________________*/
 	StateGame::~StateGame(){
 		//Debugging
-		LogWarn(m_sharedData,
+		LogWarn(
 			"[STATE] Machine state destroyed: [" +
 			std::string(typeid(*this).name()) + "]"
 		);
@@ -46,10 +46,10 @@ namespace abx {
 	void StateGame::OnCreate(){
 
 		/*Variables*/
-		const auto& winSize   =  m_sharedData->m_window->GetSize();
+		const auto& winSize   =  SharedData::Window()->GetSize();
 
 		/*Entities*/
-		auto player			  =  m_sharedData->m_entityMgr->Add<EntityMinotaur>().lock();
+		auto player			  =  SharedData::EntityMgr()->Add<EntityMinotaur>().lock();
 		auto playerSpriteSys  =  player->GetSystem<SystemSprite>().lock();
 		playerSpriteSys->SetPosition(
 			winSize.x / 2,
@@ -57,12 +57,14 @@ namespace abx {
 		);
 
 		/*Events*/
-		auto evntMgr		   =  m_sharedData->m_eventMgr;
+		auto evntMgr		   =  SharedData::EventMgr();
 		evntMgr->Bind<CommandMoveRight> (player, sf::Keyboard::D,     true);
 		evntMgr->Bind<CommandMoveLeft>  (player, sf::Keyboard::A,     true);
 		evntMgr->Bind<CommandMoveUp>    (player, sf::Keyboard::W,     true);
 		evntMgr->Bind<CommandMoveDown>	(player, sf::Keyboard::S,     true);
 		evntMgr->Bind<CommandAttack>    (player, sf::Keyboard::Space, false);
+
+		evntMgr->Bind<CommandDestroyApplication>( sf::Keyboard::F1, false);
 	}
 	/*_________________________________________________________________________*/
 
@@ -98,7 +100,7 @@ namespace abx {
 
 	/*_________________________________________________________________________*/
 	void StateGame::Update(const float& l_time){
-		m_sharedData->m_entityMgr->Update(l_time);
+		SharedData::EntityMgr()->Update(l_time);
 	}
 	/*_________________________________________________________________________*/
 
@@ -107,7 +109,7 @@ namespace abx {
 
 	/*_________________________________________________________________________*/
 	void StateGame::Render(){
-		m_sharedData->m_entityMgr->Render();
+		SharedData::EntityMgr()->Render();
 	}
 	/*_________________________________________________________________________*/
 }

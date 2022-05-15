@@ -9,8 +9,12 @@
 */
 
 
+/*Commands with entities*/
 #include "CommandMoveRight.h"
 #include "CommandMoveLeft.h"
 #include "CommandMoveUp.h"
 #include "CommandMoveDown.h"
-#include "CommandAttack.h"
+#include "CommandAttack.h"+
+
+/*Commands using shared data*/
+#include "CommandDestroyApplication.h"
