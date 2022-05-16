@@ -31,6 +31,7 @@ namespace abx {
 		bool			 m_vSync;		  //Vertical sync
 		bool			 m_fullScreen;	  //Is the application fullscreen?
 		bool			 m_isDone;		  //Is the application done?
+		bool			 m_isFocused;	  //Is window on focus?
 
 	public:
 
@@ -126,6 +127,14 @@ namespace abx {
 			@return const bool& isDone
 		*/
 		const bool& GetDone() const;
+
+
+
+		/*
+			@brief Get if window is focused
+			@return const bool& focus
+		*/
+		const bool& GetFocus() const;
 
 
 

@@ -23,7 +23,8 @@ namespace abx {
 		m_size(l_size),
 		m_vSync(false),
 		m_fullScreen(false),
-		m_isDone(false)
+		m_isDone(false),
+		m_isFocused(true)
 	{
 		SharedData::SetWindow(this);
 		Create();
@@ -42,15 +43,23 @@ namespace abx {
 
 	/*_________________________________________________________________________*/
 	void Window::Update(const sf::Time& l_time)	{
+
 		m_size = m_window.getSize();							//Copying window size into a member
 		sf::Event evnt;
 		while (m_window.pollEvent(evnt)) {
-			if (evnt.type == sf::Event::Closed)
+			if (evnt.type == sf::Event::LostFocus)
+				m_isFocused = false;
+			else if (evnt.type == sf::Event::GainedFocus)
+				m_isFocused = true;
+			else if (evnt.type == sf::Event::Closed)
 				m_isDone = true;								//Terminate application
 
-			SharedData::EventMgr()->HandleEvent(&evnt);			//Update command callbacks
+			if (m_isFocused)
+				SharedData::EventMgr()->HandleEvent(&evnt);	    //Update command callbacks
 		}
-		SharedData::EventMgr()->HandleInput();					//Update real time user input
+		if (m_isFocused)
+			SharedData::EventMgr()->HandleInput();			    //Update real time user input
+
 	}
 	/*_________________________________________________________________________*/
 
@@ -127,6 +136,13 @@ namespace abx {
 	/*_________________________________________________________________________*/
 	const bool& Window::GetDone() const{
 		return m_isDone;
+	}
+
+
+
+	/*_________________________________________________________________________*/
+	const bool& Window::GetFocus() const{
+		return m_isFocused;
 	}
 	/*_________________________________________________________________________*/
 
