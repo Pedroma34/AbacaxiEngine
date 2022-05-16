@@ -98,10 +98,12 @@
     <ClCompile Include="Application.cpp" />
     <ClCompile Include="CommandAttack.cpp" />
     <ClCompile Include="CommandDestroyApplication.cpp" />
+    <ClCompile Include="CommandKillEntity.cpp" />
     <ClCompile Include="CommandMoveDown.cpp" />
     <ClCompile Include="CommandMoveLeft.cpp" />
     <ClCompile Include="CommandMoveRight.cpp" />
     <ClCompile Include="CommandMoveUp.cpp" />
+    <ClCompile Include="EntityBandit.cpp" />
     <ClCompile Include="EntityManager.cpp" />
     <ClCompile Include="EntityMinotaur.cpp" />
     <ClCompile Include="EventManager.cpp" />
@@ -113,6 +115,7 @@
       <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='Release|x64'">pch.h</PrecompiledHeaderFile>
     </ClCompile>
     <ClCompile Include="StateEntityAttack.cpp" />
+    <ClCompile Include="StateEntityDie.cpp" />
     <ClCompile Include="StateEntityIdle.cpp" />
     <ClCompile Include="StateEntityRun.cpp" />
     <ClCompile Include="StateGame.cpp" />
@@ -121,6 +124,8 @@
     <ClCompile Include="SystemAnimation.cpp" />
     <ClCompile Include="SystemDirection.cpp" />
     <ClCompile Include="SystemHealth.cpp" />
+    <ClCompile Include="SystemHealthBar.cpp" />
+    <ClCompile Include="SystemKillable.cpp" />
     <ClCompile Include="SystemSpeed.cpp" />
     <ClCompile Include="SystemSprite.cpp" />
     <ClCompile Include="SystemTexture.cpp" />
@@ -137,12 +142,14 @@
     <ClInclude Include="CommandInput.h" />
     <ClInclude Include="CommandInputs.h" />
     <ClInclude Include="CommandKey.h" />
+    <ClInclude Include="CommandKillEntity.h" />
     <ClInclude Include="CommandMoveDown.h" />
     <ClInclude Include="CommandMoveLeft.h" />
     <ClInclude Include="CommandMoveRight.h" />
     <ClInclude Include="CommandMoveUp.h" />
     <ClInclude Include="Entities.h" />
     <ClInclude Include="Entity.h" />
+    <ClInclude Include="EntityBandit.h" />
     <ClInclude Include="EntityManager.h" />
     <ClInclude Include="EntityMinotaur.h" />
     <ClInclude Include="EntityStates.h" />
@@ -153,6 +160,7 @@
     <ClInclude Include="State.h" />
     <ClInclude Include="StateEntity.h" />
     <ClInclude Include="StateEntityAttack.h" />
+    <ClInclude Include="StateEntityDie.h" />
     <ClInclude Include="StateEntityIdle.h" />
     <ClInclude Include="StateEntityRun.h" />
     <ClInclude Include="StateGame.h" />
@@ -162,6 +170,8 @@
     <ClInclude Include="SystemAnimation.h" />
     <ClInclude Include="SystemDirection.h" />
     <ClInclude Include="SystemHealth.h" />
+    <ClInclude Include="SystemHealthBar.h" />
+    <ClInclude Include="SystemKillable.h" />
     <ClInclude Include="Systems.h" />
     <ClInclude Include="SystemSpeed.h" />
     <ClInclude Include="SystemSprite.h" />

@@ -15,3 +15,5 @@
 #include "SystemAnimation.h"
 #include "SystemSpeed.h"
 #include "SystemDirection.h"
+#include "SystemHealthBar.h"
+#include "SystemKillable.h"

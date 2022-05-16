@@ -25,6 +25,7 @@ namespace abx {
 		m_clock										()
 
 	{
+		srand(time(NULL));
 		//Initializing share data//
 		SharedData::SetTime(&m_time);
 		/////////////////////////////////

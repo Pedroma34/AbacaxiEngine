@@ -29,6 +29,8 @@ namespace abx {
 		auto entity = l_entity.lock();
 		if (!entity)
 			return;
+		if (!entity->IsInState<StateEntityDie>().expired())
+			return;
 
 		/*Systems*/
 		auto spriteSys = entity->GetSystem<SystemSprite>().lock();

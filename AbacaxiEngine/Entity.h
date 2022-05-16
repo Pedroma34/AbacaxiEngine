@@ -61,7 +61,7 @@ namespace abx {
 			@brief Virtual destructor.
 		*/
 		virtual ~Entity() {
-			LogWarn( "Entity has been destroyed");
+			LogWarn("Entity has been destroyed");
 		}
 
 
@@ -141,7 +141,19 @@ namespace abx {
 			@return std::weak_ptr<T> to the newly created state
 		*/
 		template <class T>
-		WeakRef<T> SetState(const bool &l_isLocked = false);
+		WeakRef<T> SetState();
+
+
+
+		/*
+			@brief Locks this entity's state. It creates an arbitrary entity state.
+			"Locked" is useful when entity only have to be in one state.
+			For example, if entity is dying, switch to a locked dying state so other states won't be pushed to entity.
+			@param  const bool& isLocked (opitional)
+			@return std::weak_ptr<T> to the newly created state
+		*/
+		template <class T>
+		WeakRef<T> SetLockState();
 
 
 
@@ -259,12 +271,14 @@ namespace abx {
 		For example, the previous state will be deleted if this function is called with a different state as an parameter.
 		If state is already in memory, it returns a weak pointer to that state.
 		If isLocked boolean is true, switching state is impossible after this one.
-		@param const bool& isLocked (optional)
+		"Locked" is useful when entity only have to be in one state.
+		For example, if entity is dying, switch to a locked dying state so other states won't be pushed to entity.
+		@param  const bool& isLocked (opitional)
 		@return std::weak_ptr<T> to the newly created state
 	*/
 	template<class T>
-	inline WeakRef<T> Entity::SetState(const bool &l_isLocked){
-		m_stateLock = l_isLocked;
+	inline WeakRef<T> Entity::SetState(){
+
 		if (m_stateLock)									   //Not possible to switch states until it's false
 			return WeakRef<T>();
 		if (m_state)
@@ -274,10 +288,31 @@ namespace abx {
 		m_state = MakeRef<T>();
 		m_state->BindEntity(this);							   //Binding state's owner
 		return std::static_pointer_cast<T>(m_state);
+
 	}
 
 
 
+	/*
+		@brief Locks this entity's state. It creates an arbitrary entity state.
+		"Locked" is useful when entity only have to be in one state.
+		For example, if entity is dying, switch to a locked dying state so other states won't be pushed to entity.
+		@param  const bool& isLocked (opitional)
+		@return std::weak_ptr<T> to the newly created state
+	*/
+	template<class T>
+	inline WeakRef<T> Entity::SetLockState(){
+
+		m_stateLock = true;									   //States called after this won't be able to change
+
+		if (m_state)
+			if (typeid(*m_state) == typeid(T))				   //If state is already being played
+				return std::static_pointer_cast<T>(m_state);
+
+		m_state = MakeRef<T>();
+		m_state->BindEntity(this);							   //Binding state's owner
+		return std::static_pointer_cast<T>(m_state);
+	}
 
 	/*
 		@brief Definition. Checks if entity is in templated state. If it is, it returns a valid weak pointer.

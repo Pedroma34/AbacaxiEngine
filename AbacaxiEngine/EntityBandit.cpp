@@ -2,16 +2,16 @@
 
 
 /*
-	EntityMinotaur.cpp
+	EntityBandit.h
 	Purpose: An entity that holds various systems (components)
 	@author Pedro Sergio de Castro Sarmento Filho
-	14/May/2022
+	15/May/2022
 */
 
 
 
 #include "pch.h"
-#include "EntityMinotaur.h"
+#include "EntityBandit.h"
 #include "EntityManager.h"
 #include "Window.h"
 #include "Resources.h"
@@ -24,14 +24,14 @@ namespace abx {
 
 
 	/*__________________________________________*/
-	void EntityMinotaur::OnCreate(){
+	void EntityBandit::OnCreate() {
 
 		/*Texture*/
 		auto textureSys = AddSystem<SystemTexture>().lock();
 		textureSys->SetTexture(
-			SharedData::Resource()->AcquireTexture("Minotaur")
+			SharedData::Resource()->AcquireTexture("Bandit")
 		);
-		textureSys->SetChunckSize({ 96,96 });
+		textureSys->SetChunckSize({ 48,48 });
 
 		/*Sprite*/
 		auto spriteSys = AddSystem<SystemSprite>().lock();
@@ -46,24 +46,19 @@ namespace abx {
 		);
 		spriteSys->SetOrigin(
 			sf::Vector2f(
-			spriteSys->GetGlobalBounds().width / 2,
-			spriteSys->GetGlobalBounds().height / 2
+				spriteSys->GetGlobalBounds().width / 2,
+				spriteSys->GetGlobalBounds().height / 2
 			)
 		);
-		spriteSys->SetScale({ 16,20 });									//16% of the screen win the X axis and 20% of the screen in the Y axis
+		spriteSys->SetScale({ 10,12 });									
 
 		/*Animation*/
 		auto animationSys = AddSystem<SystemAnimation>().lock();
-		animationSys->AddAnimation( "idle",	     1, 1, 5, 0.7f);
-		animationSys->AddAnimation( "running",    1, 2, 8, 0.7f);
-		animationSys->AddAnimation( "charging",   1, 3, 5, 0.7f);
-		animationSys->AddAnimation( "attacking",  1, 4, 9, 0.5f);
-		animationSys->AddAnimation( "attacking2", 1, 5, 5, 0.5f);
-		animationSys->AddAnimation("stomp",       1, 6, 6, 0.7f);
-		animationSys->AddAnimation("attacking3",  1, 7, 9, 0.7f);
-		animationSys->AddAnimation("hit",         1, 8, 3, 0.4f);
-		animationSys->AddAnimation("hit2",        1, 9, 3, 0.2f);
-		animationSys->AddAnimation("dying",       1, 10, 6, 0.7f);
+		animationSys->AddAnimation("idle",       1,  1 , 4 , 0.7f );
+		animationSys->AddAnimation("running",    1,  2 , 8 , 0.8f );
+		animationSys->AddAnimation("attacking" , 1 , 3 , 8 , 0.5f );
+		animationSys->AddAnimation("hit2",       1,  5 , 2 , 0.3f );
+		animationSys->AddAnimation("dying",      1,  6 , 3 , 0.4f );
 
 		/*State*/
 		SetState<StateEntityIdle>();

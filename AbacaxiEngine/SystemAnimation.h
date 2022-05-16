@@ -72,7 +72,15 @@ namespace abx {
 		*/
 		SystemAnimation();
 
+
+
+		/*
+			@brief Updates component using app's time as seconds.
+			@param cosnt float& time
+		*/
 		void Update(const float& l_time) override;
+
+
 
 		/*	
 			@brief Adds an animation to the animator. Takes a name (serves as handle), the row number 

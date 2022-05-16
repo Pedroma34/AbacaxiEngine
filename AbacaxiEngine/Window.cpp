@@ -48,9 +48,9 @@ namespace abx {
 			if (evnt.type == sf::Event::Closed)
 				m_isDone = true;								//Terminate application
 
-			SharedData::EventMgr()->HandleEvent(&evnt);	//Update command callbacks
+			SharedData::EventMgr()->HandleEvent(&evnt);			//Update command callbacks
 		}
-		SharedData::EventMgr()->HandleInput();			//Update real time user input
+		SharedData::EventMgr()->HandleInput();					//Update real time user input
 	}
 	/*_________________________________________________________________________*/
 

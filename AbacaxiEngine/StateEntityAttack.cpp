@@ -2,7 +2,7 @@
 
 
 /*
-	StateEntityAttack.h
+	StateEntityAttack.cpp
 	Purpose: Modifies entity when in attack state.
 	@author Pedro Sergio de Castro Sarmento Filho
 	15/May/2022

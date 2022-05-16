@@ -10,3 +10,4 @@
 
 
 #include "EntityMinotaur.h"
+#include "EntityBandit.h"

@@ -76,6 +76,21 @@
     <ClCompile Include="CommandDestroyApplication.cpp">
       <Filter>Command\CommandInputs</Filter>
     </ClCompile>
+    <ClCompile Include="EntityBandit.cpp">
+      <Filter>Entity</Filter>
+    </ClCompile>
+    <ClCompile Include="SystemHealthBar.cpp">
+      <Filter>Systems</Filter>
+    </ClCompile>
+    <ClCompile Include="StateEntityDie.cpp">
+      <Filter>Entity State</Filter>
+    </ClCompile>
+    <ClCompile Include="SystemKillable.cpp">
+      <Filter>Systems</Filter>
+    </ClCompile>
+    <ClCompile Include="CommandKillEntity.cpp">
+      <Filter>Command\CommandInputs</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Application.h">
@@ -187,6 +202,21 @@
       <Filter>Entity State</Filter>
     </ClInclude>
     <ClInclude Include="CommandDestroyApplication.h">
+      <Filter>Command\CommandInputs</Filter>
+    </ClInclude>
+    <ClInclude Include="EntityBandit.h">
+      <Filter>Entity</Filter>
+    </ClInclude>
+    <ClInclude Include="SystemHealthBar.h">
+      <Filter>Systems</Filter>
+    </ClInclude>
+    <ClInclude Include="StateEntityDie.h">
+      <Filter>Entity State</Filter>
+    </ClInclude>
+    <ClInclude Include="SystemKillable.h">
+      <Filter>Systems</Filter>
+    </ClInclude>
+    <ClInclude Include="CommandKillEntity.h">
       <Filter>Command\CommandInputs</Filter>
     </ClInclude>
   </ItemGroup>
