@@ -91,24 +91,22 @@ namespace abx {
 	*/
 	inline std::string GetDirectory() {
 
-		HMODULE hModule = GetModuleHandle(nullptr);				//returns handle to this application
 
-		if (hModule) {
+		char path[MAX_PATH];
 
-			char path[256];
+		
+		GetModuleFileNameA(NULL, path, sizeof(path));						 //Copies the path of this application to "path" buffer
 
-			
-			GetModuleFileNameA(hModule, path, sizeof(path));	//Copies the path of this application to "path" buffer
-
-			
-			PathRemoveFileSpecA(path);							//Removes .exe at the end of path
+		
+		std::string::size_type pos = std::string(path).find_last_of("\\/");
 
 	
-			strcat_s(path, "\\");								//Removes '\' at the end of path
+		std::string result = std::string(path).substr(0, pos);
 
-			return std::string(path);
-		}
-		return "";
+		result.append("\\");
+
+		return result;
+
 	}
 
 
