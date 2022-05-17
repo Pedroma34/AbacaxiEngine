@@ -26,7 +26,9 @@ namespace abx {
 	/*_______________________________________________________*/
 	SystemHealthBar::SystemHealthBar() :
 		m_shape()
-	{}
+	{
+		m_shape.setFillColor(sf::Color(255, 0, 0, 100));
+	}
 	/*_______________________________________________________*/
 
 

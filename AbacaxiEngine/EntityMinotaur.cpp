@@ -50,7 +50,7 @@ namespace abx {
 			spriteSys->GetGlobalBounds().height / 2
 			)
 		);
-		spriteSys->SetScale({ 16,20 });									//16% of the screen win the X axis and 20% of the screen in the Y axis
+		spriteSys->SetScale({ 18,22 });									//16% of the screen win the X axis and 20% of the screen in the Y axis
 
 		/*Animation*/
 		auto animationSys = AddSystem<SystemAnimation>().lock();
@@ -85,7 +85,7 @@ namespace abx {
 
 		/*Health Bar*/
 		auto barSys = AddSystem<SystemHealthBar>().lock();
-		barSys->SetColor(sf::Color::Red);
+		//barSys->SetColor(sf::Color::Red);
 		barSys->SetOutlineThickness(1.0f);
 		barSys->SetOutlineColor(sf::Color::White);
 

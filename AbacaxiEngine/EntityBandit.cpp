@@ -55,7 +55,7 @@ namespace abx {
 		/*Animation*/
 		auto animationSys = AddSystem<SystemAnimation>().lock();
 		animationSys->AddAnimation("idle",       1,  1 , 4 , 0.7f );
-		animationSys->AddAnimation("running",    1,  2 , 8 , 0.8f );
+		animationSys->AddAnimation("running",    1,  2 , 8 , 0.7f );
 		animationSys->AddAnimation("attacking" , 1 , 3 , 8 , 0.5f );
 		animationSys->AddAnimation("hit2",       1,  5 , 2 , 0.3f );
 		animationSys->AddAnimation("dying",      1,  6 , 3 , 0.4f );
@@ -80,7 +80,7 @@ namespace abx {
 
 		/*Health Bar*/
 		auto barSys = AddSystem<SystemHealthBar>().lock();
-		barSys->SetColor(sf::Color::Red);
+		//barSys->SetColor(sf::Color::Red);
 		barSys->SetOutlineThickness(0.9f);
 		barSys->SetOutlineColor(sf::Color::White);
 
