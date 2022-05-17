@@ -28,6 +28,7 @@ namespace abx {
 		srand(time(NULL));
 		//Initializing share data//
 		SharedData::SetTime(&m_time);
+		SharedData::SetDebug(true);
 		/////////////////////////////////
 
 		//Intializing machine state

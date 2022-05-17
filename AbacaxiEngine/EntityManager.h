@@ -28,7 +28,7 @@ namespace abx {
 
 		std::vector<std::pair<unsigned int,Ref<Entity>>>					m_entities;			//Container holds all the entities in the application. First is ID and second is the entity.
 		std::vector<std::pair<unsigned int, Ref<Entity>>>				    m_toAdd;			//Queue to be added in late update.
-		std::map<WeakRef<Entity>, std::function<void(WeakRef<Entity>)>>		m_collisionQueue;	//Collision queue.
+		std::map<Entity*, std::function<void(WeakRef<Entity>)>>		        m_collisionQueue;	//Collision queue.
 		std::vector<unsigned int>											m_toRemove;			//Removal queue
 		unsigned int														m_id;				//Unique id that will be passed onto entities on creation
 	
@@ -129,7 +129,7 @@ namespace abx {
 			@param T* owner
 		*/
 		template<class T>
-		bool AddCollisionQueue(WeakRef<Entity> l_entity, void(T::* l_func)(WeakRef<Entity>), T* l_instance);
+		bool AddCollisionQueue(Entity* l_entity, void(T::* l_func)(WeakRef<Entity>), T* l_instance);
 
 
 
@@ -265,7 +265,7 @@ namespace abx {
 		@param T* owner
 	*/
 	template<class T>
-	inline bool EntityManager::AddCollisionQueue(WeakRef<Entity> l_entity, void(T::* l_func)(WeakRef<Entity>), T* l_instance){
+	inline bool EntityManager::AddCollisionQueue(Entity* l_entity, void(T::* l_func)(WeakRef<Entity>), T* l_instance){
 		auto temp = std::bind(l_func, l_instance, std::placeholders::_1);
 		return m_collisionQueue.emplace(l_entity, temp).second;
 	}

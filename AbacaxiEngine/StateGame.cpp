@@ -72,7 +72,8 @@ namespace abx {
 		SharedData::EventMgr()->Bind<CommandAttack>     (player, sf::Keyboard::Space, false);
 		SharedData::EventMgr()->Bind<CommandKillEntity> (player, sf::Keyboard::Num1,  false);
 
-		SharedData::EventMgr()->Bind<CommandDestroyApplication>( sf::Keyboard::F1, false);
+		SharedData::EventMgr()->Bind<CommandDestroyApplication>	( sf::Keyboard::F1, false);
+		SharedData::EventMgr()->Bind<CommandDebug>				(sf::Keyboard::Tab, false);
 	}
 	/*_________________________________________________________________________*/
 

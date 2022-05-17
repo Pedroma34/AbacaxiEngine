@@ -38,20 +38,22 @@ namespace abx {
 
 		/*Animation*/
 		std::string animation = "attacking";
-		if (animationSys->HasAnimation(animation) && 
-			!m_played &&
-			animationSys->GetCurrentAnimation() != animation){						  //Only plays once when state is created 
-																					  //because this class will loop until the animation has been played in full
-																					  //This is useful for weapons cool down (or fire rate)
-			animationSys->PlayAnimation(animation);
-				/*animationSys->PlayAnimation(animation);
-				auto damageBoxSystem = m_entity->GetSystem<DamageBoxSystem>().lock();
-				if (!damageBoxSystem)
-					return;*/
 
-				//damageBoxSystem->SolveCollisions();								  //Applying damage to all entities inside the damage box
-				m_played = true;													  //Boolean to keep track if animation has played so we can switch to idle state
-			}
+		if (animationSys->HasAnimation(animation) && !m_played &&
+			animationSys->GetCurrentAnimation() != animation){						 //Only plays once when state is created 
+																					 //because this class will loop until the animation has been played in full
+																					 //This is useful for weapons cool down (or fire rate)
+			
+			animationSys->PlayAnimation(animation);
+
+			auto damageBoxSystem = m_entity->GetSystem<SystemDamageBox>().lock();
+			if (!damageBoxSystem)
+				return;
+
+			damageBoxSystem->SolveCollisions();										 //Applying damage to all entities inside the damage box
+			m_played = true;														 //Boolean to keep track if animation has played so we can switch to idle state
+			
+		}
 
 		if (m_played && !animationSys->IsPlayingAnimation())						  //Chekcs if animation has played in full, then switch to idle state 
 			m_entity->SetState<StateEntityIdle>();

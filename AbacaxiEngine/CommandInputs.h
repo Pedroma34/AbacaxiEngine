@@ -19,3 +19,4 @@
 
 /*Commands using shared data*/
 #include "CommandDestroyApplication.h"
+#include "CommandDebug.h"

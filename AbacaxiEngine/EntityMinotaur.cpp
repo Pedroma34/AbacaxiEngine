@@ -92,6 +92,25 @@ namespace abx {
 		/*Killable*/
 		AddSystem<SystemKillable>();
 
+		/*Hit Box*/
+		auto hitBoxSys = AddSystem<SystemHitBox>().lock();
+		hitBoxSys->SetSize(
+			spriteSys->GetSize().x / 2,
+			spriteSys->GetSize().y / 2
+		);
+
+		/*Damage*/
+		auto damageSys = AddSystem<SystemDamage>().lock();
+		damageSys->SetMaxDamage(22.f);
+		damageSys->SetDamage(damageSys->GetMaxDamage());
+
+		/*Damage Box*/
+		auto damageBoxSys = AddSystem<SystemDamageBox>().lock();
+		damageBoxSys->SetSize(
+			spriteSys->GetSize().x / 4,
+			spriteSys->GetSize().y / 2
+		);
+
 	}
 	/*__________________________________________*/
 

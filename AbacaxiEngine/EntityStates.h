@@ -15,3 +15,4 @@
 #include "StateEntityRun.h"
 #include "StateEntityAttack.h"
 #include "StateEntityDie.h"
+#include "StateEntityHurt.h"

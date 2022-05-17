@@ -218,8 +218,7 @@ namespace abx {
 
 			for (auto& itrCollision : m_collisionQueue) {								//For each caller, we loop through collision queue
 
-				if (!itrCollision.first.expired() && 
-					caller->second.get() == itrCollision.first.lock().get()) 			//if this caller has a call in the queue...
+				if (caller->second.get() == itrCollision.first) 			            //if this caller has a call in the queue...
 
 					for (auto receiver = m_entities.begin();							//Our "receivers"
 						receiver != m_entities.end();

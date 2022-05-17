@@ -17,3 +17,6 @@
 #include "SystemDirection.h"
 #include "SystemHealthBar.h"
 #include "SystemKillable.h"
+#include "SystemHitBox.h"
+#include "SystemDamage.h"
+#include "SystemDamageBox.h"

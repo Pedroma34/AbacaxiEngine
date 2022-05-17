@@ -91,6 +91,21 @@
     <ClCompile Include="CommandKillEntity.cpp">
       <Filter>Command\CommandInputs</Filter>
     </ClCompile>
+    <ClCompile Include="SystemHitBox.cpp">
+      <Filter>Systems</Filter>
+    </ClCompile>
+    <ClCompile Include="CommandDebug.cpp">
+      <Filter>Command\CommandInputs</Filter>
+    </ClCompile>
+    <ClCompile Include="SystemDamage.cpp">
+      <Filter>Systems</Filter>
+    </ClCompile>
+    <ClCompile Include="SystemDamageBox.cpp">
+      <Filter>Systems</Filter>
+    </ClCompile>
+    <ClCompile Include="StateEntityHurt.cpp">
+      <Filter>Entity State</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Application.h">
@@ -218,6 +233,21 @@
     </ClInclude>
     <ClInclude Include="CommandKillEntity.h">
       <Filter>Command\CommandInputs</Filter>
+    </ClInclude>
+    <ClInclude Include="SystemHitBox.h">
+      <Filter>Systems</Filter>
+    </ClInclude>
+    <ClInclude Include="CommandDebug.h">
+      <Filter>Command\CommandInputs</Filter>
+    </ClInclude>
+    <ClInclude Include="SystemDamage.h">
+      <Filter>Systems</Filter>
+    </ClInclude>
+    <ClInclude Include="SystemDamageBox.h">
+      <Filter>Systems</Filter>
+    </ClInclude>
+    <ClInclude Include="StateEntityHurt.h">
+      <Filter>Entity State</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

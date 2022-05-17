@@ -71,7 +71,7 @@ namespace abx {
 		/*Direction*/
 		auto directionSys = AddSystem<SystemDirection>().lock();
 		directionSys->SetDirection(Direction::Right);
-		directionSys->SetInverted(false);							    //facing left
+		directionSys->SetInverted(true);							    //facing left
 
 		/*Health*/
 		auto healthSys = AddSystem<SystemHealth>().lock();
@@ -81,11 +81,30 @@ namespace abx {
 		/*Health Bar*/
 		auto barSys = AddSystem<SystemHealthBar>().lock();
 		barSys->SetColor(sf::Color::Red);
-		barSys->SetOutlineThickness(1.0f);
+		barSys->SetOutlineThickness(0.9f);
 		barSys->SetOutlineColor(sf::Color::White);
 
 		/*Killable*/
 		AddSystem<SystemKillable>();
+
+		/*Hit Box*/
+		auto hitBoxSys = AddSystem<SystemHitBox>().lock();
+		hitBoxSys->SetSize(
+			spriteSys->GetSize().x / 1.8,
+			spriteSys->GetSize().y
+		);
+
+		/*Damage*/
+		auto damageSys = AddSystem<SystemDamage>().lock();
+		damageSys->SetMaxDamage(10.f);
+		damageSys->SetDamage(damageSys->GetMaxDamage());
+
+		/*Damage Box*/
+		auto damageBoxSys = AddSystem<SystemDamageBox>().lock();
+		damageBoxSys->SetSize(
+			spriteSys->GetSize().x / 3,
+			spriteSys->GetSize().y
+		);
 
 	}
 	/*__________________________________________*/
