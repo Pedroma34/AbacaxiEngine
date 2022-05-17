@@ -181,6 +181,10 @@ namespace abx {
 
 
 
+		/*
+			@brief Gets entity container as reference
+		*/
+		std::vector<std::pair<unsigned int, Ref<Entity>>>& GetEntityContainer();
 	private:
 
 

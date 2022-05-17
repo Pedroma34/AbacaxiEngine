@@ -149,7 +149,7 @@ namespace abx {
 			@brief Get a pointer the window
 			@return sf::Window* window
 		*/
-		sf::Window* GetWindow();
+		sf::RenderWindow* GetWindow();
 
 
 

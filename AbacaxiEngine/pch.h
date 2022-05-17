@@ -159,6 +159,29 @@ namespace abx {
 
 	
 
+	/*
+		@brief Debug static class wil hold some debug helper methods.
+	*/
+	class Debug {
+		Debug() {}
+		WeakRef<class Entity> m_selectedEntity;
+	public:
+
+		Debug(const Debug&) = delete;
+
+		static Debug& Get() {
+			static Debug instance;
+			return instance;
+		}
+
+		//Setters
+		static void SetSelectedEntity(WeakRef<class Entity> l_selectedEntity) { Get().m_selectedEntity  =  l_selectedEntity; }
+
+		//Getters
+		static WeakRef<Entity> GetSelectedEntity() { return Get().m_selectedEntity; }
+	};
+
+
 
 
 	/*

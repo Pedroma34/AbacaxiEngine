@@ -170,6 +170,14 @@ namespace abx {
 
 
 	/*______________________________________________________*/
+	std::vector<std::pair<unsigned int, Ref<Entity>>>& EntityManager::GetEntityContainer(){
+		return m_entities;
+	}
+	/*______________________________________________________*/
+
+
+
+	/*______________________________________________________*/
 	void EntityManager::CopyEntity(Ref<Entity>& l_entity){
 
 		//Debug

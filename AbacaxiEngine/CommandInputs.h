@@ -20,3 +20,4 @@
 /*Commands using shared data*/
 #include "CommandDestroyApplication.h"
 #include "CommandDebug.h"
+#include "CommandSelectEntity.h"

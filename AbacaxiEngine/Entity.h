@@ -210,6 +210,31 @@ namespace abx {
 
 
 		/*
+			@brief Gets system according to its place in the container
+			@param unsigned int index
+			@return std::weak_ptr<System> system
+		*/
+		WeakRef<System> GetSystem(unsigned int l_index) {
+			if (l_index < 0)
+				return std::weak_ptr<System>();
+			else if (l_index > m_systems.size())
+				return std::weak_ptr<System>();
+			return m_systems.at(l_index);
+		}
+
+
+
+
+		/*
+			@brief Gets how many systems entity pocesses.
+			@returns size
+		*/
+		unsigned int GetSystemCount() const { return m_systems.size(); }
+
+
+
+
+		/*
 		@brief Gets entity's ID.
 		@returns const unsigned int& id.
 		*/

@@ -30,7 +30,7 @@ namespace abx {
 		m_shape(),
 		m_colliders()
 	{
-		m_shape.setFillColor(sf::Color(255, 0, 0, 100));  //red transparent
+		m_shape.setFillColor(sf::Color(255, 0, 0, 30));  //red transparent
 	}
 	/*____________________________________________________*/
 

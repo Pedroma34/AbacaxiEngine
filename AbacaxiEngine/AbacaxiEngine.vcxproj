@@ -104,6 +104,7 @@
     <ClCompile Include="CommandMoveLeft.cpp" />
     <ClCompile Include="CommandMoveRight.cpp" />
     <ClCompile Include="CommandMoveUp.cpp" />
+    <ClCompile Include="CommandSelectEntity.cpp" />
     <ClCompile Include="StateEntityHurt.cpp" />
     <ClCompile Include="SystemDamageBox.cpp" />
     <ClCompile Include="EntityBandit.cpp" />
@@ -153,6 +154,7 @@
     <ClInclude Include="CommandMoveLeft.h" />
     <ClInclude Include="CommandMoveRight.h" />
     <ClInclude Include="CommandMoveUp.h" />
+    <ClInclude Include="CommandSelectEntity.h" />
     <ClInclude Include="Entities.h" />
     <ClInclude Include="Entity.h" />
     <ClInclude Include="EntityBandit.h" />

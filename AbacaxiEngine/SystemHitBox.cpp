@@ -27,7 +27,7 @@ namespace abx {
 	SystemHitBox::SystemHitBox() : 
 		m_shape()
 	{
-		m_shape.setFillColor(sf::Color(255, 234, 0, 100));	//yellow transparent
+		m_shape.setFillColor(sf::Color(255, 234, 0, 30));	//yellow transparent
 	}
 	/*______________________________________________________________*/
 
