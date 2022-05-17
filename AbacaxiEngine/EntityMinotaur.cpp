@@ -50,11 +50,11 @@ namespace abx {
 			spriteSys->GetGlobalBounds().height / 2
 			)
 		);
-		spriteSys->SetScale({ 18,22 });									//16% of the screen win the X axis and 20% of the screen in the Y axis
+		spriteSys->SetScale({ 20,24 });									//16% of the screen win the X axis and 20% of the screen in the Y axis
 
 		/*Animation*/
 		auto animationSys = AddSystem<SystemAnimation>().lock();
-		animationSys->AddAnimation( "idle",	     1, 1, 5, 0.7f);
+		animationSys->AddAnimation( "idle",	      1, 1, 5, 0.7f);
 		animationSys->AddAnimation( "running",    1, 2, 8, 0.7f);
 		animationSys->AddAnimation( "charging",   1, 3, 5, 0.7f);
 		animationSys->AddAnimation( "attacking",  1, 4, 9, 0.5f);
