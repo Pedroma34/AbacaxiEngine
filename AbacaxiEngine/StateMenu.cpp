@@ -77,8 +77,7 @@ namespace abx {
 	/*_________________________________________________________________________*/
 	void StateMenu::Update(const float& l_time) {
 
-		SharedData::StateMgr()->Remove<StateMenu>();
-		SharedData::StateMgr()->SwitchTo<StateGame>();
+		UpdateUi(l_time);
 
 	}
 	/*_________________________________________________________________________*/
@@ -88,6 +87,43 @@ namespace abx {
 
 	/*_________________________________________________________________________*/
 	void StateMenu::Render() {
+
+	}
+	/*_________________________________________________________________________*/
+
+
+
+	/*_________________________________________________________________________*/
+	void StateMenu::UpdateUi(const float& l_time){
+
+		const auto& winSize = SharedData::Window()->GetSize();
+
+		/*Menu*/
+		{
+			bool b;
+			ImGui::Begin("Menu", &b, ImGuiWindowFlags_NoTitleBar | ImGuiWindowFlags_NoMove | ImGuiWindowFlags_NoResize);
+			ImGui::SetWindowSize(ImVec2(winSize.x, winSize.y));
+			ImGui::SetWindowPos(ImVec2(0, 0));
+			ImGui::SetWindowFontScale(2);
+
+
+			//Start
+			ImGui::SetCursorPos(ImVec2(0, 0));
+			if (ImGui::Button("Start", ImVec2(winSize.x * 0.50, winSize.y * 0.50))) {
+
+				SharedData::StateMgr()->Remove   <StateMenu>();
+				SharedData::StateMgr()->SwitchTo <StateGame>();
+
+			}
+
+			//Quit
+			ImGui::SetCursorPos(ImVec2(winSize.x / 2, winSize.y / 2));
+			if (ImGui::Button("Quit", ImVec2(winSize.x * 0.50, winSize.y * 0.50)))
+				SharedData::Window()->DestroyApplication();
+
+
+			ImGui::End();
+		}
 
 	}
 	/*_________________________________________________________________________*/

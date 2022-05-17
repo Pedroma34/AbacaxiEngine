@@ -46,8 +46,12 @@ namespace abx {
 
 	/*_________________________________________________________________________*/
 	void Application::Update(){
+
 		m_window.Update(m_time);
-		m_stateMgr.Update(m_time.asSeconds());
+
+		if (m_window.GetFocus())
+			m_stateMgr.Update(m_time.asSeconds());
+
 	}
 	/*_________________________________________________________________________*/
 
@@ -57,6 +61,7 @@ namespace abx {
 	void Application::Render(){
 		m_window.Clear();
 		m_stateMgr.Render();
+		m_window.RenderImgui();
 		m_window.Display();
 	}
 	/*_________________________________________________________________________*/

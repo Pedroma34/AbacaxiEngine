@@ -81,5 +81,18 @@ namespace abx {
 			@brief Renders this state.
 		*/
 		void Render() override;
+
+
+	private:
+
+
+
+		/*
+			@brief Creates imgui windows
+		*/
+		void UpdateDebugUi(const float& l_time);
+
+
+
 	};
 }

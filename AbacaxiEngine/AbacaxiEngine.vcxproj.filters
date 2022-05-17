@@ -13,15 +13,6 @@
     <ClCompile Include="Window.cpp">
       <Filter>Application</Filter>
     </ClCompile>
-    <ClCompile Include="StateGame.cpp">
-      <Filter>Machine State</Filter>
-    </ClCompile>
-    <ClCompile Include="StateManager.cpp">
-      <Filter>Machine State</Filter>
-    </ClCompile>
-    <ClCompile Include="StateMenu.cpp">
-      <Filter>Machine State</Filter>
-    </ClCompile>
     <ClCompile Include="EntityManager.cpp">
       <Filter>Entity</Filter>
     </ClCompile>
@@ -106,6 +97,15 @@
     <ClCompile Include="StateEntityHurt.cpp">
       <Filter>Entity State</Filter>
     </ClCompile>
+    <ClCompile Include="StateGame.cpp">
+      <Filter>Machine State\States</Filter>
+    </ClCompile>
+    <ClCompile Include="StateMenu.cpp">
+      <Filter>Machine State\States</Filter>
+    </ClCompile>
+    <ClCompile Include="StateManager.cpp">
+      <Filter>Machine State</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Application.h">
@@ -120,17 +120,8 @@
     <ClInclude Include="State.h">
       <Filter>Machine State</Filter>
     </ClInclude>
-    <ClInclude Include="StateGame.h">
-      <Filter>Machine State</Filter>
-    </ClInclude>
-    <ClInclude Include="StateManager.h">
-      <Filter>Machine State</Filter>
-    </ClInclude>
     <ClInclude Include="MachineStates.h">
       <Filter>GlobalIncludes</Filter>
-    </ClInclude>
-    <ClInclude Include="StateMenu.h">
-      <Filter>Machine State</Filter>
     </ClInclude>
     <ClInclude Include="Entity.h">
       <Filter>Entity</Filter>
@@ -249,6 +240,15 @@
     <ClInclude Include="StateEntityHurt.h">
       <Filter>Entity State</Filter>
     </ClInclude>
+    <ClInclude Include="StateGame.h">
+      <Filter>Machine State\States</Filter>
+    </ClInclude>
+    <ClInclude Include="StateMenu.h">
+      <Filter>Machine State\States</Filter>
+    </ClInclude>
+    <ClInclude Include="StateManager.h">
+      <Filter>Machine State</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Application">
@@ -274,6 +274,9 @@
     </Filter>
     <Filter Include="Command\CommandInputs">
       <UniqueIdentifier>{52727737-e1d8-4181-8dc3-a1986ebbad78}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Machine State\States">
+      <UniqueIdentifier>{9328311a-f61c-4305-8d36-84b69e271016}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>

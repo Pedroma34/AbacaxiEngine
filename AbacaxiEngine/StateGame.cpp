@@ -116,7 +116,11 @@ namespace abx {
 
 	/*_________________________________________________________________________*/
 	void StateGame::Update(const float& l_time){
+
 		SharedData::EntityMgr()->Update(l_time);
+
+		UpdateDebugUi(l_time);
+
 	}
 	/*_________________________________________________________________________*/
 
@@ -128,4 +132,72 @@ namespace abx {
 		SharedData::EntityMgr()->Render();
 	}
 	/*_________________________________________________________________________*/
+
+
+
+
+	/*_________________________________________________________________________*/
+	void StateGame::UpdateDebugUi(const float& l_time){
+
+		if (!SharedData::Debug())
+			return;
+
+		/*Variables*/
+		const auto& winSize =SharedData::Window()->GetSize();
+		bool b = false;
+
+		/*ImGui*/
+		{
+			/*Window*/
+			ImGui::Begin("Debug", &b, ImGuiWindowFlags_NoMove | ImGuiWindowFlags_NoResize | ImGuiWindowFlags_NoCollapse);
+			ImGui::SetWindowSize(ImVec2(winSize.x * 0.25, winSize.y));
+			ImGui::SetWindowPos(ImVec2(0, 0));
+			
+			/*FPS*/
+			{
+				float fps = floor(1.f / l_time);
+				ImGui::Text(std::string("FPS: " + std::to_string(fps)).c_str());
+			}
+
+			/*Adding Entities*/
+			{
+				ImGui::Text("Adding Entity");
+				static const char* entities[]{ "Minotaur", "Bandit" };
+				static int selectedEntity = 0;
+				ImGui::Combo("Entity", &selectedEntity, entities, IM_ARRAYSIZE(entities), 3);
+
+				if (ImGui::Button("Add entity")) {
+
+					std::string entity = entities[selectedEntity];
+
+					if (entity == "Minotaur") {
+						auto ent = SharedData::EntityMgr()->Add<EntityMinotaur>().lock();
+						auto spriteSys = ent->GetSystem<SystemSprite>().lock();
+						spriteSys->SetPosition(
+							rand() % winSize.x - spriteSys->GetSize().x + (spriteSys->GetSize().y * 2),
+							rand() % winSize.y - spriteSys->GetSize().y + spriteSys->GetSize().y
+						);
+						//m_sharedData->m_lastClickedEntity = ent;
+					}
+					else if (entity == "Bandit") {
+						auto ent = SharedData::EntityMgr()->Add<EntityBandit>().lock();
+						auto spriteSys = ent->GetSystem<SystemSprite>().lock();
+						spriteSys->SetPosition(
+							rand() % winSize.x - spriteSys->GetSize().x + (spriteSys->GetSize().y * 2),
+							rand() % winSize.y - spriteSys->GetSize().y + spriteSys->GetSize().y
+						);
+						//m_sharedData->m_lastClickedEntity = ent;
+					}
+
+				}
+			}
+
+			ImGui::End();
+		}
+	}
+	/*_________________________________________________________________________*/
+
+
+
+
 }

@@ -21,22 +21,21 @@ namespace abx {
 		m_window (),
 		m_title(l_title),
 		m_size(l_size),
-		m_vSync(false),
+		m_vSync(true),
 		m_fullScreen(false),
 		m_isDone(false),
 		m_isFocused(true)
 	{
 		SharedData::SetWindow(this);
-		Create();
+		Create();							//Creating window
+		ImGui::SFML::Init(m_window);		//Initializing Imgui
 	}
 	/*_________________________________________________________________________*/
 
 
 
 	/*_________________________________________________________________________*/
-	Window::~Window()
-	{
-	}
+	Window::~Window(){}
 	/*_________________________________________________________________________*/
 
 
@@ -47,18 +46,28 @@ namespace abx {
 		m_size = m_window.getSize();							//Copying window size into a member
 		sf::Event evnt;
 		while (m_window.pollEvent(evnt)) {
-			if (evnt.type == sf::Event::LostFocus)
+
+			if (evnt.type == sf::Event::LostFocus) {
+				LogWarn("[WINDOW] Not focused");
 				m_isFocused = false;
-			else if (evnt.type == sf::Event::GainedFocus)
+			}
+			else if (evnt.type == sf::Event::GainedFocus) {
+				LogWarn("[WINDOW] Focused");
 				m_isFocused = true;
+			}
 			else if (evnt.type == sf::Event::Closed)
 				m_isDone = true;								//Terminate application
 
 			if (m_isFocused)
 				SharedData::EventMgr()->HandleEvent(&evnt);	    //Update command callbacks
+
+			ImGui::SFML::ProcessEvent(m_window, evnt);
 		}
+
 		if (m_isFocused)
 			SharedData::EventMgr()->HandleInput();			    //Update real time user input
+
+		ImGui::SFML::Update(m_window, l_time);
 
 	}
 	/*_________________________________________________________________________*/
@@ -84,6 +93,14 @@ namespace abx {
 	/*_________________________________________________________________________*/
 	void Window::Display(){
 		m_window.display();
+	}
+	/*_________________________________________________________________________*/
+
+
+
+	/*_________________________________________________________________________*/
+	void Window::RenderImgui(){
+		ImGui::SFML::Render(m_window);
 	}
 	/*_________________________________________________________________________*/
 

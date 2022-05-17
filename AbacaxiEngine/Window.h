@@ -84,6 +84,13 @@ namespace abx {
 
 
 		/*
+			@breif Renders Dear Imgui
+		*/
+		void RenderImgui();
+
+
+
+		/*
 			@brief Switch fullscreen boolean, close the window, and create it again with the new boolean state.
 			@param const bool& Boolean to fullscreen
 		*/
