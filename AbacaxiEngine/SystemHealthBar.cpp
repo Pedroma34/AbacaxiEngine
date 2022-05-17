@@ -27,7 +27,8 @@ namespace abx {
 	SystemHealthBar::SystemHealthBar() :
 		m_shape()
 	{
-		m_shape.setFillColor(sf::Color(255, 0, 0, 100));
+		m_shape.setFillColor(sf::Color(255, 0, 0, 255));
+		m_fullHealth.setFillColor(sf::Color(255, 0, 0, 50));
 	}
 	/*_______________________________________________________*/
 
@@ -58,6 +59,7 @@ namespace abx {
 	/*_______________________________________________________*/
 	void SystemHealthBar::Render(){
 		SharedData::Window()->Draw(&m_shape);
+		SharedData::Window()->Draw(&m_fullHealth);
 	}
 	/*_______________________________________________________*/
 
@@ -114,6 +116,10 @@ namespace abx {
 			entityPos.x,
 			entityPos.y - entitySize.y / 3
 		);
+		m_fullHealth.setPosition(							   //Making full health bar follow entity
+			entityPos.x,
+			entityPos.y - entitySize.y / 3
+		);
 
 	}
 	/*_______________________________________________________*/
@@ -147,6 +153,17 @@ namespace abx {
 			m_shape.getGlobalBounds().height / 2
 		);
 
+		m_fullHealth.setSize(											//Resizing full health bar in relation to health
+			sf::Vector2f(
+				(entitySize.x * 0.5) *
+				(healthSys->GetMaxHealth() / 100),
+				winSize.x * 0.005
+			)
+		);
+		m_fullHealth.setOrigin(
+			m_fullHealth.getGlobalBounds().width / 2,
+			m_fullHealth.getGlobalBounds().height / 2
+		);
 	}
 	/*_______________________________________________________*/
 

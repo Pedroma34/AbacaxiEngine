@@ -25,7 +25,8 @@ namespace abx {
 
 
 
-		sf::RectangleShape     m_shape;					 //Health bar's shape
+		sf::RectangleShape           m_shape;			 //Health bar's shape
+		sf::RectangleShape	         m_fullHealth;		 //Full health bar's shape
 		WeakRef<class SystemSprite>  m_spriteSystem;	 //Pointer to entity's sprite system
 		WeakRef<class SystemHealth>  m_healthSystem;	 //Pointer to entity's health system
 

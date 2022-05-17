@@ -82,7 +82,7 @@ namespace abx {
 		auto barSys = AddSystem<SystemHealthBar>().lock();
 		//barSys->SetColor(sf::Color::Red);
 		barSys->SetOutlineThickness(0.9f);
-		barSys->SetOutlineColor(sf::Color::White);
+		barSys->SetOutlineColor(sf::Color(255, 255, 255, 100));
 
 		/*Killable*/
 		AddSystem<SystemKillable>();
