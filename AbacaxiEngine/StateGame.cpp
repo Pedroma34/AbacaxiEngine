@@ -221,11 +221,17 @@ namespace abx {
 				static bool isSystemSelected = false;
 				auto entitySelected = Debug::GetSelectedEntity();
 
+				if (entityCount > 0)
+					if (ImGui::Button("Remove all entitites"))
+						SharedData::EntityMgr()->RemoveAll();
 				if (entitySelected.expired())
 					ImGui::Text("No Entity Selected");
 
 				else {
 					ImGui::Text("Entity Selected");
+					if (ImGui::Button("Remove selected entity")) 
+						SharedData::EntityMgr()->Remove(Debug::GetSelectedEntity().lock()->GetId());
+					
 					ImGui::BeginChild("Child Window", ImVec2(ImGui::GetContentRegionAvail().x * 1.f, 260),
 						false, ImGuiWindowFlags_AlwaysVerticalScrollbar);
 
@@ -234,49 +240,36 @@ namespace abx {
 
 					/*Displauing Systems*/
 					static std::string systemString = "";
+					std::vector<std::string> systemNames;
 					for (int i = 0; i < systemsCount; i++) {
 
 						auto system = entitySelected.lock()->GetSystem(i).lock();
-						std::string systemName = typeid(*system).name();
-
-						if (ImGui::Button(std::string("System Name: " + systemName).c_str())) {
-							isSystemSelected = true;
-							systemString = systemName;
-						}
+						systemNames.push_back(typeid(*system).name());
 
 					}
+
+
+					std::sort(												//Sorting in alphabetical order
+						systemNames.begin(), 
+						systemNames.end(), 
+						[](std::string a, std::string b) {return a < b; }
+					);
+					for (int i = 0; i < systemsCount; i++) {
+						if (ImGui::Button(std::string("System Name: " + systemNames.at(i)).c_str())) {
+							isSystemSelected = true;
+							systemString = systemNames.at(i);
+						}
+					}
+
+
+
 					ImGui::EndChild();
 
-					/*Displaying Systems Infoif selected*/
+					/*Displaying Systems Info if selected*/
 					if (isSystemSelected) {
 
-						/*Texture System*/
-						if (systemString == "class abx::SystemTexture") {
-
-							auto sys = entitySelected.lock()->GetSystem<SystemTexture>().lock();
-							const auto& chunckSize = sys->GetChunckSize();
-							ImGui::Text(std::string("[Texture System]").c_str());
-							ImGui::Text(std::string("Chunck Size[" + std::to_string(chunckSize.x) + "]" +
-								"[" + std::to_string(chunckSize.y) + "]").c_str());
-
-						}
-
-						/*Sprite System*/
-						else if (systemString == "class abx::SystemSprite") {
-
-							auto sys = entitySelected.lock()->GetSystem<SystemSprite>().lock();
-							const auto& size = sys->GetSize();
-							const auto& pos = sys->GetPosition();
-							ImGui::Text(std::string("[Sprite System]").c_str());
-							ImGui::Text(std::string("Sprite Size[" + std::to_string(size.x) + "]" +
-								"[" + std::to_string(size.y) + "]").c_str());
-							ImGui::Text(std::string("Sprite Position[" + std::to_string(pos.x) + "]" +
-								"[" + std::to_string(pos.y) + "]").c_str());
-
-						}
-
 						/*Animation System*/
-						else if (systemString == "class abx::SystemAnimation") {
+						if (systemString == "class abx::SystemAnimation") {
 
 							auto sys = entitySelected.lock()->GetSystem<SystemAnimation>().lock();
 							const auto& size = sys->GetAnimatorSize();
@@ -294,18 +287,6 @@ namespace abx {
 
 						}
 
-						/*Speed System*/
-						else if (systemString == "class abx::SystemSpeed") {
-
-							auto sys = entitySelected.lock()->GetSystem<SystemSpeed>().lock();
-							const auto& maxSpeed = sys->GetMaxSpeed();
-							const auto& speed = sys->GetSpeed();
-							ImGui::Text(std::string("[SpeedSystem System]").c_str());
-							ImGui::Text(std::string("Max Speed[" + std::to_string(maxSpeed) + "] pixels per second").c_str());
-							ImGui::Text(std::string("Normal Speed[" + std::to_string(speed) + "] pixels per second").c_str());
-
-						}
-
 						else if (systemString == "class abx::SystemDirection") {
 
 							auto sys = entitySelected.lock()->GetSystem<SystemDirection>().lock();
@@ -315,6 +296,7 @@ namespace abx {
 							ImGui::Text(std::string("Is Inverted: " + std::to_string(sys->GetInverted())).c_str());
 
 						}
+
 
 						/*Health System*/
 						else if (systemString == "class abx::SystemHealth") {
@@ -328,6 +310,46 @@ namespace abx {
 							ImGui::Text(std::string("Current Health[" + std::to_string(health) + "]").c_str());
 							if (ImGui::Button("Heal entity"))
 								sys->SetHealth(sys->GetMaxHealth());
+							if (ImGui::Button("Kill entity"))
+								sys->SetHealth(0);
+
+						}
+
+						/*Speed System*/
+						else if (systemString == "class abx::SystemSpeed") {
+
+							auto sys = entitySelected.lock()->GetSystem<SystemSpeed>().lock();
+							const auto& maxSpeed = sys->GetMaxSpeed();
+							const auto& speed = sys->GetSpeed();
+							ImGui::Text(std::string("[SpeedSystem System]").c_str());
+							ImGui::Text(std::string("Max Speed[" + std::to_string(maxSpeed) + "] pixels per second").c_str());
+							ImGui::Text(std::string("Normal Speed[" + std::to_string(speed) + "] pixels per second").c_str());
+
+						}
+
+
+						/*Sprite System*/
+						else if (systemString == "class abx::SystemSprite") {
+
+							auto sys = entitySelected.lock()->GetSystem<SystemSprite>().lock();
+							const auto& size = sys->GetSize();
+							const auto& pos = sys->GetPosition();
+							ImGui::Text(std::string("[Sprite System]").c_str());
+							ImGui::Text(std::string("Sprite Size[" + std::to_string(size.x) + "]" +
+								"[" + std::to_string(size.y) + "]").c_str());
+							ImGui::Text(std::string("Sprite Position[" + std::to_string(pos.x) + "]" +
+								"[" + std::to_string(pos.y) + "]").c_str());
+
+						}
+
+						/*Texture System*/
+						else if (systemString == "class abx::SystemTexture") {
+
+							auto sys = entitySelected.lock()->GetSystem<SystemTexture>().lock();
+							const auto& chunckSize = sys->GetChunckSize();
+							ImGui::Text(std::string("[Texture System]").c_str());
+							ImGui::Text(std::string("Chunck Size[" + std::to_string(chunckSize.x) + "]" +
+								"[" + std::to_string(chunckSize.y) + "]").c_str());
 
 						}
 
