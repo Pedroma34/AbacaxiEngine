@@ -43,6 +43,7 @@ namespace abx {
 			//Textures//
 			m_textureKey [ "Minotaur" ]  =  GetDirectory() + "Data/Textures/minotaur.png";
 			m_textureKey [ "Bandit"   ]  =  GetDirectory() + "Data/Textures/bandit.png";
+			m_textureKey [ "Clover"   ]  =  GetDirectory() + "Data/Textures/clover.png";
 
 			//Fonts//
 			m_fontKey    [ "Arial" ]  =  GetDirectory() + "Data/Fonts/arial.ttf";

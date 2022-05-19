@@ -61,27 +61,34 @@ namespace abx {
 			rand() % winSize.x + 0,
 			rand() % winSize.y + 0
 		);
+		auto clover = SharedData::EntityMgr()->Add<EntityClover>().lock();
+		auto cloverSpriteSys = clover->GetSystem<SystemSprite>().lock();
+		cloverSpriteSys->SetPosition(
+			rand() % winSize.x + 0,
+			rand() % winSize.y + 0
+		);
 
 		/*Player Events*/
-		SharedData::EventMgr()->Bind<CommandMoveRight>  (player, sf::Keyboard::D, true     );
-		SharedData::EventMgr()->Bind<CommandMoveLeft>   (player, sf::Keyboard::A, true     );
-		SharedData::EventMgr()->Bind<CommandMoveUp>     (player, sf::Keyboard::W, true     );
-		SharedData::EventMgr()->Bind<CommandMoveDown>   (player, sf::Keyboard::S, true     );
+		SharedData::EventMgr()->Bind<CommandMoveRight>  (player, sf::Keyboard::D,     true);
+		SharedData::EventMgr()->Bind<CommandMoveLeft>   (player, sf::Keyboard::A,     true);
+		SharedData::EventMgr()->Bind<CommandMoveUp>     (player, sf::Keyboard::W,     true);
+		SharedData::EventMgr()->Bind<CommandMoveDown>   (player, sf::Keyboard::S,     true);
 		SharedData::EventMgr()->Bind<CommandAttack>     (player, sf::Keyboard::Space, false);
-		SharedData::EventMgr()->Bind<CommandKillEntity> (player, sf::Keyboard::Num1, false );
+		SharedData::EventMgr()->Bind<CommandKillEntity> (player, sf::Keyboard::Num1,  false);
+		SharedData::EventMgr()->Bind<CommandPickUpItem> (player, sf::Keyboard::E,     false);
 
 		/*Enemy Events*/
-		SharedData::EventMgr()->Bind<CommandMoveRight>  (enemy, sf::Keyboard::Right, true );
-		SharedData::EventMgr()->Bind<CommandMoveLeft>   (enemy, sf::Keyboard::Left, true  );
-		SharedData::EventMgr()->Bind<CommandMoveUp>     (enemy, sf::Keyboard::Up, true    );
-		SharedData::EventMgr()->Bind<CommandMoveDown>   (enemy, sf::Keyboard::Down, true  );
+		SharedData::EventMgr()->Bind<CommandMoveRight>  (enemy, sf::Keyboard::Right,  true);
+		SharedData::EventMgr()->Bind<CommandMoveLeft>   (enemy, sf::Keyboard::Left,   true);
+		SharedData::EventMgr()->Bind<CommandMoveUp>     (enemy, sf::Keyboard::Up,     true);
+		SharedData::EventMgr()->Bind<CommandMoveDown>   (enemy, sf::Keyboard::Down,   true);
 		SharedData::EventMgr()->Bind<CommandAttack>     (enemy, sf::Keyboard::Enter, false);
-		SharedData::EventMgr()->Bind<CommandKillEntity> (enemy, sf::Keyboard::Num2, false );
+		SharedData::EventMgr()->Bind<CommandKillEntity> (enemy, sf::Keyboard::Num2,  false);
 
 		/*Shared Data Events*/
-		SharedData::EventMgr()->Bind<CommandDestroyApplication> (sf::Keyboard::F1, false );
+		SharedData::EventMgr()->Bind<CommandDestroyApplication> (sf::Keyboard::F1,  false);
 		SharedData::EventMgr()->Bind<CommandDebug>              (sf::Keyboard::Tab, false);
-		SharedData::EventMgr()->Bind<CommandSelectEntity>       (sf::Mouse::Left, false  );
+		SharedData::EventMgr()->Bind<CommandSelectEntity>       (sf::Mouse::Left,   false);
 	}
 	/*_________________________________________________________________________*/
 
@@ -190,7 +197,7 @@ namespace abx {
 			/*Adding Entities*/
 			{
 				ImGui::Text("Adding Entity");
-				static const char* entities[]{ "Minotaur", "Bandit" };
+				static const char* entities[]{ "Bandit", "Clover", "Minotaur"};
 				static int selectedEntity = 0;
 				ImGui::Combo("Entity", &selectedEntity, entities, IM_ARRAYSIZE(entities), 3);
 
@@ -207,8 +214,19 @@ namespace abx {
 						);
 						Debug::SetSelectedEntity(ent);
 					}
+
 					else if (entity == "Bandit") {
 						auto ent = SharedData::EntityMgr()->Add<EntityBandit>().lock();
+						auto spriteSys = ent->GetSystem<SystemSprite>().lock();
+						spriteSys->SetPosition(
+							rand() % winSize.x - spriteSys->GetSize().x + (spriteSys->GetSize().y * 2),
+							rand() % winSize.y - spriteSys->GetSize().y + spriteSys->GetSize().y
+						);
+						Debug::SetSelectedEntity(ent);
+					}
+
+					else if (entity == "Clover") {
+						auto ent = SharedData::EntityMgr()->Add<EntityClover>().lock();
 						auto spriteSys = ent->GetSystem<SystemSprite>().lock();
 						spriteSys->SetPosition(
 							rand() % winSize.x - spriteSys->GetSize().x + (spriteSys->GetSize().y * 2),

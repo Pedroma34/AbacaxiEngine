@@ -16,6 +16,7 @@
 #include "CommandMoveDown.h"
 #include "CommandAttack.h"+
 #include "CommandKillEntity.h"
+#include "CommandPickUpItem.h"
 
 /*Commands using shared data*/
 #include "CommandDestroyApplication.h"

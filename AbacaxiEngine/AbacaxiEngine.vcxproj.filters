@@ -112,6 +112,15 @@
     <ClCompile Include="CommandMouseMoved.cpp">
       <Filter>Command\CommandInputs</Filter>
     </ClCompile>
+    <ClCompile Include="EntityClover.cpp">
+      <Filter>Entity\Entities</Filter>
+    </ClCompile>
+    <ClCompile Include="SystemHealItem.cpp">
+      <Filter>Systems</Filter>
+    </ClCompile>
+    <ClCompile Include="CommandPickUpItem.cpp">
+      <Filter>Command\CommandInputs</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Application.h">
@@ -259,6 +268,15 @@
       <Filter>Entity\Entities</Filter>
     </ClInclude>
     <ClInclude Include="CommandMouseMoved.h">
+      <Filter>Command\CommandInputs</Filter>
+    </ClInclude>
+    <ClInclude Include="EntityClover.h">
+      <Filter>Entity\Entities</Filter>
+    </ClInclude>
+    <ClInclude Include="SystemHealItem.h">
+      <Filter>Systems</Filter>
+    </ClInclude>
+    <ClInclude Include="CommandPickUpItem.h">
       <Filter>Command\CommandInputs</Filter>
     </ClInclude>
   </ItemGroup>

@@ -105,7 +105,9 @@
     <ClCompile Include="CommandMoveLeft.cpp" />
     <ClCompile Include="CommandMoveRight.cpp" />
     <ClCompile Include="CommandMoveUp.cpp" />
+    <ClCompile Include="CommandPickUpItem.cpp" />
     <ClCompile Include="CommandSelectEntity.cpp" />
+    <ClCompile Include="EntityClover.cpp" />
     <ClCompile Include="StateEntityHurt.cpp" />
     <ClCompile Include="SystemDamageBox.cpp" />
     <ClCompile Include="EntityBandit.cpp" />
@@ -131,6 +133,7 @@
     <ClCompile Include="SystemDirection.cpp" />
     <ClCompile Include="SystemHealth.cpp" />
     <ClCompile Include="SystemHealthBar.cpp" />
+    <ClCompile Include="SystemHealItem.cpp" />
     <ClCompile Include="SystemHitBox.cpp" />
     <ClCompile Include="SystemKillable.cpp" />
     <ClCompile Include="SystemSpeed.cpp" />
@@ -156,10 +159,12 @@
     <ClInclude Include="CommandMoveLeft.h" />
     <ClInclude Include="CommandMoveRight.h" />
     <ClInclude Include="CommandMoveUp.h" />
+    <ClInclude Include="CommandPickUpItem.h" />
     <ClInclude Include="CommandSelectEntity.h" />
     <ClInclude Include="Entities.h" />
     <ClInclude Include="Entity.h" />
     <ClInclude Include="EntityBandit.h" />
+    <ClInclude Include="EntityClover.h" />
     <ClInclude Include="EntityManager.h" />
     <ClInclude Include="EntityMinotaur.h" />
     <ClInclude Include="EntityStates.h" />
@@ -182,6 +187,7 @@
     <ClInclude Include="SystemDamage.h" />
     <ClInclude Include="SystemDamageBox.h" />
     <ClInclude Include="SystemDirection.h" />
+    <ClInclude Include="SystemHealItem.h" />
     <ClInclude Include="SystemHealth.h" />
     <ClInclude Include="SystemHealthBar.h" />
     <ClInclude Include="SystemHitBox.h" />

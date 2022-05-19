@@ -11,3 +11,4 @@
 
 #include "EntityMinotaur.h"
 #include "EntityBandit.h"
+#include "EntityClover.h"
