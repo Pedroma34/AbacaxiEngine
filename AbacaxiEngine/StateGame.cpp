@@ -287,6 +287,25 @@ namespace abx {
 
 						}
 
+						else if (systemString == "class abx::SystemDamage") {
+
+							auto sys = entitySelected.lock()->GetSystem<SystemDamage>().lock();
+							const auto& maxDamage  = sys->GetMaxDamage();
+							const auto& damage     = sys->GetDamage   ();
+							ImGui::Text(std::string("[Damage System]").c_str());
+							ImGui::Text(std::string("Max Damage [" + std::to_string(maxDamage) + "]").c_str());
+							ImGui::Text(std::string("Damage [" + std::to_string(damage) + "]").c_str());
+							float offset = 5;
+							if (ImGui::Button("Increase Damage")) {
+								sys->SetMaxDamage(sys->GetMaxDamage() + offset);
+								sys->SetDamage(sys->GetMaxDamage());
+							}
+							if (ImGui::Button("Decrease Damage")) {
+								sys->SetMaxDamage(sys->GetMaxDamage() - offset);
+								sys->SetDamage(sys->GetMaxDamage());
+							}
+						}
+
 						else if (systemString == "class abx::SystemDirection") {
 
 							auto sys = entitySelected.lock()->GetSystem<SystemDirection>().lock();
