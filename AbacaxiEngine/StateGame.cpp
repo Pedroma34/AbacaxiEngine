@@ -140,7 +140,7 @@ namespace abx {
 			if (!spriteSys)
 				return;
 			sf::CircleShape circle;
-			circle.setFillColor(sf::Color(0, 255, 255, 150));
+			circle.setFillColor(sf::Color(0, 255, 255, 50));
 			circle.setRadius(50.f);
 			circle.setOrigin(
 				circle.getGlobalBounds().width / 2,
@@ -326,6 +326,7 @@ namespace abx {
 								"[" + std::to_string(pos.y) + "]").c_str());
 						}
 
+						/*Direction System*/
 						else if (systemString == "class abx::SystemDirection") {
 
 							auto sys = entitySelected.lock()->GetSystem<SystemDirection>().lock();
@@ -335,7 +336,6 @@ namespace abx {
 							ImGui::Text(std::string("Is Inverted: " + std::to_string(sys->GetInverted())).c_str());
 
 						}
-
 
 						/*Health System*/
 						else if (systemString == "class abx::SystemHealth") {
@@ -347,10 +347,20 @@ namespace abx {
 							ImGui::Text(std::string("[SpeedSystem System]").c_str());
 							ImGui::Text(std::string("Max Health[" + std::to_string(maxHealth) + "]").c_str());
 							ImGui::Text(std::string("Current Health[" + std::to_string(health) + "]").c_str());
+							float offset = 5.f;
 							if (ImGui::Button("Heal entity"))
 								sys->SetHealth(sys->GetMaxHealth());
 							if (ImGui::Button("Kill entity"))
 								sys->SetHealth(0);
+							if (ImGui::Button("Increase Max Health"))
+								sys->SetMaxHealth(sys->GetMaxHealth() + offset);
+							if (ImGui::Button("Increase Health")) {
+								float result = sys->GetHealth() + offset;
+								if (result >= sys->GetMaxHealth())
+									sys->SetHealth(sys->GetMaxHealth());
+								else
+									sys->SetHealth(sys->GetHealth() + offset);
+							}
 
 						}
 
