@@ -118,6 +118,7 @@ namespace abx {
 		Each pointer should be bound in the crostuctor of the respective object.
 	*/
 	class SharedData {
+
 		SharedData() {}
 		class Window*		   m_window     =  nullptr;	   //Pointer to abx::Window object. Foward declaration.
 		class Resources*       m_resources  =  nullptr;	   //Pointer to abx::Resources object. Foward declaration.
@@ -163,8 +164,11 @@ namespace abx {
 		@brief Debug static class wil hold some debug helper methods.
 	*/
 	class Debug {
+
 		Debug() {}
-		WeakRef<class Entity> m_selectedEntity;
+		WeakRef<class Entity> m_selectedEntity  =  WeakRef<class Entity>();		//Keep track of last clicked entity
+		sf::Vector2f		  m_lastMousePos    =  sf::Vector2f(0, 0);			//Keep track of the last mouse position.
+
 	public:
 
 		Debug(const Debug&) = delete;
@@ -176,9 +180,11 @@ namespace abx {
 
 		//Setters
 		static void SetSelectedEntity(WeakRef<class Entity> l_selectedEntity) { Get().m_selectedEntity  =  l_selectedEntity; }
+		static void SetLastMousePos(const sf::Vector2f& l_mousePos)           { Get().m_lastMousePos = l_mousePos;           }
 
 		//Getters
-		static WeakRef<Entity> GetSelectedEntity() { return Get().m_selectedEntity; }
+		static WeakRef<Entity> GetSelectedEntity()   { return Get().m_selectedEntity; }
+		static const sf::Vector2f& GetLastMousePos() { return Get().m_lastMousePos;   }
 	};
 
 

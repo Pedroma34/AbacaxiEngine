@@ -50,6 +50,13 @@ namespace abx {
 
 
 		/*
+			@breif Executes a command with an event
+		*/
+		virtual void Execute(sf::Event l_eventType) {}
+
+
+
+		/*
 			@brief Undoes a command
 		*/
 		virtual void Undo() {}

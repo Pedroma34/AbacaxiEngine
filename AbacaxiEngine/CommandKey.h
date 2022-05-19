@@ -29,10 +29,11 @@ namespace abx {
 
 
 
-		Ref<CommandInput>  m_command;		//CommandKey's command input that will be bound in creatin inside event manager
-		sf::Keyboard::Key  m_keyCode;		//Support for keyboard
-		sf::Mouse::Button  m_mouseCode;		//Support for mouse
-		bool			   m_hold;			//Is key a hold event? False if it's a normal input event
+		Ref<CommandInput>     m_command;		//CommandKey's command input that will be bound in creatin inside event manager
+		sf::Keyboard::Key     m_keyCode;		//Support for keyboard
+		sf::Mouse::Button     m_mouseCode;		//Support for mouse
+		sf::Event::EventType  m_eventType;	    //If callback should only about an event
+		bool			      m_hold;			//Is key a hold event? False if it's a normal input event
 
 
 
@@ -47,6 +48,7 @@ namespace abx {
 			m_command	(nullptr),
 			m_keyCode	(sf::Keyboard::Key::Unknown),
 			m_mouseCode (sf::Mouse::Button::ButtonCount),
+			m_eventType	(sf::Event::Count),
 			m_hold		(false)
 		{}
 
@@ -61,6 +63,15 @@ namespace abx {
 				m_command->Execute(m_command->GetEntity());
 			else if (m_command->GetSharedData())
 				m_command->Execute();
+		}
+
+
+		/*
+			@brief Executes command input that requires an event type to execute its callback function.
+			@param sf::Event::EventType event type
+		*/
+		void Execute(sf::Event l_event)  override{
+			m_command->Execute(l_event);
 		}
 
 
@@ -110,6 +121,16 @@ namespace abx {
 
 
 		/*
+			@brief Sets event type
+			@param sf::Event::EventType type
+		*/
+		void SetEventType(const sf::Event::EventType& l_eventType) {
+			m_eventType = l_eventType;
+		}
+
+
+
+		/*
 			@brief Sets a hold boolean.
 			@param const bool& hold
 		*/
@@ -135,6 +156,16 @@ namespace abx {
 		*/
 		sf::Mouse::Button GetMouseCode() const { 
 			return m_mouseCode; 
+		}
+
+
+
+		/*
+			@brief Gets event type bound to this comand.
+			@returns const sf::Event::EventType& event
+		*/
+		const sf::Event::EventType& GetEventType() const {
+			return m_eventType;
 		}
 
 

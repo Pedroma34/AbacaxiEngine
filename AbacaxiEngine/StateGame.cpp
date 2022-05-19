@@ -63,25 +63,25 @@ namespace abx {
 		);
 
 		/*Player Events*/
-		SharedData::EventMgr()->Bind<CommandMoveRight>(player, sf::Keyboard::D, true);
-		SharedData::EventMgr()->Bind<CommandMoveLeft>(player, sf::Keyboard::A, true);
-		SharedData::EventMgr()->Bind<CommandMoveUp>(player, sf::Keyboard::W, true);
-		SharedData::EventMgr()->Bind<CommandMoveDown>(player, sf::Keyboard::S, true);
-		SharedData::EventMgr()->Bind<CommandAttack>(player, sf::Keyboard::Space, false);
-		SharedData::EventMgr()->Bind<CommandKillEntity>(player, sf::Keyboard::Num1, false);
+		SharedData::EventMgr()->Bind<CommandMoveRight>  (player, sf::Keyboard::D, true     );
+		SharedData::EventMgr()->Bind<CommandMoveLeft>   (player, sf::Keyboard::A, true     );
+		SharedData::EventMgr()->Bind<CommandMoveUp>     (player, sf::Keyboard::W, true     );
+		SharedData::EventMgr()->Bind<CommandMoveDown>   (player, sf::Keyboard::S, true     );
+		SharedData::EventMgr()->Bind<CommandAttack>     (player, sf::Keyboard::Space, false);
+		SharedData::EventMgr()->Bind<CommandKillEntity> (player, sf::Keyboard::Num1, false );
 
 		/*Enemy Events*/
-		SharedData::EventMgr()->Bind<CommandMoveRight>(enemy, sf::Keyboard::Right, true);
-		SharedData::EventMgr()->Bind<CommandMoveLeft>(enemy, sf::Keyboard::Left, true);
-		SharedData::EventMgr()->Bind<CommandMoveUp>(enemy, sf::Keyboard::Up, true);
-		SharedData::EventMgr()->Bind<CommandMoveDown>(enemy, sf::Keyboard::Down, true);
-		SharedData::EventMgr()->Bind<CommandAttack>(enemy, sf::Keyboard::Enter, false);
-		SharedData::EventMgr()->Bind<CommandKillEntity>(enemy, sf::Keyboard::Num2, false);
+		SharedData::EventMgr()->Bind<CommandMoveRight>  (enemy, sf::Keyboard::Right, true );
+		SharedData::EventMgr()->Bind<CommandMoveLeft>   (enemy, sf::Keyboard::Left, true  );
+		SharedData::EventMgr()->Bind<CommandMoveUp>     (enemy, sf::Keyboard::Up, true    );
+		SharedData::EventMgr()->Bind<CommandMoveDown>   (enemy, sf::Keyboard::Down, true  );
+		SharedData::EventMgr()->Bind<CommandAttack>     (enemy, sf::Keyboard::Enter, false);
+		SharedData::EventMgr()->Bind<CommandKillEntity> (enemy, sf::Keyboard::Num2, false );
 
-		/*Data Eventss*/
-		SharedData::EventMgr()->Bind<CommandDestroyApplication>(sf::Keyboard::F1, false);
-		SharedData::EventMgr()->Bind<CommandDebug>(sf::Keyboard::Tab, false);
-		SharedData::EventMgr()->Bind<CommandSelectEntity>(sf::Mouse::Left, false);
+		/*Shared Data Events*/
+		SharedData::EventMgr()->Bind<CommandDestroyApplication> (sf::Keyboard::F1, false );
+		SharedData::EventMgr()->Bind<CommandDebug>              (sf::Keyboard::Tab, false);
+		SharedData::EventMgr()->Bind<CommandSelectEntity>       (sf::Mouse::Left, false  );
 	}
 	/*_________________________________________________________________________*/
 
@@ -179,6 +179,12 @@ namespace abx {
 			{
 				float fps = floor(1.f / l_time);
 				ImGui::Text(std::string("FPS: " + std::to_string(fps)).c_str());
+			}
+
+			/*Mouse Pos*/
+			{
+				const sf::Vector2i mousePos = (sf::Vector2i)Debug::GetLastMousePos();
+				ImGui::Text(std::string("Mouse Pos [" + std::to_string(mousePos.x) + "] [" + std::to_string(mousePos.y)+ ']').c_str());
 			}
 
 			/*Adding Entities*/

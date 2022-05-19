@@ -21,7 +21,6 @@
 
 
 
-
 namespace abx {
 
 
@@ -40,6 +39,13 @@ namespace abx {
 
 	/*___________________________________________________________________*/
 	void EventManager::HandleEvent(sf::Event* l_event){
+
+		/*Events in container*/
+		for (auto& itr : m_keys)						     //Executing commands that requires an event
+			if (itr->GetEventType() == l_event->type) 
+				itr->Execute(*l_event);
+			
+		
 
 		/*Keyboard*/
 		if (l_event->type == sf::Event::KeyPressed) {		 //Checking if this event was a keyboard event

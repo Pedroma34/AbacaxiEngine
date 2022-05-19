@@ -22,7 +22,21 @@ namespace abx {
 
 
 	/*
-		@brief Manage CommandInput type callbacks through sfml events.
+		@brief Manage CommandInput type callbacks using sfml events.
+		It's able do bound command input types to a container that will
+		be processed while SFML events are pulled. If an event matches
+		with the event in the container, it will execute whatever command
+		was bound to it.
+		Example: 
+		Bind<CommandJump>(player, sf::Keyboard::Space, false) //CommandJump is a derived class from Command Input
+		This method will attach an entity to the command. If the space bar is pressed,
+		the EventManager will call the Execute function inside the Command Key which 
+		will also call the Execute function from a Command Input, which will carry the logic
+		of making the entity jump.
+		In order to create a callback, it is necessary to create a Command Input derived class,
+		for instance CommandJump : public Command Input, and create an execute function
+		that either takes no parameter, an entity, or an event type.
+		See Command Input derived classes to have an idea.
 	*/
 	class EventManager {
 
@@ -70,7 +84,7 @@ namespace abx {
 
 
 		/*
-			@brief Binds a command input type to a container that will be called as an callback
+			@brief Binds a command input type to a container that will be called as a callback
 			whenever the key, mouse, or joystick is pressed (execute) or released (undo.)
 			In this case, an entity will be passed within the command input type along with a keybaord code.
 			IsHold determines if callback will be called upon SFML events (false) or every frame(true).
@@ -84,7 +98,7 @@ namespace abx {
 
 
 		/*
-			@brief Binds a command input type to a container that will be called as an callback
+			@brief Binds a command input type to a container that will be called as a callback
 			whenever the key, mouse, or joystick is pressed (execute) or released (undo.)
 			In this case, an entity will be passed within the command input type along with a mouse code.
 			IsHold determines if callback will be called upon SFML events (false) or every frame(true).
@@ -98,7 +112,7 @@ namespace abx {
 
 
 		/*
-			@brief Binds a command input type to a container that will be called as an callback
+			@brief Binds a command input type to a container that will be called as a callback
 			whenever the key, mouse, or joystick is pressed (execute) or released (undo.)
 			In this case, a shared data pointer will be passed within the command input type along with a keyboard code.
 			IsHold determines if callback will be called upon SFML events (false) or every frame(true).
@@ -112,7 +126,7 @@ namespace abx {
 
 
 		/*
-			@brief Binds a command input type to a container that will be called as an callback
+			@brief Binds a command input type to a container that will be called as a callback
 			whenever the key, mouse, or joystick is pressed (execute) or released (undo.)
 			In this case, a shared data pointer will be passed within the command input type along with a mouse code.
 			IsHold determines if callback will be called upon SFML events (false) or every frame(true).
@@ -122,6 +136,36 @@ namespace abx {
 		*/
 		template <class C>
 		WeakRef<CommandInput> Bind(sf::Mouse::Button l_mouseButton , const bool& l_isHold);
+
+
+
+		/*
+			@brief Binds a command input type to a container that will be called as a callback
+			whenever the key, mouse, or joystick is pressed (execute) or released (undo.)
+			In this case, an entity pointer with an event type will be passed.
+			The execute command will be called when the current sfml event matches with the event passed as a parameter.
+			This method is useful when there's something to be done with said entity if said event is happening.
+			@param std::weak_ptr<Entity> entity
+			@param sf::Event::EventType event
+		*/
+		template <class C>
+		WeakRef<CommandInput> Bind(WeakRef<Entity> l_entity, sf::Event::EventType l_event);
+
+
+
+		/*
+			@brief Binds a command input type to a container that will be called as a callback
+			whenever the key, mouse, or joystick is pressed (execute) or released (undo.)
+			In this case, an event type will be passed.
+			The execute command will be called when the current sfml event matches with the event passed as a parameter.
+			@param std::weak_ptr<Entity> entity
+			@param sf::Event::EventType event
+		*/
+		template <class C>
+		WeakRef<CommandInput> Bind(sf::Event::EventType l_event);
+
+
+
 	};
 
 
@@ -236,10 +280,60 @@ namespace abx {
 
 		auto newKey = MakeRef<CommandKey>();								//If not in memory, create one
 		newKey->BindCommand<C>();											//Binding and creating command input
-		newKey->GetCommand().lock()->SetSharedData(true);			//Setting shared data to true
+		newKey->GetCommand().lock()->SetSharedData(true);			        //Setting shared data to true
 		newKey->SetMouseCode(l_mouseButton);								//Binding key code to command input
 		newKey->SetHold(l_isHold);
 		m_keys.push_back(std::move(newKey));								//Transfering ownership to container
+		return m_keys.back()->GetCommand();
+	}
+
+
+
+	/*
+		@brief Definition. Binds a command input type to a container that will be called as a callback
+		whenever the key, mouse, or joystick is pressed (execute) or released (undo.)
+		In this case, an entity pointer with an event type will be passed.
+		The execute command will be called when the current sfml event matches with the event passed as a parameter.
+		This method is useful when there's something to be done with said entity if said event is happening.
+		@param std::weak_ptr<Entity> entity
+		@param sf::Event::EventType event
+	*/
+	template<class C>
+	inline WeakRef<CommandInput> EventManager::Bind(WeakRef<Entity> l_entity, sf::Event::EventType l_event){
+		for (auto& itr : m_keys)
+			if (typeid(C) == typeid(*itr->GetCommand().lock()) &&
+				itr->GetEventType() == l_event)
+				return itr->GetCommand();
+
+		auto newKey = MakeRef<CommandKey>();
+		newKey->BindCommand<C>();
+		newKey->GetCommand().lock()->BindEntity(l_entity);
+		newKey->SetEventType(l_event);
+		m_keys.push_back(std::move(newKey));
+		return m_keys.back()->GetCommand();
+	}
+
+
+
+	/*
+		@brief Definition. Binds a command input type to a container that will be called as a callback
+		whenever the key, mouse, or joystick is pressed (execute) or released (undo.)
+		In this case, an event type will be passed.
+		The execute command will be called when the current sfml event matches with the event passed as a parameter.
+		@param std::weak_ptr<Entity> entity
+		@param sf::Event::EventType event
+	*/
+	template<class C>
+	inline WeakRef<CommandInput> EventManager::Bind(sf::Event::EventType l_event){
+		for (auto& itr : m_keys)
+			if (typeid(C) == typeid(*itr->GetCommand().lock()) &&
+				itr->GetEventType() == l_event)
+				return itr->GetCommand();
+
+		auto newKey = MakeRef<CommandKey>();
+		newKey->BindCommand<C>();
+		newKey->SetEventType(l_event);
+		m_keys.push_back(std::move(newKey));
 		return m_keys.back()->GetCommand();
 	}
 

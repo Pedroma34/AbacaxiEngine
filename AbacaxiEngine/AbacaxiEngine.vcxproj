@@ -100,6 +100,7 @@
     <ClCompile Include="CommandDebug.cpp" />
     <ClCompile Include="CommandDestroyApplication.cpp" />
     <ClCompile Include="CommandKillEntity.cpp" />
+    <ClCompile Include="CommandMouseMoved.cpp" />
     <ClCompile Include="CommandMoveDown.cpp" />
     <ClCompile Include="CommandMoveLeft.cpp" />
     <ClCompile Include="CommandMoveRight.cpp" />
@@ -150,6 +151,7 @@
     <ClInclude Include="CommandInputs.h" />
     <ClInclude Include="CommandKey.h" />
     <ClInclude Include="CommandKillEntity.h" />
+    <ClInclude Include="CommandMouseMoved.h" />
     <ClInclude Include="CommandMoveDown.h" />
     <ClInclude Include="CommandMoveLeft.h" />
     <ClInclude Include="CommandMoveRight.h" />

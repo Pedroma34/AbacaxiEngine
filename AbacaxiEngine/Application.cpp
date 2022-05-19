@@ -1,5 +1,6 @@
 
 
+
 /*
 	Application.cpp
 	Purpose: Manage and update the whole application as well as its members.
@@ -8,8 +9,12 @@
 */
 
 
+
 #include "pch.h"
 #include "Application.h"
+#include "CommandInputs.h"
+
+
 
 namespace abx {
 
@@ -25,15 +30,21 @@ namespace abx {
 		m_clock										()
 
 	{
+
 		srand(time(NULL));
+
 		//Initializing share data//
 		SharedData::SetTime(&m_time);
 		SharedData::SetDebug(true);
-		/////////////////////////////////
+		////////////////////////////////////////////////////////////////////////////////////
 
 		//Intializing machine state
-		m_stateMgr.SwitchTo<StateMenu>();			//Starting domino effect
-		/////////////////////////////////
+		m_stateMgr.SwitchTo<StateMenu>();														//Starting domino effect
+		////////////////////////////////////////////////////////////////////////////////////
+
+		//Binding global commands
+		SharedData::EventMgr()->Bind<CommandMouseMoved>(sf::Event::EventType::MouseMoved);		//Updating last mouse position
+		////////////////////////////////////////////////////////////////////////////////////
 	}
 
 
