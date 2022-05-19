@@ -115,6 +115,11 @@ namespace abx {
 
 
 
+		/*
+			@brief
+		*/
+		const sf::Vector2f& GetPosition() const;
+
 	private:
 
 

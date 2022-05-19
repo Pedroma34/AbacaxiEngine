@@ -287,6 +287,7 @@ namespace abx {
 
 						}
 
+						/*Damage System*/
 						else if (systemString == "class abx::SystemDamage") {
 
 							auto sys = entitySelected.lock()->GetSystem<SystemDamage>().lock();
@@ -304,6 +305,19 @@ namespace abx {
 								sys->SetMaxDamage(sys->GetMaxDamage() - offset);
 								sys->SetDamage(sys->GetMaxDamage());
 							}
+						}
+
+						/*Damage Box System*/
+						else if (systemString == "class abx::SystemDamageBox") {
+
+							auto sys = entitySelected.lock()->GetSystem<SystemDamageBox>().lock();
+							const auto& size = sys->GetSize();
+							const auto& pos = sys->GetPosition();
+							ImGui::Text(std::string("[Damage Box System]").c_str());
+							ImGui::Text(std::string("Box Size[" + std::to_string(size.x) + "]" +
+								"[" + std::to_string(size.y) + "]").c_str());
+							ImGui::Text(std::string("Box Position[" + std::to_string(pos.x) + "]" +
+								"[" + std::to_string(pos.y) + "]").c_str());
 						}
 
 						else if (systemString == "class abx::SystemDirection") {
@@ -345,7 +359,6 @@ namespace abx {
 							ImGui::Text(std::string("Normal Speed[" + std::to_string(speed) + "] pixels per second").c_str());
 
 						}
-
 
 						/*Sprite System*/
 						else if (systemString == "class abx::SystemSprite") {

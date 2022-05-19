@@ -228,6 +228,15 @@ namespace abx {
 
 
 
+
+	/*____________________________________________________*/
+	const sf::Vector2f& SystemDamageBox::GetPosition() const{
+		return m_shape.getPosition();
+	}
+	/*____________________________________________________*/
+
+
+
 	/*____________________________________________________*/
 	void SystemDamageBox::AddToColliders(WeakRef<Entity> l_collider){
 
