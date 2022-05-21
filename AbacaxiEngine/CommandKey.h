@@ -52,6 +52,8 @@ namespace abx {
 			m_hold		(false)
 		{}
 
+		~CommandKey() {	}
+
 
 
 		/*

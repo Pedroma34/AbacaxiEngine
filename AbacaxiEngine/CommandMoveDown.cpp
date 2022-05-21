@@ -29,7 +29,8 @@ namespace abx {
 		auto entity = l_entity.lock();
 		if (!entity)
 			return;
-		if (!entity->IsInState<StateEntityDie>().expired())
+		if (!entity->IsInState<StateEntityDie>().expired() ||
+			!entity->IsInState<StateEntityHurt>().expired())
 			return;
 
 		/*Systems*/

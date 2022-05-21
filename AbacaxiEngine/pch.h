@@ -167,6 +167,7 @@ namespace abx {
 
 		Debug() {}
 		WeakRef<class Entity> m_selectedEntity  =  WeakRef<class Entity>();		//Keep track of last clicked entity
+		WeakRef<class Entity> m_player			=  WeakRef<class Entity>();		//Pointer to player if any
 		sf::Vector2f		  m_lastMousePos    =  sf::Vector2f(0, 0);			//Keep track of the last mouse position.
 
 	public:
@@ -179,11 +180,13 @@ namespace abx {
 		}
 
 		//Setters
-		static void SetSelectedEntity(WeakRef<class Entity> l_selectedEntity) { Get().m_selectedEntity  =  l_selectedEntity; }
-		static void SetLastMousePos(const sf::Vector2f& l_mousePos)           { Get().m_lastMousePos = l_mousePos;           }
+		static void SetSelectedEntity (WeakRef<class Entity> l_selectedEntity) { Get().m_selectedEntity  =  l_selectedEntity; }
+		static void SetPlayer         (WeakRef<class Entity> l_player)		   { Get().m_player = l_player;                   }
+		static void SetLastMousePos   (const sf::Vector2f& l_mousePos)         { Get().m_lastMousePos = l_mousePos;           }
 
 		//Getters
 		static WeakRef<Entity> GetSelectedEntity()   { return Get().m_selectedEntity; }
+		static WeakRef<Entity> GetPlayer()			 { return Get().m_player;         }
 		static const sf::Vector2f& GetLastMousePos() { return Get().m_lastMousePos;   }
 	};
 

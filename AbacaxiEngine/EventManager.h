@@ -166,6 +166,20 @@ namespace abx {
 
 
 
+		/*
+			@brief Gets size of the container
+			@returns unsigned int size
+		*/
+		unsigned int GetSize();
+
+
+		/*
+			@brief
+		*/
+		auto& GetKeys() { return m_keys; }
+
+
+
 	};
 
 

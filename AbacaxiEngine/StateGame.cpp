@@ -49,8 +49,8 @@ namespace abx {
 		const auto& winSize = SharedData::Window()->GetSize();
 
 		/*Entities*/
-		auto player = SharedData::EntityMgr()->Add<EntityMinotaur>().lock();
-		auto playerSpriteSys = player->GetSystem<SystemSprite>().lock();
+		Debug::SetPlayer(SharedData::EntityMgr()->Add<EntityMinotaur>().lock());
+		auto playerSpriteSys = Debug::GetPlayer().lock()->GetSystem<SystemSprite>().lock();
 		playerSpriteSys->SetPosition(
 			winSize.x / 2,
 			winSize.y / 2
@@ -69,13 +69,13 @@ namespace abx {
 		);
 
 		/*Player Events*/
-		SharedData::EventMgr()->Bind<CommandMoveRight>  (player, sf::Keyboard::D,     true);
-		SharedData::EventMgr()->Bind<CommandMoveLeft>   (player, sf::Keyboard::A,     true);
-		SharedData::EventMgr()->Bind<CommandMoveUp>     (player, sf::Keyboard::W,     true);
-		SharedData::EventMgr()->Bind<CommandMoveDown>   (player, sf::Keyboard::S,     true);
-		SharedData::EventMgr()->Bind<CommandAttack>     (player, sf::Keyboard::Space, false);
-		SharedData::EventMgr()->Bind<CommandKillEntity> (player, sf::Keyboard::Num1,  false);
-		SharedData::EventMgr()->Bind<CommandPickUpItem> (player, sf::Keyboard::E,     false);
+		SharedData::EventMgr()->Bind<CommandMoveRight>  (Debug::GetPlayer(), sf::Keyboard::D,      true);
+		SharedData::EventMgr()->Bind<CommandMoveLeft>   (Debug::GetPlayer(), sf::Keyboard::A,      true);
+		SharedData::EventMgr()->Bind<CommandMoveUp>     (Debug::GetPlayer(), sf::Keyboard::W,      true);
+		SharedData::EventMgr()->Bind<CommandMoveDown>   (Debug::GetPlayer(), sf::Keyboard::S,      true);
+		SharedData::EventMgr()->Bind<CommandAttack>     (Debug::GetPlayer(), sf::Keyboard::Space, false);
+		SharedData::EventMgr()->Bind<CommandKillEntity> (Debug::GetPlayer(), sf::Keyboard::Num1,  false);
+		SharedData::EventMgr()->Bind<CommandPickUpItem> (Debug::GetPlayer(), sf::Keyboard::E,     false);
 
 		/*Enemy Events*/
 		SharedData::EventMgr()->Bind<CommandMoveRight>  (enemy, sf::Keyboard::Right,  true);
@@ -178,9 +178,9 @@ namespace abx {
 		/*ImGui*/
 		{
 			/*Window*/
-			ImGui::Begin("Debug", &b, ImGuiWindowFlags_NoMove | ImGuiWindowFlags_NoResize | ImGuiWindowFlags_NoCollapse);
-			ImGui::SetWindowSize(ImVec2(winSize.x * 0.25, winSize.y));
-			ImGui::SetWindowPos(ImVec2(0, 0));
+			ImGui::Begin		 ("Debug", &b, ImGuiWindowFlags_NoMove | ImGuiWindowFlags_NoResize | ImGuiWindowFlags_NoCollapse);
+			ImGui::SetWindowSize (ImVec2(winSize.x * 0.25, winSize.y));
+			ImGui::SetWindowPos  (ImVec2(0, 0));
 
 			/*FPS*/
 			{
@@ -194,8 +194,23 @@ namespace abx {
 				ImGui::Text(std::string("Mouse Pos [" + std::to_string(mousePos.x) + "] [" + std::to_string(mousePos.y)+ ']').c_str());
 			}
 
+			/*Commands*/
+			{
+				ImGui::Text(std::string("Commands size: " + std::to_string(SharedData::EventMgr()->GetSize())).c_str());
+				if (ImGui::Button("Clear commands"))
+					SharedData::EventMgr()->GetKeys().clear();
+			}
+
 			/*Adding Entities*/
 			{
+				if (Debug::GetPlayer().expired()) 
+					ImGui::Text("Player not present");
+				else {
+					std::string playerClass = typeid(*Debug::GetPlayer().lock()).name();
+					ImGui::Text(std::string("Player present. Player is a: ").c_str());
+					ImGui::Text(std::string(playerClass).c_str());
+				}
+				
 				ImGui::Text("Adding Entity");
 				static const char* entities[]{ "Bandit", "Clover", "Minotaur"};
 				static int selectedEntity = 0;
@@ -253,6 +268,11 @@ namespace abx {
 
 				else {
 					ImGui::Text("Entity Selected");
+
+					if (Debug::GetPlayer().expired())
+						if (ImGui::Button("Make entity player"))
+							Debug::SetPlayer(entitySelected.lock());
+
 					if (ImGui::Button("Remove selected entity")) 
 						SharedData::EntityMgr()->Remove(Debug::GetSelectedEntity().lock()->GetId());
 					
