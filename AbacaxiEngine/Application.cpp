@@ -43,7 +43,7 @@ namespace abx {
 		////////////////////////////////////////////////////////////////////////////////////
 
 		//Binding global commands
-		SharedData::EventMgr()->Bind<CommandMouseMoved>(sf::Event::EventType::MouseMoved);		//Updating last mouse position
+		SharedData::EventMgr()->Bind<CommandMoveView>(sf::Event::MouseMoved);		//Updating last mouse position
 		////////////////////////////////////////////////////////////////////////////////////
 	}
 

@@ -153,6 +153,15 @@ namespace abx {
 
 
 
+		/*
+			@brief Gets view space. Each machine state has a view, so this will get
+			the current state's view space.
+			@returns sf::FloatRect view space
+		*/
+		sf::FloatRect GetViewSpace();
+
+
+
 	private:
 
 

@@ -100,11 +100,11 @@
     <ClCompile Include="CommandDebug.cpp" />
     <ClCompile Include="CommandDestroyApplication.cpp" />
     <ClCompile Include="CommandKillEntity.cpp" />
-    <ClCompile Include="CommandMouseMoved.cpp" />
     <ClCompile Include="CommandMoveDown.cpp" />
     <ClCompile Include="CommandMoveLeft.cpp" />
     <ClCompile Include="CommandMoveRight.cpp" />
     <ClCompile Include="CommandMoveUp.cpp" />
+    <ClCompile Include="CommandMoveView.cpp" />
     <ClCompile Include="CommandPickUpItem.cpp" />
     <ClCompile Include="CommandSelectEntity.cpp" />
     <ClCompile Include="EntityClover.cpp" />
@@ -154,11 +154,11 @@
     <ClInclude Include="CommandInputs.h" />
     <ClInclude Include="CommandKey.h" />
     <ClInclude Include="CommandKillEntity.h" />
-    <ClInclude Include="CommandMouseMoved.h" />
     <ClInclude Include="CommandMoveDown.h" />
     <ClInclude Include="CommandMoveLeft.h" />
     <ClInclude Include="CommandMoveRight.h" />
     <ClInclude Include="CommandMoveUp.h" />
+    <ClInclude Include="CommandMoveView.h" />
     <ClInclude Include="CommandPickUpItem.h" />
     <ClInclude Include="CommandSelectEntity.h" />
     <ClInclude Include="Entities.h" />

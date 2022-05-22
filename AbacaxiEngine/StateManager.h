@@ -115,12 +115,15 @@ namespace abx {
 	template<class T>
 	inline void StateManager::SwitchTo(){
 		for(auto itr = m_states.begin(); itr != m_states.end(); itr++)
-			if (typeid(*itr) == typeid(T)) {			   //If already in memory
-				m_states.back()->Deactivate();			   //Deactivating current state since we're pushing one to the back
-				Ref<State> tmpState = std::move(*itr);     //Passing ownership to a temporary state ref because we're deleting it from container
-				m_states.erase(itr);					   //Deleting from stack, but it's store in the temporary variable
+			if (typeid(*itr) == typeid(T)) {										    //If already in memory
+				
+				m_states.back()->Deactivate();										    //Deactivating current state since we're pushing one to the back
+				Ref<State> tmpState = std::move(*itr);								    //Passing ownership to a temporary state ref because we're deleting it from container
+				m_states.erase(itr);												    //Deleting from stack, but it's store in the temporary variable
 				tmpState->Activate();
-				m_states.push_back(std::move(tmpState));   //Pushing and passing ownership to the container.
+				m_states.push_back(std::move(tmpState));							    //Pushing and passing ownership to the container.
+				SharedData::Window()->GetWindow()->setView(m_states.back()->GetView());	//Setting view
+
 				//Debug
 				LogInfo( "[STATE] State in memory, switching to: [" + std::string(typeid(T).name()) + "]");
 
@@ -134,6 +137,7 @@ namespace abx {
 
 		Ref<T> newState = Create<T>().lock();   //Creating new state
 		newState->Activate();
+		SharedData::Window()->GetWindow()->setView(m_states.back()->GetView());
 	}
 
 
@@ -176,9 +180,11 @@ namespace abx {
 		*/
 	template<class T>
 	inline WeakRef<T> StateManager::Create(){
-		Ref<State> newState = MakeRef<T>();
+
+		Ref<State> newState =  MakeRef<T>();
+		newState->m_view    =  SharedData::Window()->GetWindow()->getDefaultView(); 
 		newState->OnCreate();
-		m_states.push_back(std::move(newState));				//Moving state and ownership to the container
+		m_states.push_back(std::move(newState));								     //Moving state and ownership to the container
 
 		//Debug
 		abx::LogInfo( "[STATE] State created and pushed to container: [" + std::string(typeid(*m_states.back()).name()) + "]");

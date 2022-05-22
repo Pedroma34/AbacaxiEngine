@@ -24,4 +24,4 @@
 #include "CommandSelectEntity.h"
 
 /*Commands using sf::Event::EventType*/
-#include "CommandMouseMoved.h"
+#include "CommandMoveView.h"

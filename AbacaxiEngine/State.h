@@ -19,13 +19,18 @@ namespace abx {
 	class State {
 
 
+
 		friend class StateManager;   //Foward declaration and "befriending" manager so it has access to protected members.
+
 
 
 	protected:
 
-		bool m_transparent;			 //Defines if state will be updated along with other states.
-		bool m_transcendent;		 //Defines if state will be drawn along with other states.
+
+
+		bool	  m_transparent;		 //Defines if state will be updated along with other states.
+		bool	  m_transcendent;		 //Defines if state will be drawn along with other states.
+		sf::View  m_view;				 //Each state has a view
 
 
 
@@ -117,10 +122,21 @@ namespace abx {
 
 
 		/*
-		@brief Gets if state is transcendent.
-		@returns const bool& transcendent.
+			@brief Gets if state is transcendent.
+			@returns const bool& transcendent.
 		*/
 		const bool& isTranscendent() const { return m_transcendent; }
+
+
+
+		/*
+			@brief Gets this state's view
+			@returns sf::View& view
+		*/
+		sf::View& GetView() { return m_view; }
+
+
+
 	};
 
 }

@@ -162,7 +162,11 @@ namespace abx {
 			@param sf::Event::EventType event
 		*/
 		template <class C>
-		WeakRef<CommandInput> Bind(sf::Event::EventType l_event);
+		WeakRef<CommandInput> Bind(
+			sf::Event::EventType l_event,
+			sf::Keyboard::Key l_key = sf::Keyboard::Unknown, 
+			sf::Mouse::Button l_mouse = sf::Mouse::ButtonCount
+		);
 
 
 
@@ -330,15 +334,10 @@ namespace abx {
 
 
 	/*
-		@brief Definition. Binds a command input type to a container that will be called as a callback
-		whenever the key, mouse, or joystick is pressed (execute) or released (undo.)
-		In this case, an event type will be passed.
-		The execute command will be called when the current sfml event matches with the event passed as a parameter.
-		@param std::weak_ptr<Entity> entity
-		@param sf::Event::EventType event
+		@brief
 	*/
 	template<class C>
-	inline WeakRef<CommandInput> EventManager::Bind(sf::Event::EventType l_event){
+	inline WeakRef<CommandInput> EventManager::Bind(sf::Event::EventType l_event, sf::Keyboard::Key l_key, sf::Mouse::Button l_mouse){
 		for (auto& itr : m_keys)
 			if (typeid(C) == typeid(*itr->GetCommand().lock()) &&
 				itr->GetEventType() == l_event)
@@ -347,6 +346,8 @@ namespace abx {
 		auto newKey = MakeRef<CommandKey>();
 		newKey->BindCommand<C>();
 		newKey->SetEventType(l_event);
+		newKey->SetKeyCode(l_key);
+		newKey->SetMouseCode(l_mouse);
 		m_keys.push_back(std::move(newKey));
 		return m_keys.back()->GetCommand();
 	}

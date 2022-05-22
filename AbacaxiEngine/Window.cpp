@@ -174,6 +174,25 @@ namespace abx {
 
 
 	/*_________________________________________________________________________*/
+	sf::FloatRect Window::GetViewSpace(){
+
+		auto viewCenter    =  m_window.getView().getCenter();
+		auto viewSize	   =  m_window.getView().getSize();
+		auto viewSizeHalf  =  sf::Vector2f(
+			viewSize.x / 2, 
+			viewSize.y / 2
+		);
+
+		sf::FloatRect viewSpace(viewCenter - viewSizeHalf, viewSize);
+
+		return viewSpace;
+
+	}
+	/*_________________________________________________________________________*/
+
+
+
+	/*_________________________________________________________________________*/
 	void Window::Create(){
 		auto style = m_fullScreen ? sf::Style::Fullscreen : sf::Style::Close;
 

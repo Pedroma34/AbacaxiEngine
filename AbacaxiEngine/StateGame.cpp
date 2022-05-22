@@ -48,6 +48,16 @@ namespace abx {
 		/*Variables*/
 		const auto& winSize = SharedData::Window()->GetSize();
 
+		/*View*/
+		m_view.setSize(
+			winSize.x, 
+			winSize.y
+		);
+		m_view.setCenter(
+			winSize.x / 2,
+			winSize.y / 2
+		);
+
 		/*Entities*/
 		Debug::SetPlayer(SharedData::EntityMgr()->Add<EntityMinotaur>().lock());
 		auto playerSpriteSys = Debug::GetPlayer().lock()->GetSystem<SystemSprite>().lock();
@@ -89,6 +99,7 @@ namespace abx {
 		SharedData::EventMgr()->Bind<CommandDestroyApplication> (sf::Keyboard::F1,  false);
 		SharedData::EventMgr()->Bind<CommandDebug>              (sf::Keyboard::Tab, false);
 		SharedData::EventMgr()->Bind<CommandSelectEntity>       (sf::Mouse::Left,   false);
+
 	}
 	/*_________________________________________________________________________*/
 
@@ -124,6 +135,9 @@ namespace abx {
 
 	/*_________________________________________________________________________*/
 	void StateGame::Update(const float& l_time) {
+
+		SharedData::Window()->GetWindow()->setView(m_view);
+		SharedData::SetView(&m_view);
 
 		SharedData::EntityMgr()->Update(l_time);
 

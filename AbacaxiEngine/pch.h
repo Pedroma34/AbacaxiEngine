@@ -126,6 +126,7 @@ namespace abx {
 		class EntityManager*   m_entityMgr  =  nullptr;	   //Pointer to abx::EntityManager object. Foward declaration.
 		class EventManager*    m_eventMgr   =  nullptr;	   //Pointer to abx::EventManager object. Foward declaration.
 		sf::Time*              m_time       =  nullptr;	   //Pointer to application's time.
+		sf::View*			   m_currentView = nullptr;	   //Pointer to window's current view
 		bool				   m_debug      =  false;	   //Application's visual debug
 		bool				   m_log        =  true;	   //Application's logging debug
 
@@ -144,18 +145,20 @@ namespace abx {
 		static void SetEntityMgr (EntityManager* l_entityMgr) { Get().m_entityMgr  =  l_entityMgr; }
 		static void SetEventMgr  (EventManager* l_eventMgr)   { Get().m_eventMgr   =  l_eventMgr;  }
 		static void SetTime	     (sf::Time* l_time)           { Get().m_time       =  l_time;      }
+		static void SetView		 (sf::View* l_view)			  { Get().m_currentView = l_view;      }
 		static void SetDebug	 (bool l_debug)				  { Get().m_debug      =  l_debug;     }
 		static void SetLog       (bool l_log)				  { Get().m_log        =  l_log;       }
 
 		//Getters
-		static Window* Window()			   { return Get().m_window;     }
-		static Resources* Resource()	   { return Get().m_resources;  }
-		static StateManager* StateMgr()	   { return Get().m_stateMgr;   }
-		static EntityManager* EntityMgr()  { return Get().m_entityMgr;  }
-		static EventManager* EventMgr()    { return Get().m_eventMgr;   }
-		static sf::Time* Time()            { return Get().m_time;       }
-		static const bool& Debug()		   { return Get().m_debug;      }
-		static const bool& Log()		   { return Get().m_log;        }
+		static Window*        Window()	   { return Get().m_window;       }
+		static Resources*     Resource()   { return Get().m_resources;    }
+		static StateManager*  StateMgr()   { return Get().m_stateMgr;     }
+		static EntityManager* EntityMgr()  { return Get().m_entityMgr;    }
+		static EventManager*  EventMgr()   { return Get().m_eventMgr;     }
+		static sf::Time*	  Time()       { return Get().m_time;         }
+		static sf::View&      View()	   { return *Get().m_currentView; }
+		static const bool&    Debug()	   { return Get().m_debug;        }
+		static const bool&    Log()		   { return Get().m_log;          }
 	};
 
 	

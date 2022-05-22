@@ -109,9 +109,6 @@
     <ClCompile Include="EntityMinotaur.cpp">
       <Filter>Entity\Entities</Filter>
     </ClCompile>
-    <ClCompile Include="CommandMouseMoved.cpp">
-      <Filter>Command\CommandInputs</Filter>
-    </ClCompile>
     <ClCompile Include="EntityClover.cpp">
       <Filter>Entity\Entities</Filter>
     </ClCompile>
@@ -119,6 +116,9 @@
       <Filter>Systems</Filter>
     </ClCompile>
     <ClCompile Include="CommandPickUpItem.cpp">
+      <Filter>Command\CommandInputs</Filter>
+    </ClCompile>
+    <ClCompile Include="CommandMoveView.cpp">
       <Filter>Command\CommandInputs</Filter>
     </ClCompile>
   </ItemGroup>
@@ -267,9 +267,6 @@
     <ClInclude Include="EntityMinotaur.h">
       <Filter>Entity\Entities</Filter>
     </ClInclude>
-    <ClInclude Include="CommandMouseMoved.h">
-      <Filter>Command\CommandInputs</Filter>
-    </ClInclude>
     <ClInclude Include="EntityClover.h">
       <Filter>Entity\Entities</Filter>
     </ClInclude>
@@ -277,6 +274,9 @@
       <Filter>Systems</Filter>
     </ClInclude>
     <ClInclude Include="CommandPickUpItem.h">
+      <Filter>Command\CommandInputs</Filter>
+    </ClInclude>
+    <ClInclude Include="CommandMoveView.h">
       <Filter>Command\CommandInputs</Filter>
     </ClInclude>
   </ItemGroup>

@@ -1,5 +1,7 @@
 
 
+
+
 /*
 	StateManager.cpp
 	Purpose: Manage, update, and render all machine states, including transparency, transcendency, and memory.
@@ -8,8 +10,14 @@
 */
 
 
+
+
 #include "pch.h"
 #include "StateManager.h"
+#include "Window.h"
+
+
+
 
 namespace abx {
 
@@ -53,11 +61,14 @@ namespace abx {
 			}
 			for (; itr != m_states.end(); ++itr) {
 				itr->get()->Update(l_time);
+				//SharedData::Window()->GetWindow()->setView(m_states.back()->GetView());
 			}
 		}
 
-		else																//If current state is not transcendent, just update it
+		else {																//If current state is not transcendent, just update it
 			m_states.back()->Update(l_time);
+			//SharedData::Window()->GetWindow()->setView(m_states.back()->GetView());
+		}
 	}
 	/*_____________________________________________________*/
 
@@ -81,11 +92,14 @@ namespace abx {
 				--itr;
 			}
 			for (; itr != m_states.end(); ++itr) {
+				SharedData::Window()->GetWindow()->setView(itr->get()->GetView());
 				itr->get()->Render();
 			}
 		}
-		else																//If current state is not transparent, just draw it
+		else {																//If current state is not transparent, just draw it
+			SharedData::Window()->GetWindow()->setView(m_states.back()->GetView());
 			m_states.back()->Render();
+		}
 	}
 	/*_____________________________________________________*/
 
