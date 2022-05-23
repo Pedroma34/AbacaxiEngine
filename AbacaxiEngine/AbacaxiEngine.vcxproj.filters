@@ -121,6 +121,9 @@
     <ClCompile Include="CommandMoveView.cpp">
       <Filter>Command\CommandInputs</Filter>
     </ClCompile>
+    <ClCompile Include="CommandZoom.cpp">
+      <Filter>Command\CommandInputs</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Application.h">
@@ -277,6 +280,9 @@
       <Filter>Command\CommandInputs</Filter>
     </ClInclude>
     <ClInclude Include="CommandMoveView.h">
+      <Filter>Command\CommandInputs</Filter>
+    </ClInclude>
+    <ClInclude Include="CommandZoom.h">
       <Filter>Command\CommandInputs</Filter>
     </ClInclude>
   </ItemGroup>

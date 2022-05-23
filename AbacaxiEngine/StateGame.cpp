@@ -96,9 +96,12 @@ namespace abx {
 		SharedData::EventMgr()->Bind<CommandKillEntity> (enemy, sf::Keyboard::Num2,  false);
 
 		/*Shared Data Events*/
-		SharedData::EventMgr()->Bind<CommandDestroyApplication> (sf::Keyboard::F1,  false);
-		SharedData::EventMgr()->Bind<CommandDebug>              (sf::Keyboard::Tab, false);
+		SharedData::EventMgr()->Bind<CommandDestroyApplication> (sf::Keyboard::F1,  false   );
+		SharedData::EventMgr()->Bind<CommandDebug>              (sf::Keyboard::Tab, false   );
 		SharedData::EventMgr()->Bind<CommandSelectEntity>       (sf::Mouse::Left,   false);
+
+		/*Events*/
+		SharedData::EventMgr()->Bind<CommandZoom> (sf::Event::MouseWheelScrolled);
 
 	}
 	/*_________________________________________________________________________*/

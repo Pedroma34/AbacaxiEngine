@@ -107,6 +107,7 @@
     <ClCompile Include="CommandMoveView.cpp" />
     <ClCompile Include="CommandPickUpItem.cpp" />
     <ClCompile Include="CommandSelectEntity.cpp" />
+    <ClCompile Include="CommandZoom.cpp" />
     <ClCompile Include="EntityClover.cpp" />
     <ClCompile Include="StateEntityHurt.cpp" />
     <ClCompile Include="SystemDamageBox.cpp" />
@@ -161,6 +162,7 @@
     <ClInclude Include="CommandMoveView.h" />
     <ClInclude Include="CommandPickUpItem.h" />
     <ClInclude Include="CommandSelectEntity.h" />
+    <ClInclude Include="CommandZoom.h" />
     <ClInclude Include="Entities.h" />
     <ClInclude Include="Entity.h" />
     <ClInclude Include="EntityBandit.h" />

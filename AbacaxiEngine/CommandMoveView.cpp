@@ -32,7 +32,7 @@ namespace abx {
 
 		if (sf::Mouse::isButtonPressed(sf::Mouse::Right)) {
 
-			float speed = SharedData::View().getSize().x / 2 * 1 * SharedData::Time()->asSeconds();
+			float speed = SharedData::View().getSize().x / 2 * 0.5 * SharedData::Time()->asSeconds();
 			const auto& oldMousePos = Debug::GetLastMousePos();
 			auto offset = sf::Vector2f(
 				oldMousePos.x - l_event.mouseMove.x,

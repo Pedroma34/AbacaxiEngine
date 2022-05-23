@@ -25,3 +25,4 @@
 
 /*Commands using sf::Event::EventType*/
 #include "CommandMoveView.h"
+#include "CommandZoom.h"

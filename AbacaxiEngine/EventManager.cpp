@@ -45,17 +45,15 @@ namespace abx {
 			if (itr->GetEventType() == l_event->type) {
 
 				if (itr->GetKeyCode() != sf::Keyboard::Unknown) {
-					if (l_event->key.code == itr->GetKeyCode()) {
+					if (l_event->key.code == itr->GetKeyCode()) 
 						itr->Execute(*l_event);
-						break;
-					}
+					
 				}
 
 				else if (itr->GetMouseCode() != sf::Mouse::Button::ButtonCount) {
-					if (l_event->mouseButton.button == itr->GetMouseCode()) {
+					if (l_event->mouseButton.button == itr->GetMouseCode())
 						itr->Execute(*l_event);
-						break;
-					}
+						
 				}
 
 				itr->Execute(*l_event);
