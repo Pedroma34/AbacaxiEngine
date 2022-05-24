@@ -93,7 +93,10 @@ namespace abx {
 			const bool& isHold
 		*/
 		template<class C>
-		WeakRef<CommandInput> Bind(WeakRef<class Entity> l_entity, sf::Keyboard::Key l_keyCode, const bool& l_isHold);
+		WeakRef<CommandInput> Bind(WeakRef<class Entity> l_entity,
+			sf::Keyboard::Key l_keyCode, 
+			const bool& l_isHold
+		);
 
 
 
@@ -107,7 +110,11 @@ namespace abx {
 			const bool& isHold
 		*/
 		template<class C>
-		WeakRef<CommandInput> Bind(WeakRef<class Entity> l_entity, sf::Mouse::Button l_mouseButton, const bool& l_isHold);
+		WeakRef<CommandInput> Bind(
+			WeakRef<class Entity> l_entity, 
+			sf::Mouse::Button l_mouseButton, 
+			const bool& l_isHold
+		);
 
 
 
@@ -121,7 +128,10 @@ namespace abx {
 			const bool& isHold
 		*/
 		template <class C>
-		WeakRef<CommandInput> Bind(sf::Keyboard::Key l_keyCode, const bool& l_isHold);
+		WeakRef<CommandInput> Bind(
+			sf::Keyboard::Key l_keyCode, 
+			const bool& l_isHold
+		);
 
 
 
@@ -135,7 +145,10 @@ namespace abx {
 			const bool& isHold
 		*/
 		template <class C>
-		WeakRef<CommandInput> Bind(sf::Mouse::Button l_mouseButton , const bool& l_isHold);
+		WeakRef<CommandInput> Bind(
+			sf::Mouse::Button l_mouseButton, 
+			const bool& l_isHold
+		);
 
 
 
@@ -149,7 +162,10 @@ namespace abx {
 			@param sf::Event::EventType event
 		*/
 		template <class C>
-		WeakRef<CommandInput> Bind(WeakRef<Entity> l_entity, sf::Event::EventType l_event);
+		WeakRef<CommandInput> Bind(
+			WeakRef<Entity> l_entity, 
+			sf::Event::EventType l_event
+		);
 
 
 
